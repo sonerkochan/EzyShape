@@ -40,5 +40,8 @@ namespace EzyShape.Infrastructure.Data.Models
 
         [Description("Equipment used for the exercise")]
         public string? Equipment { get; set; }
+
+        [Description("Id of the user that made the exercise.")]
+        public string UserId { get; set; } = null!;
     }
 }
