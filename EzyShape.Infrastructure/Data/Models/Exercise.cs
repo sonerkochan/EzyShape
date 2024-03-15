@@ -25,5 +25,20 @@ namespace EzyShape.Infrastructure.Data.Models
 
         [Description("Notes to the exercise (optional)")]
         public string? Notes { get; set; }
+
+        [Description("Primary muscles worked with the exercise")]
+        public string? PrimaryMuscle { get; set; }
+
+        [Description("Secondary muscles worked with the exercise")]
+        public string? SecondaryMuscle { get; set; }
+
+        [Description("Type of the exercise")]
+        public string? Type { get; set; }
+
+        [Description("Level of the exercise")]
+        public string? Level { get; set; }
+
+        [Description("Equipment used for the exercise")]
+        public string? Equipment { get; set; }
     }
 }
