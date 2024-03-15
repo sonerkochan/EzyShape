@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace EzyShape.Infrastructure.Data.Models
 {
-    public class Program
+    public class Split
     {
         [Key]
-        [Description("Id of the program")]
+        [Description("Id of the split")]
         public int Id { get; set; }
 
         [Required]
-        [Description("Name of the program")]
+        [Description("Name of the split")]
         public string Name { get; set; } = null!;
 
-        [Description("Description of the program")]
+        [Description("Description of the split")]
         public string? Descriptions { get; set; }
 
-        [Description("List of exercises in the program.")]
-        public IEnumerable<ProgramExercise> ExerciseIds { get; set; } = new List<ProgramExercise>();
+        [Description("List of exercises in the split.")]
+        public IEnumerable<SplitExercise> ExerciseIds { get; set; } = new List<SplitExercise>();
 
 
-        [Description("Id of the user that made the program.")]
+        [Description("Id of the user that made the split.")]
         public string UserId { get; set; } = null!;
 
 

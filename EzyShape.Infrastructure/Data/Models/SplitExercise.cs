@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace EzyShape.Infrastructure.Data.Models
 {
-    public class ProgramExercise
+    public class SplitExercise
     {
 
         [Required]
-        [Description("Id of the program.")]
-        public int ProgramId { get; set; }
+        [Description("Id of the Split.")]
+        public int SplitId { get; set; }
 
-        [ForeignKey(nameof(ProgramId))]
-        public Program Program { get; set; }
+        [ForeignKey(nameof(SplitId))]
+        public Split Split { get; set; }
 
         [Required]
         [Description("Id of the product.")]
