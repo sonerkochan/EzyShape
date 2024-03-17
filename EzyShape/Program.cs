@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Password.RequireNonAlphanumeric = false;
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>

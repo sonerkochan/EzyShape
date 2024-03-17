@@ -1,6 +1,7 @@
 ﻿using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SportArete.Infrastructure.Data.Configuration;
 
 namespace EzyShape.Infrastructure.Data
 {
@@ -23,6 +24,8 @@ namespace EzyShape.Infrastructure.Data
             builder.Entity<User>()
                 .Property(u => u.Email)
                 .IsRequired();
+
+            builder.ApplyConfiguration(new RoleConfigration());
 
             base.OnModelCreating(builder);
         }

@@ -16,16 +16,20 @@ namespace EzyShape.Controllers
 
         private readonly SignInManager<User> signInManager;
 
+        private readonly RoleManager<IdentityRole> roleManager;
+
 
         /// <summary>
         /// Constructor for the user controller.
         /// </summary>
         public UserController(
             UserManager<User> _userManager,
-            SignInManager<User> _signInManager)
+            SignInManager<User> _signInManager,
+            RoleManager<IdentityRole> _roleManager)
         {
             userManager = _userManager;
             signInManager = _signInManager;
+            roleManager = _roleManager;
         }
 
         /// <summary>
@@ -70,6 +74,15 @@ namespace EzyShape.Controllers
 
             if (result.Succeeded)
             {
+
+                var roleName = "Trainer";
+                var roleExists = await roleManager.RoleExistsAsync(roleName);
+
+                if (roleExists)
+                {
+                    var roleResult = await userManager.AddToRoleAsync(user, roleName);
+                }
+
                 return RedirectToAction("Login", "User");
             }
 
