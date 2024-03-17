@@ -1,0 +1,56 @@
+﻿@model LoginViewModel;
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <section class="login-section">
+        <div class="login-form-box">
+            <div class="form-value">
+                <form id="account" method="post">
+                    <h2 class="login-text-center1" style="color:whitesmoke">@ViewData["Title"]</h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="login-inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <label asp-for="@Model.UserName">Username</label>
+                        <input asp-for="@Model.UserName" autocomplete="username" aria-required="true" />
+                        <span asp-validation-for="@Model.UserName"></span>
+                    </div>
+
+                    <div class="login-inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <label asp-for="@Model.Password"> Password</label>
+                        <input asp-for="@Model.Password" type="password" autocomplete="current-password" aria-required="true" />
+                        <span asp-validation-for="@Model.Password"></span>
+                    </div>
+
+                    <div class="login-forget">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <label>
+                            <a href="#">Forgot password?</a>
+                        </label>
+                    </div>
+                    <div class="login-text-center1">
+                        <button id="login-submit" type="submit" class="login-button">Log in</button>
+                    </div>
+                    <div class="login-register">
+                        <p>Don't have an account? <a asp-action="Register">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+</body>
+</html>
