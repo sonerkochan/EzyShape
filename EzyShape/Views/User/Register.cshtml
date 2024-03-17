@@ -1,0 +1,67 @@
+﻿@model RegisterViewModel;
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/LogInRegisterStyleSheet.css" asp-append-version="true" />
+</head>
+<body>
+    <section class="register-section">
+        <div class="register-form-box">
+            <div class="form-value">
+                <form id="account" method="post">
+                    <h2 class="register-text-center1" style="color:whitesmoke">@ViewData["Title"]</h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="register-inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <label asp-for="@Model.UserName">Username</label>
+                        <input autocomplete="username" aria-required="true" asp-for="@Model.UserName" />
+                        <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="register-inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <label asp-for="@Model.Email">Email</label>
+                        <input autocomplete="username" aria-required="true" asp-for="@Model.Email" />
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="register-inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <label asp-for="@Model.Password">Password</label>
+                        <input type="password" autocomplete="new-password" aria-required="true" asp-for="@Model.Password" />
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="register-inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <label asp-for="@Model.ConfirmPassword">Confirm Password</label>
+                        <input type="password" autocomplete="new-password" aria-required="true" asp-for="@Model.ConfirmPassword" />
+                        <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="register-text-center1">
+                        <button id="registerSubmit" type="submit" class="register-button">Register now</button>
+                    </div>
+                    <div class="register-login">
+                        <p>Already have an account?  <a asp-action="Login">Login</a> </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+</body>
+</html>
