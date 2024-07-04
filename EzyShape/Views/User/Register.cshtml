@@ -26,6 +26,22 @@
                         <span asp-validation-for="@Model.UserName" class="text-danger"></span>
                     </div>
 
+                    
+                    <div class="register-inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <label asp-for="@Model.FirstName">First name</label>
+                        <input autocomplete="firstname" aria-required="true" asp-for="@Model.FirstName" />
+                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="register-inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <label asp-for="@Model.LastName">Last name</label>
+                        <input autocomplete="lastname" aria-required="true" asp-for="@Model.LastName" />
+                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                    </div>
+
                     <div class="register-inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
                         <label asp-for="@Model.Email">Email</label>

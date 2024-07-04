@@ -21,6 +21,7 @@ namespace EzyShape.Controllers
             {
                 return RedirectToAction("Index", "Trainer", new { area = "Trainer" });
             }
+
             return View();
         }
 
