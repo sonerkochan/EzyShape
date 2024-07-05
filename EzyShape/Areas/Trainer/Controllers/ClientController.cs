@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EzyShape.Areas.Trainer.Controllers
 {
@@ -42,6 +43,8 @@ namespace EzyShape.Areas.Trainer.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateClient(ClientRegisterViewModel model)
         {
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             model.UserName = model.FirstName + userService.GetUsersCount().ToString();
             model.Password = $"{model.FirstName}{model.LastName}123";
             model.ConfirmPassword = model.Password;
@@ -57,6 +60,7 @@ namespace EzyShape.Areas.Trainer.Controllers
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                TrainerId = trainerId
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
