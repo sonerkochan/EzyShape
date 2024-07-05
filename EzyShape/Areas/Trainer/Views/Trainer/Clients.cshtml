@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ClientSmallViewModel>;
+
+@{
+    ViewData["Title"] = "My Clients";
+}
+
+
+<html>
+
+<head>
+    <title>Clients</title>
+    <link href="~/css/styling.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+
+    <h2>@ViewData["Title"]</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var client in Model)
+                {
+                    <tr>
+                        <td>@client.Username</td>
+                        <td>@client.FirstName</td>
+                        <td>@client.LastName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No clients found.</p>
+    }
+</body>
+
+
+</html>

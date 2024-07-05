@@ -16,7 +16,6 @@ namespace EzyShape.Areas.Trainer.Controllers
 
         private readonly RoleManager<IdentityRole> roleManager;
 
-
         private readonly IUserService userService;
 
         public ClientController(
