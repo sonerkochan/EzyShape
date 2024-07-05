@@ -10,4 +10,8 @@
     <ProjectReference Include="..\EzyShape.Infrastructure\EzyShape.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Client\" />
+  </ItemGroup>
+
 </Project>
