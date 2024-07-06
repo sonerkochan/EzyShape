@@ -6,16 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EzyShape.Infrastructure.Data.Models
+namespace EzyShape.Core.Models.Exercise
 {
-    public class Exercise
+    public class ExerciseViewModel
     {
-
-        [Key]
-        [Description("Id of the exercise")]
-        public int Id { get; set; }
-
-        [Required]
         [Description("Name of the exercise")]
         public string Name { get; set; } = null!;
 
@@ -39,8 +33,5 @@ namespace EzyShape.Infrastructure.Data.Models
 
         [Description("Equipment used for the exercise")]
         public string? Equipment { get; set; }
-
-        [Description("Id of the user that made the exercise.")]
-        public string UserId { get; set; } = null!;
     }
 }

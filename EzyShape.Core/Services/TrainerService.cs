@@ -1,5 +1,6 @@
 ﻿using EzyShape.Core.Contracts;
 using EzyShape.Core.Models.Client;
+using EzyShape.Core.Models.Exercise;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -38,26 +39,24 @@ namespace EzyShape.Core.Services
                     LastName = u.LastName,
                 })
                 .ToListAsync();
-
-
-
-            /*
-            var trainer = this.userManager.FindByIdAsync(TrainerId).GetAwaiter().GetResult();
-
-            var clients = trainer.Clients.Select(c => new ClientSmallViewModel()
-            {
-                FirstName = c.FirstName,
-                LastName = c.LastName,
-                Username = c.UserName,
-            })
-                .ToList();
-
-            return clients;
-            */
-
         }
 
-
-
+        public async Task<IEnumerable<ExerciseViewModel>> GetTrainersAllExercises(string TrainerId)
+        {
+            return await repo.AllReadonly<Exercise>()
+                .Where(e => e.UserId == TrainerId)
+                .Select(e => new ExerciseViewModel()
+                {
+                    Name = e.Name,
+                    Link = e.Link,
+                    Notes = e.Notes,
+                    PrimaryMuscle = e.PrimaryMuscle,
+                    SecondaryMuscle = e.SecondaryMuscle,
+                    Type = e.Type,
+                    Level = e.Level,
+                    Equipment = e.Equipment,
+                })
+                .ToListAsync();
+        }
     }
 }
