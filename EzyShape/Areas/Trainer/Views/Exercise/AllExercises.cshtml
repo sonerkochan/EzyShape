@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ExerciseViewModel>
 
 @{
-    ViewData["Title"] = "Exercises";
+    ViewData["Title"] = "All Exercises";
 }
 
 <html>
@@ -15,6 +15,15 @@
 
     <h2>@ViewData["Title"]</h2>
 
+
+
+    <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
+        <div>
+            <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Exercise" asp-action="AddExercise">Add a new exercise</a>
+        </div>
+    </button>
+
+
     @if (Model != null && Model.Any())
     {
         <table class="table table-striped">
@@ -23,9 +32,8 @@
                     <th>Name</th>
                     <th>Link</th>
                     <th>Notes</th>
-                    <th>Primary Muscle</th>
-                    <th>Secondary Muscle</th>
-                    <th>Type</th>
+                    <th>Muscle</th>
+                    <th>Category</th>
                     <th>Level</th>
                     <th>Equipment</th>
                 </tr>
@@ -35,16 +43,10 @@
                 {
                     <tr>
                         <td>@exercise.Name</td>
-                        <td>
-                            @if (!string.IsNullOrEmpty(exercise.Link))
-                            {
-                                <a href="@exercise.Link" target="_blank">View</a>
-                            }
-                        </td>
-                        <td>@exercise.Notes</td>
-                        <td>@exercise.PrimaryMuscle</td>
-                        <td>@exercise.SecondaryMuscle</td>
-                        <td>@exercise.Type</td>
+                        <td>@(string.IsNullOrEmpty(exercise.Link) ? "N/A" : $"<a href='{exercise.Link}'>Link</a>")</td>
+                        <td>@(string.IsNullOrEmpty(exercise.Notes) ? "N/A" : exercise.Notes)</td>
+                        <td>@exercise.Muscle</td>
+                        <td>@exercise.Category</td>
                         <td>@exercise.Level</td>
                         <td>@exercise.Equipment</td>
                     </tr>

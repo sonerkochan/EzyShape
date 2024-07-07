@@ -12,6 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITrainerService, TrainerService>();
+            services.AddScoped<IExerciseService, ExerciseService>();
 
             return services;
         }

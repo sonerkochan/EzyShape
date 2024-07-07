@@ -20,13 +20,10 @@ namespace EzyShape.Core.Models.Exercise
         public string? Notes { get; set; }
 
         [Description("Primary muscles worked with the exercise")]
-        public string? PrimaryMuscle { get; set; }
+        public string? Muscle { get; set; }
 
-        [Description("Secondary muscles worked with the exercise")]
-        public string? SecondaryMuscle { get; set; }
-
-        [Description("Type of the exercise")]
-        public string? Type { get; set; }
+        [Description("Category of the exercise")]
+        public string? Category { get; set; }
 
         [Description("Level of the exercise")]
         public string? Level { get; set; }

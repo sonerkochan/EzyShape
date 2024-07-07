@@ -1,0 +1,90 @@
+﻿@model AddExerciseViewModel
+
+@{
+    ViewData["Title"] = "Add Exercise";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form asp-action="AddExercise" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Exercise Name</label>
+                    <input asp-for="Name" class="form-control" aria-required="true" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Link" class="form-label">Link (Optional)</label>
+                    <input asp-for="Link" class="form-control" />
+                    <span asp-validation-for="Link" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Notes" class="form-label">Notes (Optional)</label>
+                    <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MuscleId" class="form-label">Primary Muscle</label>
+                    <select asp-for="MuscleId" class="form-control">
+                        <option value="">Select Primary Muscle</option>
+                        @foreach (var muscle in Model.Muscles)
+                        {
+                            <option value="@muscle.Id">@muscle.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="MuscleId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CategoryId" class="form-label">Category</label>
+                    <select asp-for="CategoryId" class="form-control">
+                        <option value="">Select Category</option>
+                        @foreach (var category in Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LevelId" class="form-label">Level</label>
+                    <select asp-for="LevelId" class="form-control">
+                        <option value="">Select Level</option>
+                        @foreach (var level in Model.Levels)
+                        {
+                            <option value="@level.Id">@level.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="LevelId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="EquipmentId" class="form-label">Equipment</label>
+                    <select asp-for="EquipmentId" class="form-control">
+                        <option value="">Select Equipment</option>
+                        @foreach (var equipment in Model.Equipments)
+                        {
+                            <option value="@equipment.Id">@equipment.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="EquipmentId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" value="Add Exercise" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

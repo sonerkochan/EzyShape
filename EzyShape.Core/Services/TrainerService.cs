@@ -50,11 +50,10 @@ namespace EzyShape.Core.Services
                     Name = e.Name,
                     Link = e.Link,
                     Notes = e.Notes,
-                    PrimaryMuscle = e.PrimaryMuscle,
-                    SecondaryMuscle = e.SecondaryMuscle,
-                    Type = e.Type,
-                    Level = e.Level,
-                    Equipment = e.Equipment,
+                    Muscle = e.Muscle.Name,
+                    Category = e.Category.Name,
+                    Level = e.Level.Name,
+                    Equipment = e.Equipment.Name
                 })
                 .ToListAsync();
         }

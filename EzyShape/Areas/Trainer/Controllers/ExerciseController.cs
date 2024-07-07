@@ -1,4 +1,5 @@
 ﻿using EzyShape.Core.Contracts;
+using EzyShape.Core.Models.Exercise;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,29 +9,18 @@ namespace EzyShape.Areas.Trainer.Controllers
 {
     public class ExerciseController : BaseController
     {
-        private readonly UserManager<User> userManager;
-
-        private readonly SignInManager<User> signInManager;
-
-        private readonly RoleManager<IdentityRole> roleManager;
-
         private readonly ITrainerService trainerService;
 
-        private readonly IUserService userService;
+        private readonly IExerciseService exerciseService;
+
 
         public ExerciseController(
-            UserManager<User> _userManager,
-            SignInManager<User> _signInManager,
-            RoleManager<IdentityRole> _roleManager,
-            IUserService _userService,
-            ITrainerService _trainerService
+            ITrainerService _trainerService,
+            IExerciseService _exerciseService
             )
         {
-            userManager = _userManager;
-            signInManager = _signInManager;
-            roleManager = _roleManager;
-            userService = _userService;
             trainerService = _trainerService;
+            exerciseService = _exerciseService;
         }
 
 
@@ -44,5 +34,55 @@ namespace EzyShape.Areas.Trainer.Controllers
 
             return View(model);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> AddExercise()
+        {
+            var model = new AddExerciseViewModel()
+            {
+                Muscles = await exerciseService.GetMusclesAsync(),
+                Categories = await exerciseService.GetCategoriesAsync(),
+                Levels = await exerciseService.GetLevelsAsync(),
+                Equipments = await exerciseService.GetEquipmentsAsync()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddExercise(AddExerciseViewModel addExerciseViewModel)
+        {
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!ModelState.IsValid)
+            {
+                addExerciseViewModel.Muscles = await exerciseService.GetMusclesAsync();
+                addExerciseViewModel.Categories = await exerciseService.GetCategoriesAsync();
+                addExerciseViewModel.Levels = await exerciseService.GetLevelsAsync();
+                addExerciseViewModel.Equipments = await exerciseService.GetEquipmentsAsync();
+
+                return View(addExerciseViewModel);
+            }
+
+            try
+            {
+                await exerciseService.AddExerciseAsync(addExerciseViewModel, trainerId);
+
+                return RedirectToAction("AllExercises", "Exercise");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Something went wrong");
+
+                addExerciseViewModel.Muscles = await exerciseService.GetMusclesAsync();
+                addExerciseViewModel.Categories = await exerciseService.GetCategoriesAsync();
+                addExerciseViewModel.Levels = await exerciseService.GetLevelsAsync();
+                addExerciseViewModel.Equipments = await exerciseService.GetEquipmentsAsync();
+
+                return View(addExerciseViewModel);
+            }
+        }
+
     }
 }

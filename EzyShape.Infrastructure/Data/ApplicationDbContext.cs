@@ -1,4 +1,5 @@
-﻿using EzyShape.Infrastructure.Data.Models;
+﻿using EzyShape.Infrastructure.Data.Configuration;
+using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SportArete.Infrastructure.Data.Configuration;
@@ -34,6 +35,10 @@ namespace EzyShape.Infrastructure.Data
 
 
             builder.ApplyConfiguration(new RoleConfigration());
+            builder.ApplyConfiguration(new EquipmentConfiguration());
+            builder.ApplyConfiguration(new LevelConfiguration());
+            builder.ApplyConfiguration(new MuscleConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
 
             base.OnModelCreating(builder);
         }
