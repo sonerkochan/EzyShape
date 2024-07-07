@@ -36,6 +36,7 @@ namespace EzyShape.Areas.Trainer.Controllers
         }
 
 
+        [Route("/exercises/new")]
         [HttpGet]
         public async Task<IActionResult> AddExercise()
         {
@@ -50,6 +51,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             return View(model);
         }
 
+        [Route("/exercises/new")]
         [HttpPost]
         public async Task<IActionResult> AddExercise(AddExerciseViewModel addExerciseViewModel)
         {

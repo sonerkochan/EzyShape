@@ -36,6 +36,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             trainerService = _trainerService;
         }
 
+        [Route("/clients/new")]
         [HttpGet]
         public IActionResult CreateClient()
         {
@@ -44,6 +45,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             return View(model);
         }
 
+        [Route("/clients/new")]
         [HttpPost]
         public async Task<IActionResult> CreateClient(ClientRegisterViewModel model)
         {
@@ -80,7 +82,7 @@ namespace EzyShape.Areas.Trainer.Controllers
                     var roleResult = await userManager.AddToRoleAsync(user, roleName);
                 }
 
-                return RedirectToAction("Index", "Trainer");
+                return RedirectToAction("AllClients", "Client");
             }
 
             foreach (var item in result.Errors)
