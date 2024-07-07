@@ -64,7 +64,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             var user = new User()
             {
                 UserName = model.UserName,
-                Email = model.Email,
+                Email = model.Email.ToLower(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 TrainerId = trainerId
