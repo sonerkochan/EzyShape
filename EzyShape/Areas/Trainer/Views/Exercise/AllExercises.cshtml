@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ExerciseViewModel>
+
+@{
+    ViewData["Title"] = "All Exercises";
+}
+
+<html>
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/styling.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <h2>@ViewData["Title"]</h2>
+
+
+
+    <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
+        <div>
+            <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Exercise" asp-action="AddExercise">Add a new exercise</a>
+        </div>
+    </button>
+
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Link</th>
+                    <th>Notes</th>
+                    <th>Muscle</th>
+                    <th>Category</th>
+                    <th>Level</th>
+                    <th>Equipment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var exercise in Model)
+                {
+                    <tr>
+                        <td>@exercise.Name</td>
+                        <td>@(string.IsNullOrEmpty(exercise.Link) ? "N/A" : $"<a href='{exercise.Link}'>Link</a>")</td>
+                        <td>@(string.IsNullOrEmpty(exercise.Notes) ? "N/A" : exercise.Notes)</td>
+                        <td>@exercise.Muscle</td>
+                        <td>@exercise.Category</td>
+                        <td>@exercise.Level</td>
+                        <td>@exercise.Equipment</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No exercises found.</p>
+    }
+
+</body>
+
+</html>

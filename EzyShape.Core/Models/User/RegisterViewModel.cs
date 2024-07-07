@@ -14,6 +14,15 @@ namespace EzyShape.Core.Models.User
         public string UserName { get; set; } = null!;
 
         [Required]
+        [Description("User's FirstName.")]
+        public string FirstName { get; set; } = null!;
+
+
+        [Required]
+        [Description("User's LastName.")]
+        public string LastName { get; set; } = null!;
+
+        [Required]
         [EmailAddress]
         [Description("User's Email.")]
         public string Email { get; set; } = null!;

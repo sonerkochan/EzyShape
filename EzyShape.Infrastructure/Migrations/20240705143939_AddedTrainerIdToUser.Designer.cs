@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzyShape.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240705143939_AddedTrainerIdToUser")]
+    partial class AddedTrainerIdToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,176 +23,6 @@ namespace EzyShape.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Category");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Cardio"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Olympic Weightlifting"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Plyometrics"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Powerlifting"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Strength"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Strongman"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Stretching"
-                        });
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Equipment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Equipment");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "No Equipment"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Dumbbells"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Barbell"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Kettlebells"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Treadmill"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Elliptical"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Rowing Machine"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Resistance Bands"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Bench Press"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Pull-up Bar"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Medicine Ball"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Foam Roller"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Exercise Mat"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Stationary Bike"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Leg Press Machine"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Name = "Cable Machine"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Name = "Smith Machine"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Name = "Stability Ball"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Name = "Jump Rope"
-                        });
-                });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Exercise", b =>
                 {
@@ -200,20 +32,14 @@ namespace EzyShape.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<string>("Equipment")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EquipmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LevelId")
-                        .HasColumnType("int");
+                    b.Property<string>("Level")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MuscleId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -222,171 +48,22 @@ namespace EzyShape.Infrastructure.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PrimaryMuscle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondaryMuscle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("EquipmentId");
-
-                    b.HasIndex("LevelId");
-
-                    b.HasIndex("MuscleId");
-
                     b.ToTable("Exercises");
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Level", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Level");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Beginner"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Intermediate"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Advanced"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Expert"
-                        });
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Muscle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Muscle");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Abdominals"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Abductors"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Adductors"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Biceps"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Calves"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Chest"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Forearms"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Glutes"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Hamstrings"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Lats"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Lower Back"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Middle Back"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Neck"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Obliques"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Quadriceps"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Name = "Shoulders"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Name = "Traps"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Name = "Triceps"
-                        });
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Split", b =>
@@ -556,14 +233,14 @@ namespace EzyShape.Infrastructure.Migrations
                         new
                         {
                             Id = "d9de7285-b674-454c-9889-5210abb8d347",
-                            ConcurrencyStamp = "12ffa65c-011d-4de0-b1c7-f961ed33dce1",
+                            ConcurrencyStamp = "a489a797-20c8-4316-9340-e995a3fbb41f",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         },
                         new
                         {
                             Id = "07358494-247c-421c-8f7f-82c12be55276",
-                            ConcurrencyStamp = "6fa28154-7edc-4d70-9210-67ec69169981",
+                            ConcurrencyStamp = "e4627d45-a8bd-40d1-8b86-857894245855",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -679,33 +356,6 @@ namespace EzyShape.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Exercise", b =>
-                {
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Category", "Category")
-                        .WithMany("Exercises")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Equipment", "Equipment")
-                        .WithMany("Exercises")
-                        .HasForeignKey("EquipmentId");
-
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Level", "Level")
-                        .WithMany("Exercises")
-                        .HasForeignKey("LevelId");
-
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Muscle", "Muscle")
-                        .WithMany("Exercises")
-                        .HasForeignKey("MuscleId");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Equipment");
-
-                    b.Navigation("Level");
-
-                    b.Navigation("Muscle");
-                });
-
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.SplitExercise", b =>
                 {
                     b.HasOne("EzyShape.Infrastructure.Data.Models.Exercise", "Exercise")
@@ -784,26 +434,6 @@ namespace EzyShape.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Category", b =>
-                {
-                    b.Navigation("Exercises");
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Equipment", b =>
-                {
-                    b.Navigation("Exercises");
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Level", b =>
-                {
-                    b.Navigation("Exercises");
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Muscle", b =>
-                {
-                    b.Navigation("Exercises");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Split", b =>

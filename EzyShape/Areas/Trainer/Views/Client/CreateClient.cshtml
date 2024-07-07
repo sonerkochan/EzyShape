@@ -1,0 +1,56 @@
+﻿@model ClientRegisterViewModel;
+
+@{
+    ViewData["Title"] = "Client profile creation";
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <section class="createclient-section">
+        <div class="createclient-form-box">
+            <div class="form-value">
+                <form id="account" method="post">
+
+                    <h2 class="createclient-text-center1" style="color:whitesmoke">@ViewData["Title"]</h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="createclient-inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <label asp-for="@Model.FirstName">First name</label>
+                        <input autocomplete="firstname" aria-required="true" asp-for="@Model.FirstName" />
+                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="createclient-inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <label asp-for="@Model.LastName">Last name</label>
+                        <input autocomplete="lastname" aria-required="true" asp-for="@Model.LastName" />
+                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="createclient-inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <label asp-for="@Model.Email">Email</label>
+                        <input autocomplete="email" aria-required="true" asp-for="@Model.Email" />
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+                    <div class="createclient-text-center1">
+                        <button id="createclientSubmit" type="submit" class="createclient-button">Create Client Profile now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+</body>
+</html>

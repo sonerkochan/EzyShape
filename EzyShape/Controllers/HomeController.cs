@@ -1,6 +1,7 @@
 ﻿using EzyShape.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using static EzyShape.Areas.Trainer.Constants.TrainerConstants;
 
 namespace EzyShape.Controllers
 {
@@ -15,6 +16,12 @@ namespace EzyShape.Controllers
 
         public IActionResult Index()
         {
+
+            if (User.IsInRole(TrainerRoleName))
+            {
+                return RedirectToAction("Index", "Trainer", new { area = "Trainer" });
+            }
+
             return View();
         }
 
