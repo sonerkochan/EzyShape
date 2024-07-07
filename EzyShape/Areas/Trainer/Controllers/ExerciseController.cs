@@ -2,6 +2,7 @@
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EzyShape.Areas.Trainer.Controllers
 {
@@ -33,9 +34,15 @@ namespace EzyShape.Areas.Trainer.Controllers
         }
 
 
-        public IActionResult Index()
+        [Route("/exercises")]
+        [HttpGet]
+        public async Task<IActionResult> AllExercises()
         {
-            return View();
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var model = await trainerService.GetTrainersAllExercises(trainerId);
+
+            return View(model);
         }
     }
 }

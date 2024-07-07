@@ -25,26 +25,5 @@ namespace EzyShape.Areas.Trainer.Controllers
         {
             return View();
         }
-
-
-        [HttpGet]
-        public async Task<IActionResult> Clients()
-        {
-            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var model = await trainerService.GetTrainersAllClients(trainerId);
-
-            return View(model);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Exercises()
-        {
-            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var model = await trainerService.GetTrainersAllExercises(trainerId);
-
-            return View(model);
-        }
     }
 }

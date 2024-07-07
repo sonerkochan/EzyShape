@@ -1,5 +1,6 @@
 ﻿using EzyShape.Core.Contracts;
 using EzyShape.Core.Models.User;
+using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,19 +17,23 @@ namespace EzyShape.Areas.Trainer.Controllers
 
         private readonly RoleManager<IdentityRole> roleManager;
 
+        private readonly ITrainerService trainerService;
+
         private readonly IUserService userService;
 
         public ClientController(
             UserManager<User> _userManager,
             SignInManager<User> _signInManager,
             RoleManager<IdentityRole> _roleManager,
-            IUserService _userService
+            IUserService _userService,
+            ITrainerService _trainerService
             )
         {
             userManager = _userManager;
             signInManager = _signInManager;
             roleManager = _roleManager;
             userService = _userService;
+            trainerService = _trainerService;
         }
 
         [HttpGet]
@@ -85,5 +90,18 @@ namespace EzyShape.Areas.Trainer.Controllers
 
             return View(model);
         }
+
+
+        [Route("/clients")]
+        [HttpGet]
+        public async Task<IActionResult> AllClients()
+        {
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var model = await trainerService.GetTrainersAllClients(trainerId);
+
+            return View(model);
+        }
+
     }
 }

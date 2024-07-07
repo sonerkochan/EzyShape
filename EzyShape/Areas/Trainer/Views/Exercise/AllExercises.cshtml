@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ExerciseViewModel>
+
+@{
+    ViewData["Title"] = "Exercises";
+}
+
+<html>
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/styling.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <h2>@ViewData["Title"]</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Link</th>
+                    <th>Notes</th>
+                    <th>Primary Muscle</th>
+                    <th>Secondary Muscle</th>
+                    <th>Type</th>
+                    <th>Level</th>
+                    <th>Equipment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var exercise in Model)
+                {
+                    <tr>
+                        <td>@exercise.Name</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(exercise.Link))
+                            {
+                                <a href="@exercise.Link" target="_blank">View</a>
+                            }
+                        </td>
+                        <td>@exercise.Notes</td>
+                        <td>@exercise.PrimaryMuscle</td>
+                        <td>@exercise.SecondaryMuscle</td>
+                        <td>@exercise.Type</td>
+                        <td>@exercise.Level</td>
+                        <td>@exercise.Equipment</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No exercises found.</p>
+    }
+
+</body>
+
+</html>
