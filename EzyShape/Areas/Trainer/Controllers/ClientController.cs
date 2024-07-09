@@ -51,7 +51,8 @@ namespace EzyShape.Areas.Trainer.Controllers
         {
             var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            model.UserName = model.FirstName + userService.GetUsersCount().ToString();
+            model.UserName = $"{model.FirstName}{(userService.GetUsersCount() + 1)}";
+            //
             model.Password = $"{model.FirstName}{model.LastName}123";
             model.ConfirmPassword = model.Password;
 
@@ -63,7 +64,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             var user = new User()
             {
                 UserName = model.UserName,
-                Email = model.Email,
+                Email = model.Email.ToLower(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 TrainerId = trainerId

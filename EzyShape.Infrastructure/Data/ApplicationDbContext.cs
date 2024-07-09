@@ -13,20 +13,15 @@ namespace EzyShape.Infrastructure.Data
         {
         }
 
-        public DbSet<Split> Splits { get; set; }
-        public DbSet<SplitExercise> SplitExercises { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
+        public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<SplitExercise>()
-               .HasKey(x => new { x.SplitId, x.ExerciseId });
-
-
             builder.Entity<User>()
                 .Property(u => u.Email)
                 .IsRequired();
 
-            // Assuming User has a TrainerId which is also a User
             builder.Entity<User>()
                 .HasOne(u => u.Trainer)
                 .WithMany(u => u.Clients)

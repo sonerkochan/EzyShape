@@ -1,5 +1,5 @@
-﻿using EzyShape.Core.Models.Client;
-using EzyShape.Core.Models.Exercise;
+﻿using EzyShape.Core.Models.Clients;
+using EzyShape.Core.Models.Exercises;
 using EzyShape.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;

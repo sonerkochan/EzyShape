@@ -1,5 +1,5 @@
 ﻿using EzyShape.Core.Contracts;
-using EzyShape.Core.Models.Exercise;
+using EzyShape.Core.Models.Exercises;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;

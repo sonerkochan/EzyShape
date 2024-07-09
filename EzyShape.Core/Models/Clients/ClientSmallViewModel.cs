@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EzyShape.Core.Models.Client
+namespace EzyShape.Core.Models.Clients
 {
     public class ClientSmallViewModel
     {

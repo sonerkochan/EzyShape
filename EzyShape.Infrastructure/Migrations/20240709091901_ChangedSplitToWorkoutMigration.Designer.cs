@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzyShape.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240709091901_ChangedSplitToWorkoutMigration")]
+    partial class ChangedSplitToWorkoutMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -507,15 +509,19 @@ namespace EzyShape.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Repetitions")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Rest")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sets")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tempo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("WorkoutId")
@@ -560,14 +566,14 @@ namespace EzyShape.Infrastructure.Migrations
                         new
                         {
                             Id = "d9de7285-b674-454c-9889-5210abb8d347",
-                            ConcurrencyStamp = "d19b56c6-d5c8-4f52-93d3-43a8e376c3a9",
+                            ConcurrencyStamp = "419198c1-7ffb-43cb-86a5-6d49c07b9ecb",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         },
                         new
                         {
                             Id = "07358494-247c-421c-8f7f-82c12be55276",
-                            ConcurrencyStamp = "59b5658f-9e52-422e-9eda-99e16eb498ae",
+                            ConcurrencyStamp = "28bd5e4b-823f-4e30-82df-4de327851846",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });

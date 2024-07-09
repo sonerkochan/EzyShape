@@ -1,0 +1,70 @@
+﻿@model AddWorkoutViewModel
+
+@{
+    ViewData["Title"] = "Add Workout";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+    <form asp-action="AddWorkout" method="post">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Workout Name</label>
+            <input asp-for="Name" class="form-control" aria-required="true" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div id="workoutExercises">
+            <h4>Exercises</h4>
+            <button type="button" class="btn btn-secondary" onclick="addWorkoutExercise()">Add Exercise</button>
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" value="Add Workout" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function addWorkoutExercise() {
+            var index = document.querySelectorAll('.workout-exercise').length;
+            var exercises = @Html.Raw(Json.Serialize(Model.Exercises));
+
+            var exerciseOptions = exercises.map(function(exercise) {
+                return '<option value="' + exercise.id + '">' + exercise.name + '</option>';
+            }).join('');
+
+            var html = `
+                <div class="workout-exercise mb-3">
+                    <label class="form-label">Exercise</label>
+                    <select name="WorkoutExercises[${index}].ExerciseId" class="form-control" required>
+                        ${exerciseOptions}
+                    </select>
+
+                    <label class="form-label">Sets</label>
+                    <input name="WorkoutExercises[${index}].Sets" class="form-control" />
+
+                    <label class="form-label">Repetitions</label>
+                    <input name="WorkoutExercises[${index}].Repetitions" class="form-control" />
+
+                    <label class="form-label">Tempo</label>
+                    <input name="WorkoutExercises[${index}].Tempo" class="form-control" />
+
+                    <label class="form-label">Rest</label>
+                    <input name="WorkoutExercises[${index}].Rest" class="form-control" />
+                </div>
+            `;
+
+            document.getElementById('workoutExercises').insertAdjacentHTML('beforeend', html);
+        }
+    </script>
+}

@@ -24,9 +24,9 @@ namespace EzyShape.Core.Services
             userManager = _userManager;
         }
 
-        public int GetUsersCount()
+        public int GetUsersCount() //Returns count of clients only!!
         {
-            return repo.AllReadonly<User>().Count();
+            return repo.AllReadonly<User>().Where(u => u.TrainerId != null).Count();
         }
     }
 }

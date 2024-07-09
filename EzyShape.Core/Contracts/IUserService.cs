@@ -8,6 +8,6 @@ namespace EzyShape.Core.Contracts
 {
     public interface IUserService
     {
-        public int GetUsersCount();
+        public int GetUsersCount(); //Returns count of clients only!!
     }
 }

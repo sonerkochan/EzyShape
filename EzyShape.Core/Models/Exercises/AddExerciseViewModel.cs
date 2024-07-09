@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace EzyShape.Core.Models.Exercise
+namespace EzyShape.Core.Models.Exercises
 {
     /// <summary>
     /// View model for adding a new exercise
