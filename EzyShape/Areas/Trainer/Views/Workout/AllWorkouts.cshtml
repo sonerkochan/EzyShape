@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Workout>
+﻿@model IEnumerable<EzyShape.Infrastructure.Data.Models.Workout>
 
 @{
     ViewData["Title"] = "All Workouts";
@@ -15,7 +15,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Exercises</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,10 +25,7 @@
                         <td>@workout.Name</td>
                         <td>@workout.Descriptions</td>
                         <td>
-                            @foreach (var exercise in workout.ExerciseIds)
-                            {
-                                <div>@exercise.Exercise.Name</div>
-                            }
+                            <a asp-action="Details" asp-route-id="@workout.Id" class="btn btn-info">View Exercises</a>
                         </td>
                     </tr>
                 }

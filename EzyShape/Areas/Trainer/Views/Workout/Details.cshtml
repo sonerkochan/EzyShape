@@ -1,0 +1,53 @@
+﻿@model Workout
+
+@{
+    ViewData["Title"] = "Workout Details";
+}
+
+<div class="container">
+    <h2>@Model.Name</h2>
+    <hr />
+
+    <div class="mb-3">
+        <h4>Description</h4>
+        <p>@Model.Descriptions</p>
+    </div>
+
+    <div>
+        <h4>Exercises</h4>
+        @if (Model.ExerciseIds.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Sets</th>
+                        <th>Repetitions</th>
+                        <th>Tempo</th>
+                        <th>Rest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var exercise in Model.ExerciseIds)
+                    {
+                        <tr>
+                            <td>@exercise.Exercise.Name</td>
+                            <td>@exercise.Sets</td>
+                            <td>@exercise.Repetitions</td>
+                            <td>@exercise.Tempo</td>
+                            <td>@exercise.Rest</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">No exercises available for this workout.</div>
+        }
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="AllWorkouts" class="btn btn-secondary">Back to Workouts</a>
+    </div>
+</div>

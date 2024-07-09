@@ -4,6 +4,7 @@ using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace EzyShape.Areas.Trainer.Controllers
@@ -68,5 +69,22 @@ namespace EzyShape.Areas.Trainer.Controllers
             model.Exercises = _context.Exercises.ToList();
             return RedirectToAction(nameof(AllWorkouts));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var workout = await _context.Workouts
+                .Include(w => w.ExerciseIds)
+                .ThenInclude(we => we.Exercise)
+                .FirstOrDefaultAsync(w => w.Id == id);
+
+            if (workout == null)
+            {
+                return NotFound();
+            }
+
+            return View(workout);
+        }
+
     }
 }
