@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EzyShape.Core.Models.Exercise
+namespace EzyShape.Core.Models.Exercises
 {
     public class ExerciseViewModel
     {

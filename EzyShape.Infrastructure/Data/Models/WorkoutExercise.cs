@@ -9,37 +9,30 @@ using System.Threading.Tasks;
 
 namespace EzyShape.Infrastructure.Data.Models
 {
-    public class SplitExercise
+    public class WorkoutExercise
     {
 
         [Required]
-        [Description("Id of the Split.")]
-        public int SplitId { get; set; }
-
-        [ForeignKey(nameof(SplitId))]
-        public Split Split { get; set; }
+        [Description("Id of the WorkoutExercise.")]
+        public int Id { get; set; }
 
         [Required]
-        [Description("Id of the product.")]
+        [Description("Id of the exercise.")]
         public int ExerciseId { get; set; }
 
         [ForeignKey(nameof(ExerciseId))]
         public Exercise Exercise { get; set; }
 
-        [Required]
         [Description("Amounts of sets of this exercise.")]
-        public string Sets { get; set; } = null!;
+        public string? Sets { get; set; }
         
-        [Required]
         [Description("Amounts of reps in each set.")]
-        public string Repetitions { get; set; } = null!;
+        public string? Repetitions { get; set; }
 
-        [Required]
         [Description("Tempo of execution.")]
-        public string Tempo { get; set; } = null!;
+        public string? Tempo { get; set; }
 
-        [Required]
         [Description("Resting time between sets.")]
-        public string Rest { get; set; } = null!;
+        public string? Rest { get; set; }
     }
 }

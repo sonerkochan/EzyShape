@@ -77,7 +77,7 @@ namespace EzyShape.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Splits",
+                name: "Workouts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -88,7 +88,7 @@ namespace EzyShape.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Splits", x => x.Id);
+                    table.PrimaryKey("PK_Workouts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -198,10 +198,10 @@ namespace EzyShape.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SplitExercises",
+                name: "WorkoutExercises",
                 columns: table => new
                 {
-                    SplitId = table.Column<int>(type: "int", nullable: false),
+                    WorkoutId = table.Column<int>(type: "int", nullable: false),
                     ExerciseId = table.Column<int>(type: "int", nullable: false),
                     Sets = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Repetitions = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -210,17 +210,17 @@ namespace EzyShape.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SplitExercises", x => new { x.SplitId, x.ExerciseId });
+                    table.PrimaryKey("PK_WorkoutExercises", x => new { x.WorkoutId, x.ExerciseId });
                     table.ForeignKey(
-                        name: "FK_SplitExercises_Exercises_ExerciseId",
+                        name: "FK_WorkoutExercises_Exercises_ExerciseId",
                         column: x => x.ExerciseId,
                         principalTable: "Exercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SplitExercises_Splits_SplitId",
-                        column: x => x.SplitId,
-                        principalTable: "Splits",
+                        name: "FK_WorkoutExercises_Workouts_WorkoutId",
+                        column: x => x.WorkoutId,
+                        principalTable: "Workouts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -270,8 +270,8 @@ namespace EzyShape.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SplitExercises_ExerciseId",
-                table: "SplitExercises",
+                name: "IX_WorkoutExercises_ExerciseId",
+                table: "WorkoutExercises",
                 column: "ExerciseId");
         }
 
@@ -293,7 +293,7 @@ namespace EzyShape.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "SplitExercises");
+                name: "WorkoutExercises");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -305,7 +305,7 @@ namespace EzyShape.Infrastructure.Migrations
                 name: "Exercises");
 
             migrationBuilder.DropTable(
-                name: "Splits");
+                name: "Workouts");
         }
     }
 }

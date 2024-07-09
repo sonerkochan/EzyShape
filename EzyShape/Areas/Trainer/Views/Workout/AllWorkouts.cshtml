@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Workout>
+
+@{
+    ViewData["Title"] = "All Workouts";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Exercises</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var workout in Model)
+                {
+                    <tr>
+                        <td>@workout.Name</td>
+                        <td>@workout.Descriptions</td>
+                        <td>
+                            @foreach (var exercise in workout.ExerciseIds)
+                            {
+                                <div>@exercise.Exercise.Name</div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">No workouts available.</div>
+    }
+
+    <div class="mt-3">
+        <a asp-action="AddWorkout" class="btn btn-primary">Add Workout</a>
+    </div>
+</div>

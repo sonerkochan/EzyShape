@@ -66,7 +66,7 @@ namespace EzyShape.Infrastructure.Migrations
                     b.ToTable("Exercises");
                 });
 
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Split", b =>
+            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Workout", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,12 +87,12 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Splits");
+                    b.ToTable("Workouts");
                 });
 
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.SplitExercise", b =>
+            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutExercise", b =>
                 {
-                    b.Property<int>("SplitId")
+                    b.Property<int>("WorkoutId")
                         .HasColumnType("int");
 
                     b.Property<int>("ExerciseId")
@@ -114,11 +114,11 @@ namespace EzyShape.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SplitId", "ExerciseId");
+                    b.HasKey("WorkoutId", "ExerciseId");
 
                     b.HasIndex("ExerciseId");
 
-                    b.ToTable("SplitExercises");
+                    b.ToTable("WorkoutExercises");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.User", b =>
@@ -348,7 +348,7 @@ namespace EzyShape.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.SplitExercise", b =>
+            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutExercise", b =>
                 {
                     b.HasOne("EzyShape.Infrastructure.Data.Models.Exercise", "Exercise")
                         .WithMany()
@@ -356,15 +356,15 @@ namespace EzyShape.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Split", "Split")
+                    b.HasOne("EzyShape.Infrastructure.Data.Models.Workout", "Workout")
                         .WithMany("ExerciseIds")
-                        .HasForeignKey("SplitId")
+                        .HasForeignKey("WorkoutId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Exercise");
 
-                    b.Navigation("Split");
+                    b.Navigation("Workout");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.User", b =>
@@ -425,7 +425,7 @@ namespace EzyShape.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Split", b =>
+            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Workout", b =>
                 {
                     b.Navigation("ExerciseIds");
                 });
