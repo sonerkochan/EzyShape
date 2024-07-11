@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITrainerService, TrainerService>();
             services.AddScoped<IExerciseService, ExerciseService>();
+            services.AddScoped<ISplitService, SplitService>();
 
             return services;
         }

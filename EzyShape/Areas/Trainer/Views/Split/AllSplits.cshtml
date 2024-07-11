@@ -1,14 +1,13 @@
-﻿@model IEnumerable<ClientSmallViewModel>;
+﻿@model IEnumerable<SplitViewModel>
 
 @{
-    ViewData["Title"] = "My Clients";
+    ViewData["Title"] = "All Splits";
 }
-
 
 <html>
 
 <head>
-    <title>Clients</title>
+    <title>@ViewData["Title"]</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 </head>
@@ -19,29 +18,27 @@
     <h2>@ViewData["Title"]</h2>
 
 
-
     <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
         <div>
-            <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Client" asp-action="CreateClient">Create a new client profile</a>
+            <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Split" asp-action="AddSplit">Add a new split</a>
         </div>
+    </button>
 
     @if (Model != null && Model.Any())
     {
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>User Name</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var client in Model)
+                @foreach (var split in Model)
                 {
                     <tr>
-                        <td>@client.Username</td>
-                        <td>@client.FirstName</td>
-                        <td>@client.LastName</td>
+                        <td>@split.Name</td>
+                        <td>@(string.IsNullOrEmpty(split.Description) ? "N/A" : split.Description)</td>
                     </tr>
                 }
             </tbody>
@@ -49,9 +46,9 @@
     }
     else
     {
-        <p>No clients found.</p>
+        <p>No splits found.</p>
     }
-</body>
 
+</body>
 
 </html>

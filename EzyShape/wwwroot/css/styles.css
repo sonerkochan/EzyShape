@@ -1,0 +1,96 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar {
+    background-color: #2c3e50 !important;
+    height: 56px; /* Set a fixed height */
+    flex-shrink: 0;
+}
+
+    .navbar .navbar-collapse {
+        height: 100%; /* Make the collapse area full height */
+        display: flex;
+        align-items: center; /* Vertically center items */
+    }
+
+    .navbar .nav-link {
+        color: #d3d3d3 !important;
+        font-weight: bold !important;
+    }
+
+.d-flex {
+    flex: 1;
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 15%;
+    overflow-y: auto;
+    border-right: 10px solid #dee2e6;
+}
+
+    .sidebar .nav-text {
+        color: #1c1b1b !important;
+        padding: .5rem 1rem;
+        font-weight: bold;
+    }
+
+    .sidebar .nav-link {
+        color: #1c1b1b !important;
+        font-weight: bold;
+    }
+
+        .sidebar .nav-link:hover {
+            color: #ccc !important;
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #3a4b61 !important;
+            color: #fff !important;
+        }
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+    .footer a {
+        color: #2c3e50 !important;
+    }
+
+/* Additional styles to ensure alignment in the navbar */
+.navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+#logoutForm .btn {
+    padding: 0;
+    color: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.logout-button {
+    flex-direction: column-reverse;
+}
+
+.partion {
+    align-items: flex-end;
+}

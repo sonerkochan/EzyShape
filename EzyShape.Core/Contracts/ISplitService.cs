@@ -10,11 +10,8 @@ using System.Threading.Tasks;
 
 namespace EzyShape.Core.Contracts
 {
-    public interface ITrainerService
+    public interface ISplitService
     {
-
-        Task<IEnumerable<ClientSmallViewModel>> GetTrainersAllClients(string TrainerId);
-        Task<IEnumerable<ExerciseViewModel>> GetTrainersAllExercises(string TrainerId);
-        Task<IEnumerable<SplitViewModel>> GetTrainersAllSplits(string TrainerId);
+        Task AddSplitAsync(AddSplitViewModel model, string trainerId);
     }
 }

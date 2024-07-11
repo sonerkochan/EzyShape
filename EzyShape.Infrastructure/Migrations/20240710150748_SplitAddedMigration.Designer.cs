@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzyShape.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240710150748_SplitAddedMigration")]
+    partial class SplitAddedMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -397,7 +399,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Descriptions")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -503,7 +505,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Descriptions")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -589,14 +591,14 @@ namespace EzyShape.Infrastructure.Migrations
                         new
                         {
                             Id = "d9de7285-b674-454c-9889-5210abb8d347",
-                            ConcurrencyStamp = "53168372-6788-4cee-86d5-a7df3e056e7e",
+                            ConcurrencyStamp = "b0d6bb39-1e99-49c0-add8-8d7f6464f983",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         },
                         new
                         {
                             Id = "07358494-247c-421c-8f7f-82c12be55276",
-                            ConcurrencyStamp = "4bb08551-a50e-4d8d-a80e-d768aa3264c0",
+                            ConcurrencyStamp = "c4b24d44-7a0d-421b-a539-12f52c6bda48",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -751,11 +753,9 @@ namespace EzyShape.Infrastructure.Migrations
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Workout", b =>
                 {
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Split", "Split")
+                    b.HasOne("EzyShape.Infrastructure.Data.Models.Split", null)
                         .WithMany("WorkoutIds")
                         .HasForeignKey("SplitId");
-
-                    b.Navigation("Split");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutExercise", b =>

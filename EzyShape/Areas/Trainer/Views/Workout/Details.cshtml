@@ -4,13 +4,21 @@
     ViewData["Title"] = "Workout Details";
 }
 
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+</head>
+
+
+
 <div class="container">
     <h2>@Model.Name</h2>
     <hr />
 
     <div class="mb-3">
         <h4>Description</h4>
-        <p>@Model.Descriptions</p>
+        <p>@Model.Description</p>
     </div>
 
     <div>

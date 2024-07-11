@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EzyShape.Infrastructure.Data.Models
 {
@@ -19,10 +15,17 @@ namespace EzyShape.Infrastructure.Data.Models
         public string Name { get; set; } = null!;
 
         [Description("Description of the workout")]
-        public string? Descriptions { get; set; }
+        public string? Description { get; set; }
 
         [Description("List of exercises in the workout.")]
         public IEnumerable<WorkoutExercise> ExerciseIds { get; set; } = new List<WorkoutExercise>();
+
+
+        [Description("Id of the split of which this workout is a part of.")]
+        public int? SplitId { get; set; }
+
+        [ForeignKey(nameof(SplitId))]
+        public Split? Split { get; set; }
 
 
         [Description("Id of the user that made the workout.")]
