@@ -16,6 +16,11 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Split> Splits { get; set; }
+        public DbSet<Muscle> Muscles { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<Level> Levels { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>()
@@ -27,6 +32,20 @@ namespace EzyShape.Infrastructure.Data
                 .WithMany(u => u.Clients)
                 .HasForeignKey(u => u.TrainerId)
                 .OnDelete(DeleteBehavior.NoAction); // or .Restrict
+
+            builder.Entity<User>()
+                .HasMany(u => u.SplitIds);
+
+
+
+            builder.Entity<ClientSplit>()
+                .HasKey(x => new { x.UserId, x.SplitId });
+
+
+
+
+            builder.Entity<Split>()
+                .HasMany(u => u.WorkoutIds);
 
 
             builder.ApplyConfiguration(new RoleConfigration());

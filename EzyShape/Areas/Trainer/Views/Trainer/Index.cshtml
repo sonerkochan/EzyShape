@@ -1,50 +1,27 @@
-﻿
-<html>
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Admin Menu</title>
-    <link href="~/css/styling.css" rel="stylesheet" type="text/css" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 </head>
 
 
 <body>
-    <div class="mt-4 p-5 bg-light text-center">
-        <h2 class="display-4">Hello, Trainer!</h2>
-        <p class="lead mb-1 mt-3">
-            This is your Trainer area - you can <b>Create new client profiles</b> and <b>track</b> their progress
-        </p>
-        <hr class="my-4">
 
-        <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
-            <div>
-                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Client" asp-action="CreateClient">Create a new client profile</a>
-            </div>
-        </button>
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 main-content">
+        <h1>Welcome Trainer! This is your dashboard!</h1>
+        <p>Our app makes monitoring your clients fun!</p>
+    </main>
 
-
-        <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
-            <div>
-                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Client" asp-action="AllClients">My Clients</a>
-            </div>
-        </button>
-
-
-        <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
-            <div>
-                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Exercise" asp-action="AllExercises">My exercises list</a>
-            </div>
-        </button>
-
-
-        <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
-            <div>
-                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Workout" asp-action="AllWorkouts">My Workouts</a>
-            </div>
-        </button>
-
-
-    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
-
 </html>

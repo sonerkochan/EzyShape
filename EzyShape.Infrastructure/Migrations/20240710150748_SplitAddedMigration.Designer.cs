@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzyShape.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240710150748_SplitAddedMigration")]
+    partial class SplitAddedMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,21 +77,6 @@ namespace EzyShape.Infrastructure.Migrations
                             Id = 7,
                             Name = "Stretching"
                         });
-                });
-
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.ClientSplit", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("SplitId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "SplitId");
-
-                    b.HasIndex("SplitId");
-
-                    b.ToTable("ClientSplit");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Equipment", b =>
@@ -412,7 +399,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Descriptions")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -518,7 +505,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Descriptions")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -604,14 +591,14 @@ namespace EzyShape.Infrastructure.Migrations
                         new
                         {
                             Id = "d9de7285-b674-454c-9889-5210abb8d347",
-                            ConcurrencyStamp = "91703656-aa2e-4ebc-8f28-efb1ddea921c",
+                            ConcurrencyStamp = "b0d6bb39-1e99-49c0-add8-8d7f6464f983",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         },
                         new
                         {
                             Id = "07358494-247c-421c-8f7f-82c12be55276",
-                            ConcurrencyStamp = "132ddcd2-6e32-444f-8f9e-7202ef10effe",
+                            ConcurrencyStamp = "c4b24d44-7a0d-421b-a539-12f52c6bda48",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -727,25 +714,6 @@ namespace EzyShape.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.ClientSplit", b =>
-                {
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Split", "Split")
-                        .WithMany()
-                        .HasForeignKey("SplitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.User", "User")
-                        .WithMany("SplitIds")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Split");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Exercise", b =>
                 {
                     b.HasOne("EzyShape.Infrastructure.Data.Models.Category", "Category")
@@ -785,11 +753,9 @@ namespace EzyShape.Infrastructure.Migrations
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Workout", b =>
                 {
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Split", "Split")
+                    b.HasOne("EzyShape.Infrastructure.Data.Models.Split", null)
                         .WithMany("WorkoutIds")
                         .HasForeignKey("SplitId");
-
-                    b.Navigation("Split");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutExercise", b =>
@@ -886,8 +852,6 @@ namespace EzyShape.Infrastructure.Migrations
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.User", b =>
                 {
                     b.Navigation("Clients");
-
-                    b.Navigation("SplitIds");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Workout", b =>

@@ -1,0 +1,28 @@
+﻿@model ClientViewModel
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Client Overview</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Client Overview</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Username: @Model.Username</h5>
+                <p class="card-text"><strong>First Name:</strong> @Model.FirstName</p>
+                <p class="card-text"><strong>Last Name:</strong> @Model.LastName</p>
+                <a href="javascript:history.back()" class="btn btn-primary">Back to Clients</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

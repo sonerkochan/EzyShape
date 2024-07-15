@@ -11,7 +11,6 @@ namespace EzyShape.Infrastructure.Data.Models
 
         public string LastName { get; set; } = null!;
 
-
         [Description("Flag indicating whether the user profile is still active")]
         public bool IsActive { get; set; } = true;
 
@@ -23,6 +22,8 @@ namespace EzyShape.Infrastructure.Data.Models
 
         [ForeignKey(nameof(TrainerId))]
         public User? Trainer { get; set; }
+
+        public IEnumerable<ClientSplit> SplitIds { get; set; } = new List<ClientSplit>();
 
     }
 }

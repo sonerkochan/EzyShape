@@ -48,7 +48,7 @@ namespace EzyShape.Areas.Trainer.Controllers
                 var workout = new Workout
                 {
                     Name = model.Name,
-                    Descriptions = model.Description,
+                    Description = model.Description,
                     ExerciseIds = model.WorkoutExercises.Select(se => new WorkoutExercise
                     {
                         ExerciseId = se.ExerciseId,
