@@ -28,6 +28,20 @@ namespace EzyShape.Core.Services
             userManager = _userManager;
         }
 
+        public async Task<ClientViewModel> GetClientById(string clientId)
+        {
+            return await repo.AllReadonly<User>()
+                .Where(u => u.Id == clientId)
+                .Select(u => new ClientViewModel()
+                {
+                    Id = u.Id,
+                    Username = u.UserName,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                })
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<ClientSmallViewModel>> GetTrainersAllClients(string TrainerId)
         {
             return await repo.AllReadonly<User>()
@@ -36,6 +50,7 @@ namespace EzyShape.Core.Services
                 .Where(u => u.TrainerId == TrainerId)
                 .Select(u => new ClientSmallViewModel()
                 {
+                    Id = u.Id,
                     Username = u.UserName,
                     FirstName = u.FirstName,
                     LastName = u.LastName,

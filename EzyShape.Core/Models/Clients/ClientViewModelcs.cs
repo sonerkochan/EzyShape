@@ -5,11 +5,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EzyShape.Infrastructure.Data.Models;
 
 namespace EzyShape.Core.Models.Clients
 {
-    public class ClientSmallViewModel
+    public class ClientViewModel
     {
         public string Id { get; set; } = null!;
 
@@ -18,7 +17,6 @@ namespace EzyShape.Core.Models.Clients
         public string FirstName { get; set; } = null!;
 
         public string LastName { get; set; } = null!;
-        public IEnumerable<Split> Splits { get; set; } = new List<Split>();
 
     }
 }

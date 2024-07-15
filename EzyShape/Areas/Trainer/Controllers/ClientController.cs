@@ -106,5 +106,12 @@ namespace EzyShape.Areas.Trainer.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Overview(string clientId)
+        {
+            var model = await trainerService.GetClientById(clientId);
+            return View(model);
+        }
+
     }
 }

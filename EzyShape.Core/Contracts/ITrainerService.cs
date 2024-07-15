@@ -16,5 +16,6 @@ namespace EzyShape.Core.Contracts
         Task<IEnumerable<ClientSmallViewModel>> GetTrainersAllClients(string TrainerId);
         Task<IEnumerable<ExerciseViewModel>> GetTrainersAllExercises(string TrainerId);
         Task<IEnumerable<SplitViewModel>> GetTrainersAllSplits(string TrainerId);
+        Task<ClientViewModel> GetClientById(string clientId);
     }
 }

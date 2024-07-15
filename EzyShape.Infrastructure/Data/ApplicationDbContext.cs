@@ -33,6 +33,16 @@ namespace EzyShape.Infrastructure.Data
                 .HasForeignKey(u => u.TrainerId)
                 .OnDelete(DeleteBehavior.NoAction); // or .Restrict
 
+            builder.Entity<User>()
+                .HasMany(u => u.SplitIds);
+
+
+
+            builder.Entity<ClientSplit>()
+                .HasKey(x => new { x.UserId, x.SplitId });
+
+
+
 
             builder.Entity<Split>()
                 .HasMany(u => u.WorkoutIds);
