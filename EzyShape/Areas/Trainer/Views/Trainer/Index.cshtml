@@ -2,6 +2,10 @@
     ViewData["Title"] = "Dashboard";
 }
 
+﻿@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +23,16 @@
         <h1>Welcome Trainer! This is your dashboard!</h1>
         <p>Our app makes monitoring your clients fun!</p>
     </main>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+
+        <form id="logoutForm" class="nav-link text-dark" asp-controller="User" asp-action="Logout" asp-route-id="@UserManager.GetUserId(User)">
+            <p class="nav-link text-dark p1" onclick="document.getElementById('logoutForm').submit();">Logout</p>
+        </form>
+    }
+
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

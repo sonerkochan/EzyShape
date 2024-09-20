@@ -1,8 +1,72 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "EzyShape | Personal Trainer Software for Professionals";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@using Microsoft.AspNetCore.Identity
+@using EzyShape.Infrastructure.Data.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzyShape | Personal Trainer Software for Professionals</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <nav>
+
+        <img class="logo-img" src="images/TextLogo.png" alt="EzyShape" width="150" height="40">
+
+        <div class="navbar-div">
+            <p class="navbar-links">App📲</p>
+            <p class="navbar-links">Blog</p>
+            <p class="navbar-links">Pricing</p>
+            <p class="navbar-links">Features</p>
+        </div>
+
+        <div class="authentication-div">
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <a asp-controller="User" asp-action="Login">
+
+                    <button class="auth-btn login-btn">Login</button>
+                </a>
+                <a class="nav-link text-dark" asp-controller="User" asp-action="Register">
+                    <button class="auth-btn register-btn">Signup</button>
+                </a>
+            }
+
+            
+
+
+
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="welcome-section">
+            <div>
+                <p>All-in-one coaching platform</p>
+                <p>Spend More Time Coaching, Less Time on Admin.</p>
+                <p>
+                    EzyShape makes it easy to scale, manage, and automate your coaching<br>
+                    business all without being slow or clunky
+                </p>
+            </div>
+
+            <button class="auth-btn register-btn">Get Started Now</button>
+        </section>
+
+
+    </main>
+</body>
+</html>
