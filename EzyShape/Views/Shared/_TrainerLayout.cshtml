@@ -1,0 +1,638 @@
+﻿﻿@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzyShape | Personal Trainer Software for Professionals</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+
+    <style>
+
+        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+        /* Document
+           ========================================================================== */
+
+        /**
+         * 1. Correct the line height in all browsers.
+         * 2. Prevent adjustments of font size after orientation changes in iOS.
+         */
+
+        html {
+            line-height: 1.15; /* 1 */
+            -webkit-text-size-adjust: 100%; /* 2 */
+        }
+
+        /* Sections
+             ========================================================================== */
+
+        /**
+           * Remove the margin in all browsers.
+           */
+
+        body {
+            margin: 0;
+        }
+
+        /**
+           * Render the `main` element consistently in IE.
+           */
+
+        main {
+            display: block;
+        }
+
+        /**
+           * Correct the font size and margin on `h1` elements within `section` and
+           * `article` contexts in Chrome, Firefox, and Safari.
+           */
+
+        h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+        }
+
+        /* Grouping content
+             ========================================================================== */
+
+        /**
+           * 1. Add the correct box sizing in Firefox.
+           * 2. Show the overflow in Edge and IE.
+           */
+
+        hr {
+            box-sizing: content-box; /* 1 */
+            height: 0; /* 1 */
+            overflow: visible; /* 2 */
+        }
+
+        /**
+           * 1. Correct the inheritance and scaling of font size in all browsers.
+           * 2. Correct the odd `em` font sizing in all browsers.
+           */
+
+        pre {
+            font-family: monospace, monospace; /* 1 */
+            font-size: 1em; /* 2 */
+        }
+
+        /* Text-level semantics
+             ========================================================================== */
+
+        /**
+           * Remove the gray background on active links in IE 10.
+           */
+
+        a {
+            background-color: transparent;
+        }
+
+        /**
+           * 1. Remove the bottom border in Chrome 57-
+           * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+           */
+
+        abbr[title] {
+            border-bottom: none; /* 1 */
+            text-decoration: underline; /* 2 */
+            text-decoration: underline dotted; /* 2 */
+        }
+
+        /**
+           * Add the correct font weight in Chrome, Edge, and Safari.
+           */
+
+        b,
+        strong {
+            font-weight: bolder;
+        }
+
+        /**
+           * 1. Correct the inheritance and scaling of font size in all browsers.
+           * 2. Correct the odd `em` font sizing in all browsers.
+           */
+
+        code,
+        kbd,
+        samp {
+            font-family: monospace, monospace; /* 1 */
+            font-size: 1em; /* 2 */
+        }
+
+        /**
+           * Add the correct font size in all browsers.
+           */
+
+        small {
+            font-size: 80%;
+        }
+
+        /**
+           * Prevent `sub` and `sup` elements from affecting the line height in
+           * all browsers.
+           */
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+
+        sub {
+            bottom: -0.25em;
+        }
+
+        sup {
+            top: -0.5em;
+        }
+
+        /* Embedded content
+             ========================================================================== */
+
+        /**
+           * Remove the border on images inside links in IE 10.
+           */
+
+        img {
+            border-style: none;
+        }
+
+        /* Forms
+             ========================================================================== */
+
+        /**
+           * 1. Change the font styles in all browsers.
+           * 2. Remove the margin in Firefox and Safari.
+           */
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit; /* 1 */
+            font-size: 100%; /* 1 */
+            line-height: 1.15; /* 1 */
+            margin: 0; /* 2 */
+        }
+
+        /**
+           * Show the overflow in IE.
+           * 1. Show the overflow in Edge.
+           */
+
+        button,
+        input { /* 1 */
+            overflow: visible;
+        }
+
+        /**
+           * Remove the inheritance of text transform in Edge, Firefox, and IE.
+           * 1. Remove the inheritance of text transform in Firefox.
+           */
+
+        button,
+        select { /* 1 */
+            text-transform: none;
+        }
+
+        /**
+           * Correct the inability to style clickable types in iOS and Safari.
+           */
+
+        button,
+        [type="button"],
+        [type="reset"],
+        [type="submit"] {
+            -webkit-appearance: button;
+        }
+
+            /**
+           * Remove the inner border and padding in Firefox.
+           */
+
+            button::-moz-focus-inner,
+            [type="button"]::-moz-focus-inner,
+            [type="reset"]::-moz-focus-inner,
+            [type="submit"]::-moz-focus-inner {
+                border-style: none;
+                padding: 0;
+            }
+
+            /**
+           * Restore the focus styles unset by the previous rule.
+           */
+
+            button:-moz-focusring,
+            [type="button"]:-moz-focusring,
+            [type="reset"]:-moz-focusring,
+            [type="submit"]:-moz-focusring {
+                outline: 1px dotted ButtonText;
+            }
+
+        /**
+           * Correct the padding in Firefox.
+           */
+
+        fieldset {
+            padding: 0.35em 0.75em 0.625em;
+        }
+
+        /**
+           * 1. Correct the text wrapping in Edge and IE.
+           * 2. Correct the color inheritance from `fieldset` elements in IE.
+           * 3. Remove the padding so developers are not caught out when they zero out
+           *    `fieldset` elements in all browsers.
+           */
+
+        legend {
+            box-sizing: border-box; /* 1 */
+            color: inherit; /* 2 */
+            display: table; /* 1 */
+            max-width: 100%; /* 1 */
+            padding: 0; /* 3 */
+            white-space: normal; /* 1 */
+        }
+
+        /**
+           * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+           */
+
+        progress {
+            vertical-align: baseline;
+        }
+
+        /**
+           * Remove the default vertical scrollbar in IE 10+.
+           */
+
+        textarea {
+            overflow: auto;
+        }
+
+        /**
+           * 1. Add the correct box sizing in IE 10.
+           * 2. Remove the padding in IE 10.
+           */
+
+        [type="checkbox"],
+        [type="radio"] {
+            box-sizing: border-box; /* 1 */
+            padding: 0; /* 2 */
+        }
+
+        /**
+           * Correct the cursor style of increment and decrement buttons in Chrome.
+           */
+
+        [type="number"]::-webkit-inner-spin-button,
+        [type="number"]::-webkit-outer-spin-button {
+            height: auto;
+        }
+
+        /**
+           * 1. Correct the odd appearance in Chrome and Safari.
+           * 2. Correct the outline style in Safari.
+           */
+
+        [type="search"] {
+            -webkit-appearance: textfield; /* 1 */
+            outline-offset: -2px; /* 2 */
+        }
+
+            /**
+           * Remove the inner padding in Chrome and Safari on macOS.
+           */
+
+            [type="search"]::-webkit-search-decoration {
+                -webkit-appearance: none;
+            }
+
+        /**
+           * 1. Correct the inability to style clickable types in iOS and Safari.
+           * 2. Change font properties to `inherit` in Safari.
+           */
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button; /* 1 */
+            font: inherit; /* 2 */
+        }
+
+        /* Interactive
+             ========================================================================== */
+
+        /*
+           * Add the correct display in Edge, IE 10+, and Firefox.
+           */
+
+        details {
+            display: block;
+        }
+
+        /*
+           * Add the correct display in all browsers.
+           */
+
+        summary {
+            display: list-item;
+        }
+
+        /* Misc
+             ========================================================================== */
+
+        /**
+           * Add the correct display in IE 10+.
+           */
+
+        template {
+            display: none;
+        }
+
+        /**
+           * Add the correct display in IE 10.
+           */
+
+        [hidden] {
+            display: none;
+        }
+
+    </style>
+
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            display: flex;
+            width: 100%;
+            height: 70px;
+            background-color: #2051f1;
+        }
+
+        .nav-man {
+            display: flex; /* Enable flexbox layout */
+            flex: 1; /* Allow this container to grow and fill available space */
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            border-right: 1px solid lightgray;
+            color: rgb(121, 121, 134);
+            height: 100%; /* Set height to fill parent */
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+        main {
+            flex-grow: 1; /* Allow main to take up remaining space */
+            padding: 20px; /* Optional padding */
+            background-color: #f4f4f4; /* Optional background color */
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+
+        #navbar {
+            margin-left: 20px;
+        }
+
+        .nav-main, .nav-manage, .nav-library {
+            margin-top: 20px;
+        }
+
+        .category-text {
+            font-weight: 600;
+        }
+
+        .header-div {
+            display: flex;
+            align-items: center;
+            width: 100vw;
+            padding: 20px;
+        }
+
+        .profile-options-div {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+            .profile-options-div a {
+                margin-left: 20px;
+                color: white;
+                text-decoration: none;
+            }
+
+        svg {
+            color: white;
+            width: 30px;
+            height: 30px;
+        }
+
+
+        .menu-div {
+            padding-left: 20px;
+        }
+
+
+        a > p {
+            margin-right: 10px;
+            padding: 5px 10px 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+            a > p:hover {
+                background-color: #edf1fe;
+            }
+
+
+        /*Dropdown button*/
+        .dropbtn {
+            margin-left: 20px;
+            background-color: transparent;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        .dropdown {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0px;
+            top: 40px;
+            border-radius: 5px;
+            flex-direction: column; /* Add flex-direction column */
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: flex;
+                flex-direction: column; /* Add flex-direction column */
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .show {
+            display: flex;
+        }
+        /*Dropdown button*/
+
+        .dropdown-identify-div {
+            display: flex;
+            width: 100%;
+            flex-direction: column; /* Change from row to column */
+            align-items: center; /* Add align-items center */
+        }
+
+        .dropdown-name {
+            font-size: 1rem;
+        }
+
+        .dropdown-email {
+            font-size: 0.75rem;
+        }
+
+        .header-item {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-div">
+            <img class="logo-img" src="images/TextLogoWhite.png" alt="EzyShape" width="100" height="28">
+
+            <div class="profile-options-div">
+                <a class="header-item" id="add-task">Add Task +</a>
+                <a class="header-item" id="tasks">
+
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF">
+                        <g fill="none" fill-rule="evenodd">
+                            <path fill="#FFFFFF" fill-rule="nonzero" d="M10,4.5 C10,4.77614237 9.77614237,5 9.5,5 C9.22385763,5 9,4.77614237 9,4.5 C9,3.67157288 9.67157288,3 10.5,3 L13.5,3 C14.3284271,3 15,3.67157288 15,4.5 C15,4.77614237 14.7761424,5 14.5,5 C14.2238576,5 14,4.77614237 14,4.5 C14,4.22385763 13.7761424,4 13.5,4 L10.5,4 C10.2238576,4 10,4.22385763 10,4.5 Z M6.5,4 C6.77614237,4 7,4.22385763 7,4.5 C7,4.77614237 6.77614237,5 6.5,5 C5.67157288,5 5,5.67157288 5,6.5 L5,18.5 C5,19.3284271 5.67157288,20 6.5,20 L17.5,20 C18.3284271,20 19,19.3284271 19,18.5 L19,6.5 C19,5.67157288 18.3284271,5 17.5,5 C17.2238576,5 17,4.77614237 17,4.5 C17,4.22385763 17.2238576,4 17.5,4 C18.8807119,4 20,5.11928813 20,6.5 L20,18.5 C20,19.8807119 18.8807119,21 17.5,21 L6.5,21 C5.11928813,21 4,19.8807119 4,18.5 L4,6.5 C4,5.11928813 5.11928813,4 6.5,4 Z"></path>
+                            <path fill="#FFFFFF" fill-rule="nonzero" d="M15.1464466,9.14644661 C15.3417088,8.95118446 15.6582912,8.95118446 15.8535534,9.14644661 C16.0488155,9.34170876 16.0488155,9.65829124 15.8535534,9.85355339 L10.8535534,14.8535534 C10.6582912,15.0488155 10.3417088,15.0488155 10.1464466,14.8535534 L8.14644661,12.8535534 C7.95118446,12.6582912 7.95118446,12.3417088 8.14644661,12.1464466 C8.34170876,11.9511845 8.65829124,11.9511845 8.85355339,12.1464466 L10.5,13.7928932 L15.1464466,9.14644661 Z"></path>
+                        </g>
+                    </svg>
+
+                </a>
+                <a class="header-item" id="notifications">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22c1.1 0 2-.9 2-2H10c0 1.1.9 2 2 2zM18 16v-5c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+                    </svg>
+
+                </a>
+                <div class="header-item" class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Profile</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="dropdown-identify-div">
+                            <p class="dropdown-name">Your Name</p>
+                            <p class="dropdown-email">Your email</p>
+                        </div>
+                        <a>Settings</a>
+                        <a id="logoutForm" class="nav-link text-dark" asp-controller="User" asp-action="Logout" asp-route-id="@UserManager.GetUserId(User)">Logout</a>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+
+    <div class="nav-man">
+
+
+        <nav id="navbar">
+            <div class="nav-main">
+                <h class="category-text">MAIN</h>
+                <div class="menu-div">
+                    <a class="menu-item"><p>Dashboard</p></a>
+                    <a class="menu-item"><p>Clients</p></a>
+                    <a class="menu-item"><p>Messages</p></a>
+                </div>
+            </div>
+
+
+
+            <div class="nav-manage">
+                <h class="category-text">MANAGE</h>
+                <div class="menu-div">
+                    <a class="menu-item"><p>Packages</p></a>
+                    <a class="menu-item"><p>Community</p></a>
+                    <a class="menu-item"><p>Teams</p></a>
+                    <a class="menu-item"><p>Branding</p></a>
+                </div>
+            </div>
+
+            <div class="nav-library">
+                <h class="category-text">LIBRARY</h>
+                <div class="menu-div">
+                    <a class="menu-item"><p>Training</p></a>
+                    <a class="menu-item"><p>Nutrition</p></a>
+                    <a class="menu-item"><p>Forms</p></a>
+                    <a class="menu-item"><p>Habits</p></a>
+                    <a class="menu-item"><p>Metrics</p></a>
+                    <a class="menu-item"><p>Exercises</p></a>
+                    <a class="menu-item"><p>Programs/Splits</p></a>
+                </div>
+            </div>
+
+        </nav>
+
+        <main class="main-section">
+            @RenderBody()
+        </main>
+
+    </div>
+
+
+    <script>
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
