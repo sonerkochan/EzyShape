@@ -21,6 +21,8 @@ namespace EzyShape.Areas.Trainer.Controllers
             trainerService = _trainerService;
         }
 
+        [Route("/dashboard")]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

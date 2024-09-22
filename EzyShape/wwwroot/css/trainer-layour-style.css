@@ -11,15 +11,28 @@ header {
     background-color: #2051f1;
 }
 
+.nav-man {
+    display: flex;
+    flex: 1;
+}
+
 nav {
     display: flex;
     flex-direction: column;
     width: 200px;
     border-right: 1px solid lightgray;
     color: rgb(121, 121, 134);
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
 }
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+}
+
 
 #navbar {
     margin-left: 20px;
@@ -63,17 +76,25 @@ svg {
     padding-left: 20px;
 }
 
-
-a > p {
-    margin-right: 10px;
-    padding: 5px 10px 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
+/* Fix for links being purple and underlined */
+a {
+    color: rgb(121, 121, 134);
+    text-decoration: none;
 }
-
-    a > p:hover {
-        background-color: #edf1fe;
+    a > p {
+        margin-right: 10px;
+        padding: 5px 10px 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
     }
+
+        a > p.active {
+            background-color: #edf1fe;
+        }
+
+        a > p:hover {
+            background-color: #edf9fe;
+        }
 
 
 /*Dropdown button*/
@@ -96,14 +117,14 @@ a > p {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
     min-width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     right: 0px;
-    top: 40px;
+    top: 60px;
     border-radius: 5px;
-    flex-direction: column; /* Add flex-direction column */
+    flex-direction: column;
 }
 
     .dropdown-content a {
@@ -111,7 +132,9 @@ a > p {
         padding: 12px 16px;
         text-decoration: none;
         display: flex;
-        flex-direction: column; /* Add flex-direction column */
+        flex-direction: column;
+        margin:10px;
+        border-radius:15px;
     }
 
         .dropdown-content a:hover {
@@ -126,8 +149,8 @@ a > p {
 .dropdown-identify-div {
     display: flex;
     width: 100%;
-    flex-direction: column; /* Change from row to column */
-    align-items: center; /* Add align-items center */
+    flex-direction: column;
+    align-items: center;
 }
 
 .dropdown-name {
