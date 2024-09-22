@@ -1,0 +1,114 @@
+﻿﻿@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/trainer-layour-style.css" asp-append-version="true" />
+
+</head>
+<body>
+
+    <header>
+        <div class="header-div">
+            <img class="logo-img" src="img/TextLogoWhite.png" alt="EzyShape" width="100" height="28">
+
+            <div class="profile-options-div">
+                <a class="header-item" id="add-task">Add Task +</a>
+                <a class="header-item" id="tasks">
+
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF">
+                        <g fill="none" fill-rule="evenodd">
+                            <path fill="#FFFFFF" fill-rule="nonzero" d="M10,4.5 C10,4.77614237 9.77614237,5 9.5,5 C9.22385763,5 9,4.77614237 9,4.5 C9,3.67157288 9.67157288,3 10.5,3 L13.5,3 C14.3284271,3 15,3.67157288 15,4.5 C15,4.77614237 14.7761424,5 14.5,5 C14.2238576,5 14,4.77614237 14,4.5 C14,4.22385763 13.7761424,4 13.5,4 L10.5,4 C10.2238576,4 10,4.22385763 10,4.5 Z M6.5,4 C6.77614237,4 7,4.22385763 7,4.5 C7,4.77614237 6.77614237,5 6.5,5 C5.67157288,5 5,5.67157288 5,6.5 L5,18.5 C5,19.3284271 5.67157288,20 6.5,20 L17.5,20 C18.3284271,20 19,19.3284271 19,18.5 L19,6.5 C19,5.67157288 18.3284271,5 17.5,5 C17.2238576,5 17,4.77614237 17,4.5 C17,4.22385763 17.2238576,4 17.5,4 C18.8807119,4 20,5.11928813 20,6.5 L20,18.5 C20,19.8807119 18.8807119,21 17.5,21 L6.5,21 C5.11928813,21 4,19.8807119 4,18.5 L4,6.5 C4,5.11928813 5.11928813,4 6.5,4 Z"></path>
+                            <path fill="#FFFFFF" fill-rule="nonzero" d="M15.1464466,9.14644661 C15.3417088,8.95118446 15.6582912,8.95118446 15.8535534,9.14644661 C16.0488155,9.34170876 16.0488155,9.65829124 15.8535534,9.85355339 L10.8535534,14.8535534 C10.6582912,15.0488155 10.3417088,15.0488155 10.1464466,14.8535534 L8.14644661,12.8535534 C7.95118446,12.6582912 7.95118446,12.3417088 8.14644661,12.1464466 C8.34170876,11.9511845 8.65829124,11.9511845 8.85355339,12.1464466 L10.5,13.7928932 L15.1464466,9.14644661 Z"></path>
+                        </g>
+                    </svg>
+
+                </a>
+                <a class="header-item" id="notifications">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22c1.1 0 2-.9 2-2H10c0 1.1.9 2 2 2zM18 16v-5c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+                    </svg>
+
+                </a>
+                <div class="header-item" class="dropdown">
+                    <button onclick="profileDropdownFunction()" class="dropbtn">Profile</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="dropdown-identify-div">
+                            <p class="dropdown-name">Your Name</p>
+                            <p class="dropdown-email">Your email</p>
+                        </div>
+                        <a>Settings</a>
+                        <a id="logoutForm" class="nav-link text-dark" asp-controller="User" asp-action="Logout" asp-route-id="@UserManager.GetUserId(User)">Logout</a>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+
+    <div class="nav-man">
+
+
+        <nav id="navbar">
+            <div class="nav-main">
+                <h class="category-text">MAIN</h>
+                <div class="menu-div">
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Trainer" asp-action="Index">
+                        <p data-id="dashboard">Dashboard</p>
+                    </a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Client" asp-action="AllClients">
+                        <p data-id="clients">Clients</p>
+                    </a>
+                    <a class="menu-item">
+                        <p data-id="messages">Messages</p>
+                    </a>
+                </div>
+            </div>
+
+
+
+            <div class="nav-manage">
+                <h class="category-text">MANAGE</h>
+                <div class="menu-div">
+                    <a class="menu-item"><p>Packages</p></a>
+                    <a class="menu-item"><p>Community</p></a>
+                    <a class="menu-item"><p>Teams</p></a>
+                    <a class="menu-item"><p>Branding</p></a>
+                </div>
+            </div>
+
+            <div class="nav-library">
+                <h class="category-text">LIBRARY</h>
+                <div class="menu-div">
+                    <a class="menu-item"><p>Training</p></a>
+                    <a class="menu-item"><p>Nutrition</p></a>
+                    <a class="menu-item"><p>Forms</p></a>
+                    <a class="menu-item"><p>Habits</p></a>
+                    <a class="menu-item"><p>Metrics</p></a>
+                    <a class="menu-item"><p>Exercises</p></a>
+                    <a class="menu-item"><p>Programs/Splits</p></a>
+                </div>
+            </div>
+
+        </nav>
+
+        <main class="main-section">
+            @RenderBody()
+        </main>
+
+    </div>
+
+    <script src="js/dropdown.js"></script>
+    <script src="js/hoverActive.js"></script>
+
+
+</body>
+</html>

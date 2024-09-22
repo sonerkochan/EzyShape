@@ -1,0 +1,107 @@
+﻿
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#00ffeb, #057bcb);
+}
+
+.login-body
+{
+    height:100vh;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.signin-p {
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.helper-p {
+    font-size: 1.125rem;
+}
+
+.noaccount-p {
+    font-size: 0.875rem;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 1rem;
+    width: 400px;
+    height: 380px;
+}
+
+
+.register-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 1rem;
+    width: 400px;
+    height: 530px;
+}
+
+img {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.forms-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-label, .password-label {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+.password-label {
+}
+
+#email, #password {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    margin-top: 0px;
+}
+
+
+button {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    align-self: center;
+
+    border-radius:15px;
+
+    color:white;
+    background-color:#000000;
+}

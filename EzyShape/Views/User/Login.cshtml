@@ -1,7 +1,7 @@
-﻿@model LoginViewModel;
+﻿@model LoginViewModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Log in | Personal Trainer Software for Professionals";
     Layout = null;
 }
 
@@ -9,49 +9,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="~/css/LogInRegisterStyleSheet.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Personal Trainer Software for Professionals</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/login-register-style.css">
 </head>
-<body>
-    <section class="login-section">
-        <div class="login-form-box">
-            <div class="form-value">
-                <form id="account" method="post">
-                    <h2 class="login-text-center1" style="color:whitesmoke">@ViewData["Title"]</h2>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <div class="login-inputbox">
-                        <ion-icon name="person-outline"></ion-icon>
-                        <label asp-for="@Model.UserName">Username</label>
-                        <input asp-for="@Model.UserName" autocomplete="username" aria-required="true" />
-                        <span asp-validation-for="@Model.UserName"></span>
-                    </div>
+<body class="login-body">
+    <div class="main-div">
+        <p class="signin-p">Sign into your account</p>
+        <p class="helper-p">to continue growing your business</p>
 
-                    <div class="login-inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <label asp-for="@Model.Password"> Password</label>
-                        <input asp-for="@Model.Password" type="password" autocomplete="current-password" aria-required="true" />
-                        <span asp-validation-for="@Model.Password"></span>
-                    </div>
+        <section class="login-section">
+            <img class="logo-img" src="images/TextLogo.png" alt="EzyShape" width="150" height="40">
 
-                    <div class="login-forget">
-                        <label>
-                            <input type="checkbox"> Remember me
-                        </label>
-                        <label>
-                            <a href="#">Forgot password?</a>
-                        </label>
-                    </div>
-                    <div class="login-text-center1">
+            <div class="forms-div">
+                <!-- Form for logging in -->
+                <form asp-action="Login" method="post">
+                    <!-- Email field -->
+                    <label asp-for="UserName" class="email-label">Username&nbsp;<span style="color: red;">*</span></label>
+                    <input asp-for="UserName" autocomplete="username" aria-required="true" type="text" id="email"><br>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+
+                    <!-- Password field -->
+                    <label asp-for="Password" class="password-label">Password&nbsp;<span style="color: red;">*</span></label>
+                    <input asp-for="Password" type="password" autocomplete="current-password" aria-required="true" id="password"><br>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+
+                    <!-- Submit button -->
+                    <div>
                         <button id="login-submit" type="submit" class="login-button">Log in</button>
-                    </div>
-                    <div class="login-register">
-                        <p>Don't have an account? <a asp-action="Register">Register</a></p>
                     </div>
                 </form>
             </div>
-        </div>
-    </section>
-    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
-    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+        </section>
+        <p class="noaccount-p">Don't have an account? <a href="/User/Register">Sign up now!</a></p>
+    </div>
 </body>
+
 </html>
