@@ -29,10 +29,9 @@ nav {
 main {
     flex-grow: 1;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     overflow-y: auto;
 }
-
 
 #navbar {
     margin-left: 20px;
