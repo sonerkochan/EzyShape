@@ -7,50 +7,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 </head>
 <body>
-    <section class="createclient-section">
-        <div class="createclient-form-box">
-            <div class="form-value">
+    <section>
+        <div>
+            <div>
                 <form id="account" method="post">
 
-                    <h2 class="createclient-text-center1" style="color:whitesmoke">@ViewData["Title"]</h2>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2 style="color:whitesmoke">@ViewData["Title"]</h2>
+                    <div asp-validation-summary="ModelOnly" style="color:red;"></div>
 
-                    <div class="createclient-inputbox">
+                    <div>
                         <ion-icon name="person-outline"></ion-icon>
                         <label asp-for="@Model.FirstName">First name</label>
                         <input autocomplete="firstname" aria-required="true" asp-for="@Model.FirstName" />
-                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                        <span asp-validation-for="@Model.FirstName" style="color:red;"></span>
                     </div>
 
-
-                    <div class="createclient-inputbox">
+                    <div>
                         <ion-icon name="person-outline"></ion-icon>
                         <label asp-for="@Model.LastName">Last name</label>
                         <input autocomplete="lastname" aria-required="true" asp-for="@Model.LastName" />
-                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                        <span asp-validation-for="@Model.LastName" style="color:red;"></span>
                     </div>
 
-                    <div class="createclient-inputbox">
+                    <div>
                         <ion-icon name="mail-outline"></ion-icon>
                         <label asp-for="@Model.Email">Email</label>
                         <input autocomplete="email" aria-required="true" asp-for="@Model.Email" />
-                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        <span asp-validation-for="@Model.Email" style="color:red;"></span>
                     </div>
-                    <div class="createclient-text-center1">
-                        <button id="createclientSubmit" type="submit" class="createclient-button">Create Client Profile now</button>
+
+                    <div>
+                        <button id="createclientSubmit" type="submit">Create Client Profile now</button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
     <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
 </body>
