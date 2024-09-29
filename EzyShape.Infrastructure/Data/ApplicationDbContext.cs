@@ -21,6 +21,8 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<Level> Levels { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<TrainingTask> TrainingTasks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>()
