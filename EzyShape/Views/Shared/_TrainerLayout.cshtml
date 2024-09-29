@@ -112,25 +112,41 @@
     <div id="addTaskModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Add Task</h2>
+
+
             <form id="addTaskForm">
-                <label for="taskName">Task Name:</label>
-                <input type="text" id="taskName" name="taskName" required>
 
-                <label for="taskDescription">Description:</label>
-                <textarea id="taskDescription" name="taskDescription"></textarea>
+                <div class="modal-header">
+                    <h2 class="modal-title">Add Task</h2>
+                    <p class="modal-undertitle">Add a new task</p>
+                </div>
 
-                <label for="dueDate">Due Date:</label>
-                <input type="date" id="dueDate" name="dueDate">
+                <div class="modal-main">
+                    <label for="taskName">Task  <span style="color: red;">*</span></label>
+                    <input type="text" id="taskName" placeholder="Type your task/reminder" name="taskName" required>
 
-                <button type="submit">Add Task</button>
+                    <label for="taskDescription">Description <span style="color: gray;font-style:italic;">(optional);</span></label>
+                        <textarea id="taskDescription" name="taskDescription"></textarea>
+
+                    <label for="dueDate">Due Date <span style="color: gray;font-style:italic;">(optional)</span></label>
+                        <input type="date" id="dueDate" placeholder="Select a date" name="dueDate">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button id="submitButton" class="submit-task-button" type="submit">Add Task</button>
+                </div>
+
+
             </form>
+
         </div>
     </div>
 
     <script src="js/dropdown.js"></script>
     <script src="js/hoverActive.js"></script>
     <script src="js/addTask.js"></script>
+    <script src="js/inputFieldEmptyCheck.js"></script>
 
 </body>
 </html>
