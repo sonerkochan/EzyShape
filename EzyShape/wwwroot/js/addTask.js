@@ -1,5 +1,5 @@
 ﻿document.getElementById("add-task").onclick = function () {
-    document.getElementById("addTaskModal").style.display = "block";
+    document.getElementById("addTaskModal").style.display = "flex";
 }
 
 function closeModal() {
