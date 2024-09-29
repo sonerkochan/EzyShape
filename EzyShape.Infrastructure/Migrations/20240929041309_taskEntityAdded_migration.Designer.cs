@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzyShape.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240929041309_taskEntityAdded_migration")]
+    partial class taskEntityAdded_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -458,7 +460,7 @@ namespace EzyShape.Infrastructure.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("TrainerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -643,14 +645,14 @@ namespace EzyShape.Infrastructure.Migrations
                         new
                         {
                             Id = "d9de7285-b674-454c-9889-5210abb8d347",
-                            ConcurrencyStamp = "52e23a23-0921-4758-a563-ae86fe5ac4e4",
+                            ConcurrencyStamp = "d41cb3a0-f25a-4164-b6cc-15f82cd5c3b2",
                             Name = "Trainer",
                             NormalizedName = "TRAINER"
                         },
                         new
                         {
                             Id = "07358494-247c-421c-8f7f-82c12be55276",
-                            ConcurrencyStamp = "7e8a8ee5-5a27-40be-a89c-cf6e98cf61b6",
+                            ConcurrencyStamp = "1678148a-d479-420c-8169-48ecb458d006",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
