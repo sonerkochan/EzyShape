@@ -11,21 +11,44 @@ namespace EzyShape.Areas.Trainer.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly ITrainerService trainerService;
+        private readonly IDashboardService dashboardService;
 
         public TrainerController(
             UserManager<User> _userManager,
-            ITrainerService _trainerService
+            ITrainerService _trainerService,
+            IDashboardService _dashboardService
             )
         {
             userManager = _userManager;
             trainerService = _trainerService;
+            dashboardService= _dashboardService;
         }
 
         [Route("/dashboard")]
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var model = await dashboardService.GetTrainerDashboardInfo(trainerId);
+
+            return View(model);
         }
+
+        /*
+         
+        [Route("/clients")]
+        [HttpGet]
+        public async Task<IActionResult> AllClients()
+        {
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var model = await trainerService.GetTrainersAllClients(trainerId);
+
+            return View(model);
+        }
+
+         */
     }
 }
