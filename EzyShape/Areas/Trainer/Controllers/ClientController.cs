@@ -21,12 +21,15 @@ namespace EzyShape.Areas.Trainer.Controllers
 
         private readonly IUserService userService;
 
+        private readonly IUtilityService utilityService;
+
         public ClientController(
             UserManager<User> _userManager,
             SignInManager<User> _signInManager,
             RoleManager<IdentityRole> _roleManager,
             IUserService _userService,
-            ITrainerService _trainerService
+            ITrainerService _trainerService,
+            IUtilityService _utilityService
             )
         {
             userManager = _userManager;
@@ -34,6 +37,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             roleManager = _roleManager;
             userService = _userService;
             trainerService = _trainerService;
+            utilityService = _utilityService;
         }
 
         [Route("/clients/new")]
@@ -61,13 +65,17 @@ namespace EzyShape.Areas.Trainer.Controllers
                 return View(model);
             }
 
+            string ColorCode = await utilityService.GenerateRandomLightHexColorAsync();
+
             var user = new User()
             {
                 UserName = model.UserName,
                 Email = model.Email.ToLower(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                TrainerId = trainerId
+                TrainerId = trainerId,
+                ColorCode = ColorCode,
+                RegistrationDate = DateTime.Now
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

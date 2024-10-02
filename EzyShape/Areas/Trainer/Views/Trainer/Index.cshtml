@@ -24,12 +24,17 @@
                     <p class="recent-clients-title">Recent Clients</p>
                     <div class="clients-list-div">
 
+
                         @if (Model.Clients != null && Model.Clients.Any())
                         {
                             @foreach (var client in Model.Clients)
                             {
+
+
+
                                 <div class="client-item">
-                                    <div class="photo-div">
+                                    <div class="photo-div" style="background-color:@client.ColorCode">
+                                        <p class="photo-letter">@client.FirstName[0]</p>
                                     </div>
                                     <p class="client-name-p">
                                         @($"{client.FirstName} {client.LastName}")
