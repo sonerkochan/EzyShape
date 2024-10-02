@@ -20,5 +20,6 @@ namespace EzyShape.Core.Models.Clients
         public string LastName { get; set; } = null!;
         public IEnumerable<Split> Splits { get; set; } = new List<Split>();
 
+        public string ColorCode { get; set; } = null!;
     }
 }

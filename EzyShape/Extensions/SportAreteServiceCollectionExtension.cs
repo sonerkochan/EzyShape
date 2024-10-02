@@ -16,6 +16,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISplitService, SplitService>();
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<IDashboardService, DashboardService>();
+            services.AddScoped<IUtilityService, UtilityService>();
+
 
             return services; 
         }

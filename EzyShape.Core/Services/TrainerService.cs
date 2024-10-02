@@ -54,6 +54,7 @@ namespace EzyShape.Core.Services
                     Username = u.UserName,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
+                    ColorCode = u.ColorCode
                 })
                 .ToListAsync();
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using EzyShape.Core.Models.User;
 using EzyShape.Infrastructure.Data.Models;
+using EzyShape.Core.Contracts;
 
 namespace EzyShape.Controllers
 {
@@ -18,6 +19,8 @@ namespace EzyShape.Controllers
 
         private readonly RoleManager<IdentityRole> roleManager;
 
+        private readonly IUtilityService utilityService;
+
 
         /// <summary>
         /// Constructor for the user controller.
@@ -25,11 +28,13 @@ namespace EzyShape.Controllers
         public UserController(
             UserManager<User> _userManager,
             SignInManager<User> _signInManager,
-            RoleManager<IdentityRole> _roleManager)
+            RoleManager<IdentityRole> _roleManager,
+            IUtilityService _utilityService)
         {
             userManager = _userManager;
             signInManager = _signInManager;
             roleManager = _roleManager;
+            utilityService = _utilityService;
         }
 
         /// <summary>
@@ -64,12 +69,16 @@ namespace EzyShape.Controllers
                 return View(model);
             }
 
+            string ColorCode = await utilityService.GenerateRandomLightHexColorAsync();
+
             var user = new User()
             {
                 Email = model.Email,
                 UserName = model.UserName,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                ColorCode = ColorCode,
+                RegistrationDate = DateTime.Now
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

@@ -25,5 +25,13 @@ namespace EzyShape.Infrastructure.Data.Models
 
         public IEnumerable<ClientSplit> SplitIds { get; set; } = new List<ClientSplit>();
 
+
+
+        [Description("Registration date of the client/trainer.")]
+        public DateTime? RegistrationDate { get; set; }
+
+        [Description("Hexadecimal color code for user profile photo when there is no picture uploaded.")]
+        public string? ColorCode { get; set; }
+
     }
 }
