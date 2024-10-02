@@ -45,7 +45,7 @@ namespace EzyShape.Core.Services
         public async Task<IEnumerable<ClientSmallViewModel>> GetTrainersAllClients(string TrainerId)
         {
             return await repo.AllReadonly<User>()
-                .OrderBy(u => u.FirstName)
+                .OrderByDescending(u => u.RegistrationDate)
                 .ThenBy(u => u.LastName)
                 .Where(u => u.TrainerId == TrainerId)
                 .Select(u => new ClientSmallViewModel()

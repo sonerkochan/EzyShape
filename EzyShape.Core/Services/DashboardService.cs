@@ -28,7 +28,7 @@ namespace EzyShape.Core.Services
             var model = new ClientsTasksViewModel();
 
             model.Clients = await repo.AllReadonly<User>()
-                .OrderBy(u => u.FirstName)
+                .OrderByDescending(u => u.RegistrationDate)
                 .ThenBy(u => u.LastName)
                 .Where(u => u.TrainerId == TrainerId)
                 .Take(4)
