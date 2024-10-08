@@ -21,7 +21,7 @@
             <div class="clients-checkin-div">
 
                 <div class="clients-div box-shadow">
-                    <p class="recent-clients-title">Recent Clients</p>
+                    <p class="div-title">Recent Clients</p>
                     <div class="clients-list-div">
 
 
@@ -29,9 +29,6 @@
                         {
                             @foreach (var client in Model.Clients)
                             {
-
-
-
                                 <div class="client-item">
                                     <div class="photo-div" style="background-color:@client.ColorCode">
                                         <p class="photo-letter">@client.FirstName[0]</p>
@@ -66,8 +63,30 @@
             </div>
 
             <div class="tasks-div box-shadow">
+                <p class="div-title">Recent Tasks</p>
 
+                <div class="tasks-list-div">
 
+                    @if (Model.Tasks != null && Model.Tasks.Any())
+                    {
+                        @foreach (var task in Model.Tasks)
+                        {
+                            <div class="task-item">
+                                <div class="task-info-div">
+                                    <p class="task-name">
+                                        @task.Name
+                                    </p>
+                                    <p class="task-desc">
+                                        @task.Description
+                                    </p>
+                                    <p class="task-date">@task.DueDate</p>
+                                </div>
+                                <button class="task-button">+</button>
+                            </div>
+                        }
+                    }
+
+                </div>
             </div>
 
 
