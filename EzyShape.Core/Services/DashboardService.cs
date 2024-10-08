@@ -31,7 +31,7 @@ namespace EzyShape.Core.Services
                 .OrderByDescending(u => u.RegistrationDate)
                 .ThenBy(u => u.LastName)
                 .Where(u => u.TrainerId == TrainerId)
-                .Take(4)
+                .Take(5)
                 .Select(u => new ClientSmallViewModel()
                 {
                     Id = u.Id,
@@ -45,7 +45,7 @@ namespace EzyShape.Core.Services
             model.Tasks= await repo.AllReadonly<TrainingTask>()
                 .OrderByDescending(t => t.DueDate)
                 .Where(t => t.UserId == TrainerId)
-                .Take(4)
+                .Take(5)
                 .Select(t => new TaskViewModel()
                 {
                     Name = t.Name,

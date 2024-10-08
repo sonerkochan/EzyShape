@@ -9,22 +9,21 @@ body{
 
 .left-div {
     width: 60%;
-    height: 100vh;
+    height: 60rem;
     display: flex;
     flex-direction: column;
-    padding: 10px;
 }
 
 .right-div {
     background-color: #f8f9fe;
     width: 35%;
-    height: 100vh;
+    height: 60rem;
     margin-left: 5%;
     display: flex;
     flex-direction: column;
     padding: 10px;
-
-    border-radius:15px;
+    border-radius: 15px;
+    box-sizing: border-box;
 }
 
 .check-in-div {
@@ -37,21 +36,9 @@ body{
 .messages-div {
     background-color: #ffffff;
     width: 100%;
-    height: 45%;
+    height: 40rem;
     border-radius: 15px;
     margin-bottom: 10px;
-}
-
-
-.tasks-div {
-    background-color: #ffffff;
-    width: 100%;
-    height: 55%;
-    border-radius: 15px;
-}
-
-.box-shadow {
-    box-shadow: 0 1px 5px 0 #2d3e501f;
 }
 
 /*Clients div*/
@@ -85,7 +72,7 @@ body{
 }
 
 
-.recent-clients-title {
+.div-title {
     margin-top: 0 !important;
     width: 100%;
     font-weight: 500;
@@ -100,7 +87,7 @@ body{
 
 .client-item {
     width: 100%;
-    height: 25%;
+    height: 20%;
     display: flex;
     flex-direction: row;
 }
@@ -113,8 +100,10 @@ body{
     background-color:#f7fafc;
 }
 
-.client-name-p{
-    margin-left:5%;
+.client-name-p {
+    margin-left: 5%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 /*photo div*/
@@ -123,7 +112,6 @@ body{
 .photo-div {
     height: 80%;
     aspect-ratio: 1;
-    /*background-color: #15a6ed;*/
     border-radius: 50%;
     margin: auto 0 auto 5px;
     display:flex;
@@ -135,5 +123,90 @@ body{
     margin: auto;
     font-size: 24px;
     font-weight: 700;
-    color: #003366;
+    color: #2051f1;
+}
+
+/*Tasks div*/
+
+.tasks-div {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    height: 100%; 
+
+}
+
+.tasks-list-div {
+    width: 100%;
+    height: calc(5 * 3rem + 40px);
+    margin-top: 10px;
+    border-top: solid 1px #f3f6f8; /*#f3f6f8*/
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem;
+    height: 3.5rem; /* Maintain the height of each task item */
+    margin-bottom: 10px; /* Add spacing between task items */
+}
+
+
+.task-item:hover {
+    cursor: pointer;
+    border-radius:10px;
+}
+
+.task-item:hover {
+    background-color: #f7fafc;
+}
+
+
+.task-info-div {
+    flex-grow: 1; /* Allow this div to take up available space */
+    margin-right: 10px; /* Space between text and button */
+    overflow: hidden; /* Hide overflowing text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+}
+
+.task-text {
+    font-size: 16px; /* Text size for task description */
+    color: #333; /* Text color for task description */
+    margin: 0; /* Remove bottom margin to ensure consistent height */
+}
+
+.task-date {
+    font-size: 14px; /* Text size for task date */
+    color: #999; /* Text color for task date */
+}
+
+.task-button {
+    background-color: #2051f1; /* Background color for button */
+    color: white; /* Text color for button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for button */
+    padding: 10px; /* Padding for button */
+    font-size: 18px; /* Text size for button */
+    cursor: pointer; /* Change cursor on hover */
+    width: 2rem; /* Width of the button */
+    height: 2rem; /* Height of the button */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center; /* Ensure text is centered */
+}
+
+    .task-button:hover {
+        background-color: #183cbd; /* Darker background on hover */
+    }
+
+
+.box-shadow {
+    box-shadow: 0 1px 5px 0 #2d3e501f;
+
+    /*
+    background-color: #b5d2dc;
+    */
 }
