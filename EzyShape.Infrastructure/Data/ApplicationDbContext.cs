@@ -15,6 +15,8 @@ namespace EzyShape.Infrastructure.Data
 
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+        public DbSet<WorkoutSession> WorkoutSessions { get; set; }
+        public DbSet<WorkoutLog> WorkoutLogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Split> Splits { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
