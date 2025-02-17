@@ -26,7 +26,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             trainerService = _trainerService;
         }
 
-        [Route("splits/new")]
+        [Route("/splits/new")]
         [HttpGet]
         public IActionResult AddSplit()
         {
@@ -38,7 +38,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             return View(model);
         }
 
-        [Route("splits/new")]
+        [Route("/splits/new")]
         [HttpPost]
         public async Task<IActionResult> AddSplit(AddSplitViewModel addSplitViewModel)
         {
