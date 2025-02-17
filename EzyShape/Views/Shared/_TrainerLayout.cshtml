@@ -93,8 +93,13 @@
                     <a class="menu-item"><p>Forms</p></a>
                     <a class="menu-item"><p>Habits</p></a>
                     <a class="menu-item"><p>Metrics</p></a>
-                    <a class="menu-item"><p>Exercises</p></a>
-                    <a class="menu-item"><p>Programs/Splits</p></a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Exercise" asp-action="AllExercises">
+                        <p data-id="clients">Exercises</p>
+                    </a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Split" asp-action="AllSplits">
+                        <p data-id="clients">Programs/Splits</p>
+                    </a>
+
                 </div>
             </div>
 

@@ -1,13 +1,14 @@
 ﻿@model AddExerciseViewModel
 
+
 @{
-    ViewData["Title"] = "Add Exercise";
+    ViewData["Title"] = "Add a new Exercise | Personal Trainer Software for Professionals";
 }
 
+<html>
 <head>
-    <title>AddExercise</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
 </head>
 
 <div class="container">
@@ -90,7 +91,4 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+</html>
