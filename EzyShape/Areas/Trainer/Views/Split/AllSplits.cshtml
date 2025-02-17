@@ -36,7 +36,14 @@
                 @foreach (var split in Model)
                 {
                     <tr>
-                        <td>@split.Name</td>
+                        <td>
+                            <a asp-area="Trainer"
+                               asp-controller="Split"
+                               asp-action="Detail"
+                               asp-route-id="@split.Id">
+                                @split.Name
+                            </a>
+                        </td>
                         <td>@(string.IsNullOrEmpty(split.Description) ? "N/A" : split.Description)</td>
                     </tr>
                 }

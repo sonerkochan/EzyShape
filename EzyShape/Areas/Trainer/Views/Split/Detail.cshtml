@@ -1,0 +1,41 @@
+﻿@model Split
+
+@{
+    ViewData["Title"] = "GIVEN SPLIT NAME | Personal Trainer Software for Professionals";
+}
+
+<html>
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+</head>
+
+
+<body>
+
+    @if (Model != null)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Name</td>
+                    <td>@(string.IsNullOrEmpty(Model.Description) ? "N/A" : Model.Description)</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No splits found.</p>
+    }
+
+</body>
+
+</html>

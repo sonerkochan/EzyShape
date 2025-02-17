@@ -83,6 +83,7 @@ namespace EzyShape.Core.Services
                 .Where(s => s.UserId == TrainerId)
                 .Select(s => new SplitViewModel()
                 {
+                    Id=s.Id,
                     Name = s.Name,
                     Description=s.Description
                 })
