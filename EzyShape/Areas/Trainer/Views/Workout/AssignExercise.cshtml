@@ -1,0 +1,51 @@
+﻿@model WorkoutExerciseViewModel
+
+@{
+    ViewData["Title"] = "Workout Details";
+}
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+</head>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form asp-action="AssignExercise" asp-route-id="@Model.WorkoutId" method="post">
+                <div class="mb-3">
+                    <label asp-for="ExerciseId" class="form-label">Select Exercise</label>
+                    <select asp-for="ExerciseId" class="form-select"
+                            asp-items="@(new SelectList(Model.Exercises, "Id", "Name"))">
+                        <option value="">-- Select an Exercise --</option>
+                    </select>
+                    <span asp-validation-for="ExerciseId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Repetitions" class="form-label">Repetitions</label>
+                    <input asp-for="Repetitions" class="form-control" />
+                    <span asp-validation-for="Repetitions" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Sets" class="form-label">Sets</label>
+                    <input asp-for="Sets" class="form-control" />
+                    <span asp-validation-for="Sets" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Tempo" class="form-label">Tempo</label>
+                    <input asp-for="Tempo" class="form-control" />
+                    <span asp-validation-for="Tempo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" value="Assign Exercise" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

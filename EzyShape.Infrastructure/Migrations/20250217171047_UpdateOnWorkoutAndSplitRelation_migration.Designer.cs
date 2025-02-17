@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzyShape.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250217171047_UpdateOnWorkoutAndSplitRelation_migration")]
+    partial class UpdateOnWorkoutAndSplitRelation_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -586,8 +589,11 @@ namespace EzyShape.Infrastructure.Migrations
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutExercise", b =>
                 {
-                    b.Property<int>("WorkoutId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ExerciseId")
                         .HasColumnType("int");
@@ -604,9 +610,14 @@ namespace EzyShape.Infrastructure.Migrations
                     b.Property<string>("Tempo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("WorkoutId", "ExerciseId");
+                    b.Property<int?>("WorkoutId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ExerciseId");
+
+                    b.HasIndex("WorkoutId");
 
                     b.ToTable("WorkoutExercises");
                 });
@@ -619,9 +630,6 @@ namespace EzyShape.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Reps")
                         .HasColumnType("int");
 
@@ -631,7 +639,7 @@ namespace EzyShape.Infrastructure.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
-                    b.Property<int>("WorkoutId")
+                    b.Property<int?>("WorkoutExerciseId")
                         .HasColumnType("int");
 
                     b.Property<int?>("WorkoutSessionId")
@@ -639,9 +647,9 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WorkoutSessionId");
+                    b.HasIndex("WorkoutExerciseId");
 
-                    b.HasIndex("WorkoutId", "ExerciseId");
+                    b.HasIndex("WorkoutSessionId");
 
                     b.ToTable("WorkoutLogs");
                 });
@@ -919,28 +927,22 @@ namespace EzyShape.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.Workout", "Workout")
+                    b.HasOne("EzyShape.Infrastructure.Data.Models.Workout", null)
                         .WithMany("ExerciseIds")
-                        .HasForeignKey("WorkoutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WorkoutId");
 
                     b.Navigation("Exercise");
-
-                    b.Navigation("Workout");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutLog", b =>
                 {
+                    b.HasOne("EzyShape.Infrastructure.Data.Models.WorkoutExercise", "WorkoutExercise")
+                        .WithMany()
+                        .HasForeignKey("WorkoutExerciseId");
+
                     b.HasOne("EzyShape.Infrastructure.Data.Models.WorkoutSession", "WorkoutSession")
                         .WithMany()
                         .HasForeignKey("WorkoutSessionId");
-
-                    b.HasOne("EzyShape.Infrastructure.Data.Models.WorkoutExercise", "WorkoutExercise")
-                        .WithMany()
-                        .HasForeignKey("WorkoutId", "ExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("WorkoutExercise");
 

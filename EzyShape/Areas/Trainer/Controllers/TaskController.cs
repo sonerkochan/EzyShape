@@ -31,7 +31,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             try
             {
                 await taskService.AddTaskAsync(addTaskViewModel, trainerId);
-                return Json(new { success = true, message = "Task added successfully!" });
+                return Json(new { success = true });
             }
             catch (Exception ex)
             {

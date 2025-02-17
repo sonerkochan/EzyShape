@@ -6,8 +6,7 @@
 
 <head>
     <title>@ViewData["Title"]</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
 </head>
 
 
@@ -23,6 +22,11 @@
 
     <div>
         <h4>Exercises</h4>
+        <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
+            <div>
+                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Workout" asp-action="AssignExercise" asp-route-id="@Model.Id">Assign an exercise to the workout</a>
+            </div>
+        </button>
         @if (Model.ExerciseIds.Any())
         {
             <table class="table">

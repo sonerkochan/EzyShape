@@ -21,13 +21,6 @@ namespace EzyShape.Infrastructure.Data.Models
         public IEnumerable<WorkoutExercise> ExerciseIds { get; set; } = new List<WorkoutExercise>();
 
 
-        [Description("Id of the split of which this workout is a part of.")]
-        public int? SplitId { get; set; }
-
-        [ForeignKey(nameof(SplitId))]
-        public Split? Split { get; set; }
-
-
         [Description("Id of the user that made the workout.")]
         public string UserId { get; set; } = null!;
 

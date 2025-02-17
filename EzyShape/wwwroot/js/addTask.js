@@ -35,25 +35,15 @@ document.getElementById("addTaskForm").onsubmit = function (event) {
         body: taskData.toString(), // Send the data as URL-encoded string
         credentials: 'include' // Include cookies in the request
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json(); // Parse the JSON from the response
-        })
         .then(data => {
-            if (data.success) {
-                // Handle success (e.g., show a success message, update UI)
-                alert(data.message);
-                // Optionally, refresh or update the task list here
-            } else {
-                // Handle validation errors
-                alert("Error: " + data.errors.join(", "));
-            }
+
+            // Handle success (e.g., show a success message, update UI)
+            toastr.success("Task added successfully");
+            // Optionally, refresh or update the task list here
         })
         .catch(error => {
             console.error('Error:', error);
-            alert("An error occurred while adding the task.");
+            toastr.error("An error occurred while adding the task.");
         });
 
     closeModal(); // Close the modal after submission

@@ -19,5 +19,6 @@ namespace EzyShape.Core.Models.Workouts
         public List<WorkoutExerciseViewModel> WorkoutExercises { get; set; } = new List<WorkoutExerciseViewModel>();
 
         public IEnumerable<Exercise> Exercises { get; set; } = new List<Exercise>();
+
     }
 }

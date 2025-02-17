@@ -14,7 +14,6 @@ namespace EzyShape.Infrastructure.Data.Models
         [Key]
         public int Id { get; set; }
 
-
         [Description("Id of the session.")]
         public int? WorkoutSessionId { get; set; }
 
@@ -22,11 +21,13 @@ namespace EzyShape.Infrastructure.Data.Models
         public WorkoutSession? WorkoutSession { get; set; }
 
 
-        [Description("Id of the exercise which will be logged.")]
-        public int? WorkoutExerciseId { get; set; }
+        public int WorkoutId { get; set; }
+        public int ExerciseId { get; set; }
 
-        [ForeignKey(nameof(WorkoutExerciseId))]
+
+        [ForeignKey("WorkoutId, ExerciseId")]
         public WorkoutExercise? WorkoutExercise { get; set; }
+
 
         public int SetNumber { get; set; }
         public int Reps { get; set; }

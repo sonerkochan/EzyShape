@@ -11,6 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/trainer-layout-style.css" asp-append-version="true" />
 
@@ -96,6 +99,9 @@
                     <a class="menu-item" asp-area="Trainer" asp-controller="Exercise" asp-action="AllExercises">
                         <p data-id="clients">Exercises</p>
                     </a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Workout" asp-action="AllWorkouts">
+                        <p data-id="clients">Workouts</p>
+                    </a>
                     <a class="menu-item" asp-area="Trainer" asp-controller="Split" asp-action="AllSplits">
                         <p data-id="clients">Programs/Splits</p>
                     </a>
@@ -148,6 +154,8 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="js/dropdown.js"></script>
     <script src="js/hoverActive.js"></script>
     <script src="js/addTask.js"></script>

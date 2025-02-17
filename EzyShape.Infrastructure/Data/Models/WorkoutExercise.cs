@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EzyShape.Infrastructure.Data.Models
 {
     public class WorkoutExercise
     {
 
+
         [Required]
-        [Description("Id of the WorkoutExercise.")]
-        public int Id { get; set; }
+        [Description("Id of the workout.")]
+        public int WorkoutId { get; set; }
+
+        [ForeignKey(nameof(WorkoutId))]
+        public Workout Workout { get; set; }
+
 
         [Required]
         [Description("Id of the exercise.")]

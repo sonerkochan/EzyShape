@@ -1,4 +1,5 @@
 ﻿using EzyShape.Core.Models.Exercises;
+using EzyShape.Core.Models.WorkoutExercises;
 using EzyShape.Core.Models.Workouts;
 using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data;
@@ -84,6 +85,42 @@ namespace EzyShape.Areas.Trainer.Controllers
             }
 
             return View(workout);
+        }
+
+        [HttpGet]
+        public  async Task<IActionResult> AssignExercise(int id)
+        {
+            var model = new WorkoutExerciseViewModel
+            {
+                WorkoutId = id,
+                Exercises = _context.Exercises.ToList()
+            };
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignExercise(WorkoutExerciseViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var workoutExercise = new WorkoutExercise
+                {
+                    WorkoutId = id,
+                    ExerciseId = model.ExerciseId,
+                    Repetitions = model.Repetitions,
+                    Sets = model.Sets,
+                    Tempo = model.Tempo
+                };
+
+                _context.WorkoutExercises.Add(workoutExercise);
+                await _context.SaveChangesAsync();
+            }
+
+
+            return RedirectToAction(nameof(AllWorkouts));
+
         }
 
     }

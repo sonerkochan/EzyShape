@@ -3,6 +3,7 @@ using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SportArete.Infrastructure.Data.Configuration;
+using System.Reflection.Emit;
 
 namespace EzyShape.Infrastructure.Data
 {
@@ -44,7 +45,12 @@ namespace EzyShape.Infrastructure.Data
 
             builder.Entity<ClientSplit>()
                 .HasKey(x => new { x.UserId, x.SplitId });
+            builder.Entity<WorkoutSplit>()
+                .HasKey(x => new { x.WorkoutId, x.SplitId });
+            builder.Entity<WorkoutExercise>()
+                .HasKey(x => new { x.WorkoutId, x.ExerciseId });
 
+            builder.Entity<WorkoutExercise>().HasKey(we => new { we.WorkoutId, we.ExerciseId });
 
 
 

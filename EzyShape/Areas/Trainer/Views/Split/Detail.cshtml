@@ -14,8 +14,16 @@
 
 <body>
 
+
+
     @if (Model != null)
     {
+        <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
+            <div>
+                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Workout" asp-action="AssignWorkout">Assign a workout</a>
+            </div>
+        </button>
+
         <table class="table table-striped">
             <thead>
                 <tr>
