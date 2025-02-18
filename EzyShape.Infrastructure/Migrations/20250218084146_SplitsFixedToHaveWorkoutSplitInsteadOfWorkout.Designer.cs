@@ -4,6 +4,7 @@ using EzyShape.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzyShape.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250218084146_SplitsFixedToHaveWorkoutSplitInsteadOfWorkout")]
+    partial class SplitsFixedToHaveWorkoutSplitInsteadOfWorkout
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +40,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -89,7 +92,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasIndex("SplitId");
 
-                    b.ToTable("ClientSplit", (string)null);
+                    b.ToTable("ClientSplit");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Equipment", b =>
@@ -107,7 +110,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Equipments", (string)null);
+                    b.ToTable("Equipments");
 
                     b.HasData(
                         new
@@ -251,7 +254,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasIndex("MuscleId");
 
-                    b.ToTable("Exercises", (string)null);
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.Level", b =>
@@ -269,7 +272,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Levels", (string)null);
+                    b.ToTable("Levels");
 
                     b.HasData(
                         new
@@ -309,7 +312,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Muscles", (string)null);
+                    b.ToTable("Muscles");
 
                     b.HasData(
                         new
@@ -425,7 +428,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Splits", (string)null);
+                    b.ToTable("Splits");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.TrainingTask", b =>
@@ -464,7 +467,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TrainingTasks", (string)null);
+                    b.ToTable("TrainingTasks");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.User", b =>
@@ -576,7 +579,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Workouts", (string)null);
+                    b.ToTable("Workouts");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutExercise", b =>
@@ -603,7 +606,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasIndex("ExerciseId");
 
-                    b.ToTable("WorkoutExercises", (string)null);
+                    b.ToTable("WorkoutExercises");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutLog", b =>
@@ -638,7 +641,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasIndex("WorkoutId", "ExerciseId");
 
-                    b.ToTable("WorkoutLogs", (string)null);
+                    b.ToTable("WorkoutLogs");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutSession", b =>
@@ -674,7 +677,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasIndex("WorkoutId");
 
-                    b.ToTable("WorkoutSessions", (string)null);
+                    b.ToTable("WorkoutSessions");
                 });
 
             modelBuilder.Entity("EzyShape.Infrastructure.Data.Models.WorkoutSplit", b =>
@@ -689,7 +692,7 @@ namespace EzyShape.Infrastructure.Migrations
 
                     b.HasIndex("WorkoutId");
 
-                    b.ToTable("WorkoutSplits", (string)null);
+                    b.ToTable("WorkoutSplits");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

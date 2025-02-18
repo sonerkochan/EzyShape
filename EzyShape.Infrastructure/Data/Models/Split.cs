@@ -20,7 +20,8 @@ namespace EzyShape.Infrastructure.Data.Models
         public string? Description { get; set; }
 
         [Description("List of workouts in the split.")]
-        public IEnumerable<Workout> WorkoutIds { get; set; } = new List<Workout>();
+        public IEnumerable<WorkoutSplit> WorkoutIds { get; set; } = new List<WorkoutSplit>();
+
 
 
         [Description("Id of the user that made the split.")]

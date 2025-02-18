@@ -1,0 +1,36 @@
+﻿@model WorkoutSplitViewModel
+
+@{
+    ViewData["Title"] = "Split Details";
+}
+
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+</head>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form asp-action="AssignWorkout" asp-route-id="@Model.SplitId" method="post">
+                @Model.SplitId
+                @Model.SplitId
+                @Model.SplitId
+                <div class="mb-3">
+                    <label asp-for="WorkoutId" class="form-label">Select Exercise</label>
+                    <select asp-for="WorkoutId" class="form-select"
+                            asp-items="@(new SelectList(Model.Workouts, "Id", "Name"))">
+                        <option value="">-- Select an Exercise --</option>
+                    </select>
+                    <span asp-validation-for="WorkoutId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input type="submit" value="Assign Workout" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

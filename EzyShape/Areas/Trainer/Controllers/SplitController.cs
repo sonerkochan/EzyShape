@@ -1,7 +1,11 @@
 ﻿using EzyShape.Core.Contracts;
 using EzyShape.Core.Models.Exercises;
 using EzyShape.Core.Models.Splits;
+using EzyShape.Core.Models.WorkoutExercises;
+using EzyShape.Core.Models.WorkoutSplit;
 using EzyShape.Core.Services;
+using EzyShape.Infrastructure.Data;
+using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -10,6 +14,7 @@ namespace EzyShape.Areas.Trainer.Controllers
 {
     public class SplitController : BaseController
     {
+        private readonly ApplicationDbContext context;
 
         private readonly ISplitService splitService;
 
@@ -19,11 +24,13 @@ namespace EzyShape.Areas.Trainer.Controllers
 
         public SplitController(
             ISplitService _splitService,
-            ITrainerService _trainerService
+            ITrainerService _trainerService,
+            ApplicationDbContext _context
             )
         {
             splitService = _splitService;
             trainerService = _trainerService;
+            context = _context;
         }
 
         [Route("/splits/new")]
@@ -84,5 +91,36 @@ namespace EzyShape.Areas.Trainer.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AssignWorkout(int id)
+        {
+            var model = new WorkoutSplitViewModel
+            {
+                SplitId=id,
+                Workouts = context.Workouts.ToList()
+            };
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignWorkout(WorkoutSplitViewModel model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var workoutSplit = new WorkoutSplit
+                {
+                    SplitId = id,
+                    WorkoutId=model.WorkoutId
+                };
+
+                context.WorkoutSplits.Add(workoutSplit);
+                await context.SaveChangesAsync();
+            }
+
+
+            return RedirectToAction(nameof(Detail), new { id = id });
+        }
     }
 }

@@ -20,7 +20,7 @@
     {
         <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
             <div>
-                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Workout" asp-action="AssignWorkout">Assign a workout</a>
+                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Split" asp-action="AssignWorkout" asp-route-id="@Model.Id">Assign a workout</a>
             </div>
         </button>
 
@@ -38,10 +38,34 @@
                 </tr>
             </tbody>
         </table>
+
+        @if (Model.WorkoutIds.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Workout Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var workout in Model.WorkoutIds)
+                    {
+                        <tr>
+                            <td>@workout.Workout.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">No exercises available for this workout.</div>
+        }
     }
     else
     {
-        <p>No splits found.</p>
+        @Model
+        <div class="alert alert-info">No workouts available for this split.</div>
     }
 
 </body>

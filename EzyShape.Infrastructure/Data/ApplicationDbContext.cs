@@ -16,6 +16,7 @@ namespace EzyShape.Infrastructure.Data
 
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+        public DbSet<WorkoutSplit> WorkoutSplits { get; set; }
         public DbSet<WorkoutSession> WorkoutSessions { get; set; }
         public DbSet<WorkoutLog> WorkoutLogs { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
@@ -45,12 +46,9 @@ namespace EzyShape.Infrastructure.Data
 
             builder.Entity<ClientSplit>()
                 .HasKey(x => new { x.UserId, x.SplitId });
-            builder.Entity<WorkoutSplit>()
-                .HasKey(x => new { x.WorkoutId, x.SplitId });
-            builder.Entity<WorkoutExercise>()
-                .HasKey(x => new { x.WorkoutId, x.ExerciseId });
 
             builder.Entity<WorkoutExercise>().HasKey(we => new { we.WorkoutId, we.ExerciseId });
+            builder.Entity<WorkoutSplit>().HasKey(ws => new { ws.SplitId, ws.WorkoutId });
 
 
 

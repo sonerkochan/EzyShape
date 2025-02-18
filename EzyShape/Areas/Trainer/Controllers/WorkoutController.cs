@@ -12,18 +12,18 @@ namespace EzyShape.Areas.Trainer.Controllers
 {
     public class WorkoutController : BaseController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
-        public WorkoutController(ApplicationDbContext context)
+        public WorkoutController(ApplicationDbContext _context)
         {
-            _context = context;
+            context = _context;
         }
 
         [Route("/workouts")]
         [HttpGet]
         public IActionResult AllWorkouts()
         {
-            var workouts = _context.Workouts.ToList();
+            var workouts = context.Workouts.ToList();
             return View(workouts);
         }
 
@@ -33,7 +33,7 @@ namespace EzyShape.Areas.Trainer.Controllers
         {
             var model = new AddWorkoutViewModel
             {
-                Exercises = _context.Exercises.ToList()
+                Exercises = context.Exercises.ToList()
             };
 
             return View(model);
@@ -61,20 +61,21 @@ namespace EzyShape.Areas.Trainer.Controllers
                     UserId = trainerId
                 };
 
-                _context.Workouts.Add(workout);
-                await _context.SaveChangesAsync();
+                context.Workouts.Add(workout);
+                await context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(AllWorkouts));
             }
 
-            model.Exercises = _context.Exercises.ToList();
+            model.Exercises = context.Exercises.ToList();
             return RedirectToAction(nameof(AllWorkouts));
         }
 
+        [Route("/workout/{id}")]
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var workout = await _context.Workouts
+            var workout = await context.Workouts
                 .Include(w => w.ExerciseIds)
                 .ThenInclude(we => we.Exercise)
                 .FirstOrDefaultAsync(w => w.Id == id);
@@ -93,7 +94,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             var model = new WorkoutExerciseViewModel
             {
                 WorkoutId = id,
-                Exercises = _context.Exercises.ToList()
+                Exercises = context.Exercises.ToList()
             };
 
             return View(model);
@@ -114,12 +115,12 @@ namespace EzyShape.Areas.Trainer.Controllers
                     Tempo = model.Tempo
                 };
 
-                _context.WorkoutExercises.Add(workoutExercise);
-                await _context.SaveChangesAsync();
+                context.WorkoutExercises.Add(workoutExercise);
+                await context.SaveChangesAsync();
             }
 
 
-            return RedirectToAction(nameof(AllWorkouts));
+            return RedirectToAction(nameof(Details), new { id = id });
 
         }
 
