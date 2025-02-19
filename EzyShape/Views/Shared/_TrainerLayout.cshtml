@@ -24,6 +24,11 @@
         <div class="header-div">
             <img class="logo-img" src="~/img/TextLogoWhite.png" alt="EzyShape" width="100" height="28">
 
+            <button id="hamburger" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+
             <div class="profile-options-div">
                 <a class="header-item" id="add-task">Add Task +</a>
                 <a class="header-item" id="tasks">
@@ -76,8 +81,6 @@
                 </div>
             </div>
 
-
-
             <div class="nav-manage">
                 <h class="category-text">MANAGE</h>
                 <div class="menu-div">
@@ -110,6 +113,55 @@
             </div>
 
         </nav>
+
+        <nav id="navbar-modal">
+            <div class="nav-main">
+                <h class="category-text">MAIN</h>
+                <div class="menu-div">
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Trainer" asp-action="Index">
+                        <p data-id="dashboard">Dashboard</p>
+                    </a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Client" asp-action="AllClients">
+                        <p data-id="clients">Clients</p>
+                    </a>
+                    <a class="menu-item">
+                        <p data-id="messages">Messages</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-manage">
+                <h class="category-text">MANAGE</h>
+                <div class="menu-div">
+                    <a class="menu-item"><p>Packages</p></a>
+                    <a class="menu-item"><p>Community</p></a>
+                    <a class="menu-item"><p>Teams</p></a>
+                    <a class="menu-item"><p>Branding</p></a>
+                </div>
+            </div>
+
+            <div class="nav-library">
+                <h class="category-text">LIBRARY</h>
+                <div class="menu-div">
+                    <a class="menu-item"><p>Training</p></a>
+                    <a class="menu-item"><p>Nutrition</p></a>
+                    <a class="menu-item"><p>Forms</p></a>
+                    <a class="menu-item"><p>Habits</p></a>
+                    <a class="menu-item"><p>Metrics</p></a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Exercise" asp-action="AllExercises">
+                        <p data-id="clients">Exercises</p>
+                    </a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Workout" asp-action="AllWorkouts">
+                        <p data-id="clients">Workouts</p>
+                    </a>
+                    <a class="menu-item" asp-area="Trainer" asp-controller="Split" asp-action="AllSplits">
+                        <p data-id="clients">Programs/Splits</p>
+                    </a>
+
+                </div>
+            </div>
+        </nav>
+
 
         <main class="main-section">
             @RenderBody()
@@ -160,6 +212,7 @@
     <script src="js/hoverActive.js"></script>
     <script src="js/addTask.js"></script>
     <script src="js/inputFieldEmptyCheck.js"></script>
+    <script src="js/hamburger.js"></script>
 
 </body>
 </html>

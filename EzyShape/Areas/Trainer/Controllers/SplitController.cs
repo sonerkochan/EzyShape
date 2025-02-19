@@ -119,7 +119,6 @@ namespace EzyShape.Areas.Trainer.Controllers
                 await context.SaveChangesAsync();
             }
 
-
             return RedirectToAction(nameof(Detail), new { id = id });
         }
     }

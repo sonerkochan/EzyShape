@@ -210,3 +210,50 @@ body{
     background-color: #b5d2dc;
     */
 }
+
+/*Navbar and hamburger*/
+
+
+/* Ensure the hamburger button is visible.
+   Adjust the color and font size as necessary. */
+#hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white; /* Adjust as needed */
+}
+
+/* Mobile modal: hidden by default off-screen */
+#navbar-modal {
+    padding-left: 20px;
+    position: fixed;
+    top: 70px;
+    left: -270px; /* Hidden off-screen */
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+    /* When active, the modal slides in from the left */
+    #navbar-modal.active {
+        left: 0;
+    }
+
+/* Hide the modal on viewports wider than 680px */
+@media (max-width: 768px) {
+    #navbar {
+        display: none;
+    }
+
+    .logo-img {
+        display: none;
+    }
+
+    #hamburger {
+        display: block;
+    }
+}
