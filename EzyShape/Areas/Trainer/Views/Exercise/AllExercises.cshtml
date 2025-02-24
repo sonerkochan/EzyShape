@@ -10,6 +10,7 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/allExercises.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -22,14 +23,14 @@
         <h1 class="tbl-header">Exercise Library</h1>
 
 
-        <button type="button" class="button-add" style="background: lightgray;border:1px solid black;margin-right: 10px">
-            <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Exercise" asp-action="AddExercise">Add a new exercise</a>
+        <button type="button" class="button-add">
+            <a class="button-add-link" asp-area="Trainer" asp-controller="Exercise" asp-action="AddExercise">+ Add Exercise</a>
         </button>
 
     </div>
 
     <div class="div-input">
-        <input />
+            <input placeholder="Search for an exercise..." />
     </div
     
     <div class="div-table">
@@ -39,45 +40,53 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Pic</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Primary Focus</th>
                     <th>Category</th>
                     <th>Level</th>
-                    <th>Delete</th
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var exercise in Model)
                 {
                     <tr>
-                        <td>
+                        <td class="td-center">
                             @{
                                 string videoId = "";
-                                var uri = new Uri(exercise.Link);
-                                var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-                                if (query.AllKeys.Contains("v"))    
-                                {
-                                    videoId = query["v"];
-                                }
+                                string imageUrl = "/img/orange.png"; // Default image
 
-                                var imageUrl = $"https://img.youtube.com/vi/{videoId}/0.jpg";
+                                if (!string.IsNullOrEmpty(exercise.Link))
+                                {
+                                    Uri uri;
+                                    if (Uri.TryCreate(exercise.Link, UriKind.Absolute, out uri))
+                                    {
+                                        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+                                        if (query.AllKeys.Contains("v"))    
+                                        {
+                                            videoId = query["v"];
+                                            imageUrl = $"https://img.youtube.com/vi/{videoId}/0.jpg";
+                                        }
+                                    }
+                                }
                             }
 
                             <div class="exercise-image-div">
                                 <a href="@exercise.Link">
-                                    <img src="@imageUrl" alt="Video Thumbnail" />
+                                    <img src="@Url.Content(imageUrl)" alt="Video Thumbnail" />
                                 </a>
                             </div>
                         </td>
+
 
                         <td>@exercise.Name</td>
                         <td>@exercise.Muscle</td>
                         <td>@exercise.Category</td>
                         <td>@exercise.Level</td>
-                        <td>
-                            <button>
-
+                        <td class="td-center">
+                            <button class="button-delete">
+                                <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
                     </tr>
