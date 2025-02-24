@@ -9,51 +9,58 @@
 <head>
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/allSplits.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 
 <body>
 
-    <h2>@ViewData["Title"]</h2>
-
-
-    <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
-        <div>
-            <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Split" asp-action="AddSplit">Add a new split</a>
+    <main>
+        <div class="div-title">
+            <h1 class="tbl-header">@ViewData["Title"]</h1>
+            <button type="button" class="button-add">
+                <a class="button-add-link" asp-area="Trainer" asp-controller="Split" asp-action="AddSplit">+ Add a new split</a>
+            </button>
         </div>
-    </button>
 
-    @if (Model != null && Model.Any())
-    {
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var split in Model)
-                {
-                    <tr>
-                        <td>
-                            <a asp-area="Trainer"
-                               asp-controller="Split"
-                               asp-action="Detail"
-                               asp-route-id="@split.Id">
-                                @split.Name
-                            </a>
-                        </td>
-                        <td>@(string.IsNullOrEmpty(split.Description) ? "N/A" : split.Description)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No splits found.</p>
-    }
+        <div class="div-input">
+            <input placeholder="Search for a split..." />
+        </div>
+
+        <div class="div-table">
+            @if (Model != null && Model.Any())
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var split in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-area="Trainer"
+                                       asp-controller="Split"
+                                       asp-action="Detail"
+                                       asp-route-id="@split.Id">
+                                        @split.Name
+                                    </a>
+                                </td>
+                                <td>@(string.IsNullOrEmpty(split.Description) ? "N/A" : split.Description)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No splits found.</p>
+            }
+        </div>
+    </main>
 
 </body>
 
