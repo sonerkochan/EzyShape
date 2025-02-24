@@ -4,48 +4,62 @@
     ViewData["Title"] = "All Workouts";
 }
 
-
-
+<html>
 <head>
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/allWorkouts.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
+<body>
 
-<div class="container">
-    <h2>@ViewData["Title"]</h2>
-    <hr />
+    <main>
+        <div class="div-title">
+            <h1 class="tbl-header">@ViewData["Title"]</h1>
+            <button type="button" class="button-add">
+                <a class="button-add-link" asp-action="AddWorkout">+ Add Workout</a>
+            </button>
+        </div>
 
-    @if (Model.Any())
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var workout in Model)
-                {
-                    <tr>
-                        <td>@workout.Name</td>
-                        <td>@workout.Description</td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@workout.Id" class="btn btn-info">View Exercises</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <div class="alert alert-info">No workouts available.</div>
-    }
+        <div class="div-input">
+            <input placeholder="Search for a workout..." />
+        </div>
 
-    <div class="mt-3">
-        <a asp-action="AddWorkout" class="btn btn-primary">Add Workout</a>
-    </div>
-</div>
+        <div class="div-table">
+            @if (Model != null && Model.Any())
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var workout in Model)
+                        {
+                            <tr>
+                                <td>@workout.Name</td>
+                                <td>@workout.Description</td>
+                                <td class="td-center">
+                                    <a asp-action="Details" asp-route-id="@workout.Id" class="btn btn-info">
+                                        View Exercises
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No workouts found.</p>
+            }
+        </div>
+
+    </main>
+
+</body>
+</html>
