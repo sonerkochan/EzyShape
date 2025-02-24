@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ExerciseViewModel>
 
 @{
-    ViewData["Title"] = "All Exercises | Personal Trainer Software for Professionals";
+    ViewData["Title"] = "Exercise Library - EzyShape";
 }
 
 <html>
@@ -9,46 +9,77 @@
 <head>
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/allExercises.css" asp-append-version="true" />
 </head>
 
 <body>
 
-    <h2>@ViewData["Title"]</h2>
+    <main>
+
+        
+    <div class="div-title">
+
+        <h1 class="tbl-header">Exercise Library</h1>
 
 
-
-    <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
-        <div>
+        <button type="button" class="button-add" style="background: lightgray;border:1px solid black;margin-right: 10px">
             <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Exercise" asp-action="AddExercise">Add a new exercise</a>
-        </div>
-    </button>
+        </button>
 
+    </div>
 
+    <div class="div-input">
+        <input />
+    </div
+    
+    <div class="div-table">
+        
     @if (Model != null && Model.Any())
     {
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Pic</th>
                     <th>Name</th>
-                    <th>Link</th>
-                    <th>Notes</th>
-                    <th>Muscle</th>
+                    <th>Primary Focus</th>
                     <th>Category</th>
                     <th>Level</th>
-                    <th>Equipment</th>
+                    <th>Delete</th
                 </tr>
             </thead>
             <tbody>
                 @foreach (var exercise in Model)
                 {
                     <tr>
+                        <td>
+                            @{
+                                string videoId = "";
+                                var uri = new Uri(exercise.Link);
+                                var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+                                if (query.AllKeys.Contains("v"))    
+                                {
+                                    videoId = query["v"];
+                                }
+
+                                var imageUrl = $"https://img.youtube.com/vi/{videoId}/0.jpg";
+                            }
+
+                            <div class="exercise-image-div">
+                                <a href="@exercise.Link">
+                                    <img src="@imageUrl" alt="Video Thumbnail" />
+                                </a>
+                            </div>
+                        </td>
+
                         <td>@exercise.Name</td>
-                        <td>@(string.IsNullOrEmpty(exercise.Link) ? "N/A" : $"<a href='{exercise.Link}'>Link</a>")</td>
-                        <td>@(string.IsNullOrEmpty(exercise.Notes) ? "N/A" : exercise.Notes)</td>
                         <td>@exercise.Muscle</td>
                         <td>@exercise.Category</td>
                         <td>@exercise.Level</td>
-                        <td>@exercise.Equipment</td>
+                        <td>
+                            <button>
+
+                            </button>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -58,6 +89,13 @@
     {
         <p>No exercises found.</p>
     }
+    </div>
+
+
+
+
+    </main>
+
 
 </body>
 
