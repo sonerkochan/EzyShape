@@ -59,8 +59,7 @@
 
                                 if (!string.IsNullOrEmpty(exercise.Link))
                                 {
-                                    Uri uri;
-                                    if (Uri.TryCreate(exercise.Link, UriKind.Absolute, out uri))
+                                    if (Uri.TryCreate(exercise.Link, UriKind.Absolute, out Uri? uri))
                                     {
                                         var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
                                         if (query.AllKeys.Contains("v"))    
