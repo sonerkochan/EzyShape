@@ -1,4 +1,5 @@
-﻿using EzyShape.Core.Models.Exercises;
+﻿using EzyShape.Core.Contracts;
+using EzyShape.Core.Models.Exercises;
 using EzyShape.Core.Models.WorkoutExercises;
 using EzyShape.Core.Models.Workouts;
 using EzyShape.Core.Services;
@@ -13,18 +14,24 @@ namespace EzyShape.Areas.Trainer.Controllers
     public class WorkoutController : BaseController
     {
         private readonly ApplicationDbContext context;
+        private readonly IWorkoutService workoutService;
 
-        public WorkoutController(ApplicationDbContext _context)
+        public WorkoutController(ApplicationDbContext _context,
+            IWorkoutService _workoutService)
         {
             context = _context;
+            workoutService = _workoutService;
         }
 
         [Route("/workouts")]
         [HttpGet]
-        public IActionResult AllWorkouts()
+        public async Task<IActionResult> AllWorkouts()
         {
-            var workouts = context.Workouts.ToList();
-            return View(workouts);
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var model = await workoutService.GetTrainersAllWorkouts(trainerId);
+
+            return View(model);
         }
 
 
