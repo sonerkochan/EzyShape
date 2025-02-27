@@ -14,22 +14,11 @@ namespace EzyShape.Infrastructure.Data.Models
         [Key]
         public int Id { get; set; }
 
+        [Description("JSON file of all sets made during the workout")]
+        public string Logs { get; set; }
+
         [Required]
         public bool Finished { get; set; } = false; // False means still is running 
-
-
-        [Description("Id of the split of which this session's workout is part of")]
-        public int? SplitId { get; set; }
-
-        [ForeignKey(nameof(SplitId))]
-        public Split? Split { get; set; }
-
-
-        [Description("Id of the workout done in this session")]
-        public int? WorkoutId { get; set; }
-
-        [ForeignKey(nameof(WorkoutId))]
-        public Workout? Workout { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
