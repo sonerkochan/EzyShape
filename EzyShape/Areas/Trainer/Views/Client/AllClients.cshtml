@@ -1,69 +1,78 @@
-﻿@model IEnumerable<ClientSmallViewModel>;
+﻿@model IEnumerable<ClientSmallViewModel>
 
 @{
-    ViewData["Title"] = "My Clients | Personal Trainer Software for Professionals";
+    ViewData["Title"] = "My Clients ● EzyShape";
 }
 
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Clients</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/allClients.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
 
-    <h2>@ViewData["Title"]</h2>
-
-    <a class="btn btn-primary mb-3" asp-area="Trainer" asp-controller="Client" asp-action="CreateClient">Create a new client profile</a>
-
-    <div class="top-div">
-        <div class="title-driv">
-
+    <main>
+        <div class="div-title">
+            <h1 class="tbl-header">My Clients</h1>
+            <button type="button" class="button-add">
+                <a class="button-add-link" asp-area="Trainer" asp-controller="Client" asp-action="CreateClient">+ Add Client</a>
+            </button>
         </div>
-        <div
-            class="button-div"></div>
-    </div>
 
-    <div class="bottom-div">
-        <div class="table-div">
-
+        <div class="div-input">
+            <input placeholder="Search for a client..." />
         </div>
-    </div>
 
+        <div class="div-table">
+            @if (Model != null && Model.Any())
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Check In</th>
+                            <th>Last Active</th>
+                            <th>TBA</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var client in Model)
+                        {
+                            <tr onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = client.Id })';" style="cursor: pointer;">
+                                <td class="client-item">
+                                    <div class="photo-div" style="background-color:@client.ColorCode">
+                                        <p class="photo-letter">@client.FirstName[0]</p>
+                                    </div>
+                                    <p class="client-name-p">
+                                        @($"{client.FirstName} {client.LastName}")
+                                    </p>
+                                </td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="td-center">
+                                    <button class="button-options">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
 
-    @if (Model != null && Model.Any())
-    {
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>User Name</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var client in Model)
-                {
-                    <tr>
-                        <td>@client.Username</td>
-                        <td>@client.FirstName</td>
-                        <td>@client.LastName</td>
-                        <td>
-                            <a class="btn btn-info" asp-area="Trainer" asp-controller="Client" asp-action="Overview" asp-route-clientId="@client.Id">View</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No clients found.</p>
-    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No clients found.</p>
+            }
+        </div>
+    </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 
 </html>
