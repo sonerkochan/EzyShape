@@ -53,12 +53,11 @@ body{
 
 .clients-div {
     border-radius: 15px;
-    padding:20px;
-    width:100%;
-
-    display:flex;
-    flex-direction:column;
-    margin-right:2%;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 2%;
 }
 
 .checkin-progress-div {
@@ -204,9 +203,5 @@ body{
 
 
 .box-shadow {
-    box-shadow: 0 1px 5px 0 #2d3e501f;
-
-    /*
-    background-color: #b5d2dc;
-    */
+    box-shadow: 0 1px 5px 0 #a1c9ff;
 }
