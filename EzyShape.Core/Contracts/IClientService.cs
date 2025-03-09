@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace EzyShape.Core.Contracts
 {
-    public class IClientService
+    public interface IClientService
     {
+        Task<ClientViewModel> GetClientById(string clientId);
     }
 }

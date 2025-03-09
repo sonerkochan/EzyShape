@@ -1,0 +1,82 @@
+﻿@model ClientViewModel
+
+@{
+    ViewData["Title"] = "EzyShape | Personal Trainer Software for Professionals";
+    Layout = null;
+}
+
+@using Microsoft.AspNetCore.Identity
+@using EzyShape.Infrastructure.Data.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzyShape | Personal Trainer Software for Professionals</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/Client/clientHome.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="app-logo">EzyShape</div>
+        <div class="app-icons">
+            <span class="notification-icon"><i class="fa-regular fa-bell"></i></span>
+            <span class="menu-icon"><i class="fa-regular fa-message"></i></span>
+        </div>
+    </header>
+
+    <!-- Greeting -->
+    <section class="greeting-section">
+        <p class="greeting-text">Hello @Model.FirstName @Model.LastName,</p>
+        <p class="greeting-subtext"><em>Your potential is endless</em></p>
+    </section>
+
+    <!-- Task Section -->
+    <div class="task-section">
+        <div class="task-header">NO TASKS</div>
+        <p class="task-message">You don't have any tasks to complete.</p>
+        <div class="task-icon">✔️</div>
+    </div>
+
+    <!-- Resources Section -->
+    <section class="resources-section">
+        <div class="resource-item">
+            <div class="resource-icon">📂</div>
+            <p class="resource-text">Vault <span>(0)</span></p>
+        </div>
+        <div class="resource-item">
+            <div class="resource-icon">📁</div>
+            <p class="resource-text">Collections <span>(0)</span></p>
+        </div>
+    </section>
+
+    <!-- Recent Notes Section -->
+    <section class="recent-notes">
+        <div class="notes-header">
+            <p>Recent Note (0)</p>
+            <button class="view-all-button">VIEW ALL</button>
+        </div>
+        <p class="notes-message">
+            Your coach hasn't added any notes yet. You'll see them here once they do!
+        </p>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active"><i class="icon-home">🏠</i></a>
+        <a href="#" class="nav-item"><i class="icon-workout">🏋️</i></a>
+        <a href="#" class="nav-item"><i class="icon-nutrition">🌿</i></a>
+        <a href="#" class="nav-item"><i class="icon-water">💧</i></a>
+        <a href="#" class="nav-item"><i class="icon-settings">⚙️</i></a>
+    </nav>
+
+</body>
+</html>

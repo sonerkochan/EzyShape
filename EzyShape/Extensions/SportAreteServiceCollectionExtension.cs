@@ -18,6 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IUtilityService, UtilityService>();
             services.AddScoped<IWorkoutService, WorkoutService>();
+            services.AddScoped<IClientService, ClientService>();
 
 
             return services; 
