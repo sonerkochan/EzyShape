@@ -29,7 +29,7 @@
                         {
                             @foreach (var client in Model.Clients)
                             {
-                                <div class="client-item">
+                                <div class="client-item" onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = client.Id })';" style="cursor: pointer;">
                                     <div class="photo-div" style="background-color:@client.ColorCode">
                                         <p class="photo-letter">@client.FirstName[0]</p>
                                     </div>
