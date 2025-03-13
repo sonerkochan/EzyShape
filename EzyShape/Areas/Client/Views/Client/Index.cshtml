@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EzyShape | Personal Trainer Software for Professionals</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/Client/clientHome.css">
 </head>
@@ -26,21 +27,29 @@
 
     <!-- Header -->
     <header class="app-header">
-        <div class="app-logo">EzyShape</div>
-        <div class="app-icons">
-            <span class="notification-icon"><i class="fa-regular fa-bell"></i></span>
-            <span class="menu-icon"><i class="fa-regular fa-message"></i></span>
+        <div class="app-header-items">
+            <div class="app-logo">
+                <img class="logo-img" src="~/img/LogoOnly.png" alt="EzyShape" width="35" height="35">
+            </div>
+            <div class="app-name">EzyShape</div>
+            <div class="app-icons">
+                <span class="notification-icon"><i class="fa-regular fa-bell"></i></span>
+                <span class="menu-icon"><i class="fa-regular fa-message"></i></span>
+            </div>
         </div>
+
+
+        <!-- Greeting -->
+        <section class="greeting-section">
+            <p class="greeting-text">Hello @Model.FirstName @Model.LastName,</p>
+            <p class="greeting-subtext"><em>Your potential is endless</em></p>
+        </section>
+
     </header>
 
-    <!-- Greeting -->
-    <section class="greeting-section">
-        <p class="greeting-text">Hello @Model.FirstName @Model.LastName,</p>
-        <p class="greeting-subtext"><em>Your potential is endless</em></p>
-    </section>
 
     <!-- Task Section -->
-    <div class="task-section">
+    <div class="task-section box-shadow">
         <div class="task-header">NO TASKS</div>
         <p class="task-message">You don't have any tasks to complete.</p>
         <div class="task-icon">✔️</div>
@@ -48,19 +57,19 @@
 
     <!-- Resources Section -->
     <section class="resources-section">
-        <div class="resource-item">
+        <div class="resource-item box-shadow">
             <div class="resource-icon">📂</div>
             <p class="resource-text">Vault <span>(0)</span></p>
         </div>
-        <div class="resource-item">
+        <div class="resource-item box-shadow">
             <div class="resource-icon">📁</div>
             <p class="resource-text">Collections <span>(0)</span></p>
         </div>
     </section>
 
     <!-- Recent Notes Section -->
-    <section class="recent-notes">
-        <div class="notes-header">
+    <section class="recent-notes box-shadow">
+        <div class="notes-header ">
             <p>Recent Note (0)</p>
             <button class="view-all-button">VIEW ALL</button>
         </div>
