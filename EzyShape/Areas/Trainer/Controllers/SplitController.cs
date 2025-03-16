@@ -84,9 +84,9 @@ namespace EzyShape.Areas.Trainer.Controllers
 
         [Route("/split/{id}")]
         [HttpGet]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(int splitId)
         {
-            var model = await splitService.GetDetailedSplitAsync(id);
+            var model = await splitService.GetDetailedSplitAsync(splitId);
 
             return View(model);
         }

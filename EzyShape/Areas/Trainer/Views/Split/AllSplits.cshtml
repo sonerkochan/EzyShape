@@ -40,7 +40,7 @@
                     <tbody>
                         @foreach (var split in Model)
                         {
-                            <tr>
+                            <tr onclick="window.location.href='@Url.Action("Detail", "Split", new { area = "Trainer", splitId = split.Id })';" style="cursor: pointer;">
                                 <td>
                                     <a asp-area="Trainer"
                                        asp-controller="Split"
