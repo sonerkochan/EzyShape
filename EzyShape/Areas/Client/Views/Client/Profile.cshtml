@@ -1,0 +1,75 @@
+﻿@model ClientViewModel
+
+@{
+    ViewData["Title"] = "EzyShape | Personal Trainer Software for Professionals";
+    Layout = null;
+}
+
+@using Microsoft.AspNetCore.Identity
+@using EzyShape.Infrastructure.Data.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzyShape | Personal Trainer Software for Professionals</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/Client/clientProfile.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <p>Profile</p>
+    </header>
+
+
+    <!-- Info Section -->
+    <section class="info-section container box-shadow">
+        <div class="name-div">
+
+        </div>
+        <div class="counts-div">
+            <div class="workouts-count-div">
+            </div>
+
+            <div class="checkins-count-div">
+            </div>
+        </div>
+    </section>
+
+    <!-- Check ins Section -->
+    <section class="checkins-section container box-shadow">
+       
+    </section>
+
+    <!-- Weights Section -->
+    <section class="weight-section container box-shadow">
+       
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section container box-shadow">
+
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a asp-area="Client" asp-controller="Client" asp-action="Index" class="nav-item">
+            <i class="icon-home">
+                <i class="fa-solid fa-house"></i></i>
+        </a>
+        <a href="#" class="nav-item"><i class="icon-nutrition"><i class="fa-solid fa-dumbbell"></i></i></a>
+        <a href="#" class="nav-item"><i class="icon-water"><i class="fa-solid fa-chart-line"></i></i></a>
+        <a href="#" class="nav-item active"><i class="icon-settings"><i class="fa-solid fa-user"></i></i></a>
+    </nav>
+
+</body>
+</html>

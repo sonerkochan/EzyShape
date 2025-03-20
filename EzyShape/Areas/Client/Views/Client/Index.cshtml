@@ -83,7 +83,11 @@
         <a href="#" class="nav-item active"><i class="icon-home"><i class="fa-solid fa-house"></i></i></a>
         <a href="#" class="nav-item"><i class="icon-nutrition"><i class="fa-solid fa-dumbbell"></i></i></a>
         <a href="#" class="nav-item"><i class="icon-water"><i class="fa-solid fa-chart-line"></i></i></a>
-        <a href="#" class="nav-item"><i class="icon-settings"><i class="fa-solid fa-user"></i></i></a>
+        <a asp-area="Client" asp-controller="Client" asp-action="Profile" class="nav-item">
+            <i class="icon-settings"></i>
+            <i class="fa-solid fa-user"></i>
+        </a>
+
     </nav>
 
 </body>

@@ -49,5 +49,17 @@ namespace EzyShape.Areas.Client.Controllers
 
             return View(model);
         }
+
+        [Route("/profile")]
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var model = await clientService.GetClientById(clientId);
+
+            return View(model);
+        }
     }
 }
