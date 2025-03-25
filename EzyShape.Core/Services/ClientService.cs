@@ -36,6 +36,7 @@ namespace EzyShape.Core.Services
                     Username = u.UserName,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
+                    Email = u.Email,
                     ColorCode = u.ColorCode,
                 })
                 .FirstOrDefaultAsync();

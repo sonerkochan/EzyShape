@@ -34,7 +34,13 @@
     <!-- Info Section -->
     <section class="info-section container box-shadow">
         <div class="name-div">
-
+            <div class="photo-div" style="background-color:@Model.ColorCode">
+                    <p class="photo-letter">@Model.FirstName[0]</p>
+            </div>
+            <div class="name-email-div">
+                <p class="name-p">@Model.FirstName @Model.LastName</p>
+                <p class="email-p">@Model.Email</p>
+            </div>
         </div>
         <div class="counts-div">
             <div class="workouts-count-div">
