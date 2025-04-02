@@ -43,7 +43,7 @@
                     <tbody>
                         @foreach (var client in Model)
                         {
-                            <tr onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", splitId = client.Id })';" style="cursor: pointer;">
+                            <tr onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = client.Id })';" style="cursor: pointer;">
                                 <td class="client-item">
                                     <div class="photo-div" style="background-color:@client.ColorCode">
                                         <p class="photo-letter">@client.FirstName[0]</p>
