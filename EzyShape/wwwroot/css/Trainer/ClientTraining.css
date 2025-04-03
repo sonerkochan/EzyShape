@@ -3,3 +3,78 @@
     font-weight: 600;
     font-size: 18px;
 }
+
+
+/*Sub Navigation Div*/
+
+.sub-nav-div {
+    margin-top:20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.suv-nav-button {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    width: calc(100%/5);
+    height: 30px;
+
+    font-weight: 600;
+    font-size: 18px;
+
+    transition: color 0.3s ease-in-out;
+}
+
+.sub-active {
+    color: rgb(32, 81, 241);
+    border-bottom: 2px solid rgb(32, 81, 241);
+}
+
+    .suv-nav-button:hover {
+        cursor: pointer;
+        color: rgb(32, 81, 241);
+    }
+
+.button-current-page {
+    color: rgb(22, 119, 255);
+    border-bottom: 1px solid rgb(22, 119, 255);
+}
+
+
+/* Programs div*/
+.programs-div{
+    display:none;
+}
+
+.button-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px; /* Optional: Adds some spacing */
+}
+
+.add-program-button {
+    background-color: #e8edfd;
+    border: 1px solid #d1dbfb;
+    border-radius: 8px;
+    color: rgb(22, 119, 255) !important;
+    height: 40px;
+    width: 150px;
+
+    font-weight:600;
+}
+
+.add-program-button:hover{
+    cursor:pointer;
+}
+
+/* History div*/
+.history-div {
+    display: none;
+}
+
+/* Sub div*/
+.div-active {
+    display: flex;
+}
