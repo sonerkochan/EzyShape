@@ -89,21 +89,16 @@
             <div class="list-title-div">
                 <h3 class="div-title-text">Program</h3>
             </div>
-            <div class="program-div">
-                <h4 class="program-title">Title</h4>
-                <p class="program-description">Description</p>
-                <p class="program-description">Workouts</p>
-            </div>
-            <div class="program-div">
-                <h4 class="program-title">Title</h4>
-                <p class="program-description">Description</p>
-                <p class="program-description">Workouts</p>
-            </div>
-            <div class="program-div">
-                <h4 class="program-title">Title</h4>
-                <p class="program-description">Description</p>
-                <p class="program-description">Workouts</p>
-            </div>
+
+            @foreach (var split in Model.ClientSplits)
+            {
+                <div class="program-div">
+                    <h4 class="program-title">@split.Name</h4>
+                    <p class="program-description">@split.Description</p>
+                    <p class="program-description">Example1 / Example2 / Example3</p>
+                </div>
+
+            }
         </div>
 
     </div>

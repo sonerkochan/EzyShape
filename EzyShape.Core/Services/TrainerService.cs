@@ -121,6 +121,16 @@ namespace EzyShape.Core.Services
                 })
                 .ToListAsync();
 
+            model.ClientSplits=await repo.AllReadonly<ClientSplit>()
+                .Where(c=>c.UserId==ClientId)
+                .Select(s => new SplitViewModel()
+                {
+                    Id = s.SplitId,
+                    Name = s.Split.Name,
+                    Description = s.Split.Description,
+                })
+                .ToListAsync();
+
             return model;
         }
     }
