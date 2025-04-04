@@ -124,7 +124,8 @@ namespace EzyShape.Areas.Trainer.Controllers
         [HttpGet]
         public async Task<IActionResult> Training(string clientId)
         {
-            var model = await trainerService.GetClientById(clientId);
+            var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var model = await trainerService.GetClientAndSplitsAsync(trainerId, clientId);
             return View(model);
         }
 

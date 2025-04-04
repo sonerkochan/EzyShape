@@ -1,7 +1,9 @@
 ﻿using EzyShape.Core.Contracts;
 using EzyShape.Core.Models.Clients;
 using EzyShape.Core.Models.Exercises;
+using EzyShape.Core.Models.LargeViewModels;
 using EzyShape.Core.Models.Splits;
+using EzyShape.Core.Models.Tasks;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -89,6 +91,37 @@ namespace EzyShape.Core.Services
                     Description=s.Description
                 })
                 .ToListAsync();
+        }
+
+        public async Task<ClientsSplitsViewModel> GetClientAndSplitsAsync(string TrainerId, string ClientId)
+        {
+            var model = new ClientsSplitsViewModel();
+
+            model.Client = await repo.AllReadonly<User>()
+            .Where(u => u.TrainerId == TrainerId && u.Id == ClientId)
+            .Select(u => new ClientViewModel()
+            {
+                Id = u.Id,
+                Username = u.UserName,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                ColorCode = u.ColorCode,
+            })
+            .FirstOrDefaultAsync(); // <-- Don't forget this
+
+
+
+            model.Splits = await repo.AllReadonly<Split>()
+                .Where(s => s.UserId == TrainerId)
+                .Select(s => new SplitViewModel()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Description = s.Description,
+                })
+                .ToListAsync();
+
+            return model;
         }
     }
 }

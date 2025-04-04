@@ -109,6 +109,28 @@
     flex-direction: column;
 }
 
+.library-item-div {
+    padding: 0px 16px;
+    transition: background-color 0.5s ease-in-out;
+    border-top: 1px solid #f0f0f0;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+}
+
+    .library-item-div:hover {
+        cursor: pointer;
+        background-color: #f0f0f0;
+    }
+
+
+.library-item-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
 .library-title-div {
     background-color: #f0f0f0;
     width: auto;
@@ -116,24 +138,17 @@
     border-top-right-radius: 16px;
     padding: 8px;
 }
+
 .library-list-title {
     margin: 8px 4px;
-    font-size:12px;
-}
-
-.library-item-div {
-    padding: 0px 16px;
-    transition: background-color 0.5s ease-in-out;
-    border-top: 1px solid #f0f0f0;
     font-size: 12px;
-    display:flex;
-    flex-direction:row;
 }
 
-    .library-item-div:hover {
-        cursor: pointer;
-        background-color: #f0f0f0;
-    }
+
+.library-item-name {
+    font-size: 12px;
+    margin: 10px 0px;
+}
 
 .program-checkbox{
     margin:0px;
@@ -149,10 +164,3 @@
         background-color: #63b3ed;
     }
 
-
-.library-item-label {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-}

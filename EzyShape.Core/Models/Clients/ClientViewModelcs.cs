@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EzyShape.Infrastructure.Data.Models;
 
 namespace EzyShape.Core.Models.Clients
 {
@@ -21,6 +22,8 @@ namespace EzyShape.Core.Models.Clients
         public string Email { get; set; } = null!;
 
         public string ColorCode { get; set; } = null!;
+
+        public IEnumerable<Split> Splits { get; set; } = new List<Split>();
 
     }
 }
