@@ -48,7 +48,7 @@
 }
 
 .button-div {
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: flex-end;
     padding: 10px; /* Optional: Adds some spacing */
@@ -69,6 +69,38 @@
     cursor:pointer;
 }
 
+.programs-list-div{
+    width:auto;
+    border-radius:16px;
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+}
+
+.list-title-div {
+    background-color: #fafafa;
+    width: auto;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 8px;
+}
+.div-title-text {
+    margin:8px 4px;
+}
+
+.program-div {
+    padding: 8px;
+    transition: background-color 0.5s ease-in-out;
+    border-top:1px solid #f0f0f0;
+}
+
+    .program-div:hover {
+        cursor: pointer;
+        background-color: #fafafa;
+    }
+
+
+
 /* History div*/
 .history-div {
     display: none;
@@ -77,4 +109,5 @@
 /* Sub div*/
 .div-active {
     display: flex;
+    flex-direction:column;
 }

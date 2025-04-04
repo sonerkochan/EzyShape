@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/ClientMenu.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/ClientTraining.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/addProgramModal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shadows.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -79,9 +81,29 @@
         
         <div class="button-div">
 
-            <button class="add-program-button">
+            <button class="add-program-button" id="add-program">
                 + Add Program
             </button>
+        </div>
+        <div class="programs-list-div box-shadow">
+            <div class="list-title-div">
+                <h3 class="div-title-text">Program</h3>
+            </div>
+            <div class="program-div">
+                <h4 class="program-title">Title</h4>
+                <p class="program-description">Description</p>
+                <p class="program-description">Workouts</p>
+            </div>
+            <div class="program-div">
+                <h4 class="program-title">Title</h4>
+                <p class="program-description">Description</p>
+                <p class="program-description">Workouts</p>
+            </div>
+            <div class="program-div">
+                <h4 class="program-title">Title</h4>
+                <p class="program-description">Description</p>
+                <p class="program-description">Workouts</p>
+            </div>
         </div>
 
     </div>
@@ -93,7 +115,52 @@
     </div>
 
 
+
+    <div id="addProgramModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        <i class="fa-solid fa-dumbbell"></i>
+                        Add Program
+                    </h2>
+                    <p class="modal-undertitle">Program Library</p>
+                </div>
+
+            <div class="library-list-div">
+                <div class="library-title-div">
+                    <h3 class="library-list-title">Program</h3>
+                </div>
+                <div class="library-item-div">
+                    <label class="library-item-label">
+                        <input type="checkbox" class="program-checkbox">
+                        <h4 class="library-item-title">Push Pull Legs Upper Lower</h4>
+                    </label>
+                </div>
+                <div class="library-item-div">
+                    <label class="library-item-label">
+                        <input type="checkbox" class="program-checkbox">
+                        <h4 class="library-item-title">Push Pull Legs Upper Lower</h4>
+                    </label>
+                </div>
+                <div class="library-item-div">
+                    <label class="library-item-label">
+                        <input type="checkbox" class="program-checkbox">
+                        <h4 class="library-item-title">Push Pull Legs Upper Lower</h4>
+                    </label>
+                </div>
+            </div>
+
+                <div class="modal-footer">
+                <button id="submitButton" class="assign-program-button" type="submit">Import Programs</button>
+                </div>
+        </div>
+    </div>
+
+
     <script src="~/js/toggleTrainingSubNavigation.js" asp-append-version="true"></script>
+    <script src="~/js/addProgram.js"></script>
 
 </body>
 
