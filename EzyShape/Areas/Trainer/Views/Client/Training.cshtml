@@ -116,17 +116,20 @@
 
 
 
+    <!-- Modal content -->
     <div id="addProgramModal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" id="closeModalBtn">&times;</span>
 
-                <div class="modal-header">
-                    <h2 class="modal-title">
-                        <i class="fa-solid fa-dumbbell"></i>
-                        Add Program
-                    </h2>
-                    <p class="modal-undertitle">Program Library</p>
-                </div>
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    Add Program
+                </h2>
+                <p class="modal-undertitle">Program Library</p>
+            </div>
+
+            <input type="hidden" id="clientId" value="@Model.Client.Id">
 
             <div class="library-list-div">
                 <div class="library-title-div">
@@ -137,22 +140,28 @@
                 {
                     <div class="library-item-div">
                         <label class="library-item-label">
-                            <input type="checkbox" class="program-checkbox">
-                                <h4 class="library-item-name">@split.Name</h4>
+                            <input type="checkbox" class="program-checkbox" data-split-id="@split.Id">
+                            <h4 class="library-item-name">@split.Name</h4>
                         </label>
                     </div>
                 }
             </div>
 
-                <div class="modal-footer">
-                <button id="submitButton" class="assign-program-button" type="submit">Import Programs</button>
-                </div>
+            <div class="modal-footer">
+                <button id="submitButton" class="assign-program-button">Import Programs</button>
+            </div>
         </div>
     </div>
 
 
+
+
+
     <script src="~/js/toggleTrainingSubNavigation.js" asp-append-version="true"></script>
-    <script src="~/js/addProgram.js"></script>
+    <script src="~/js/programModal.js"></script>
+    <script src="~/js/fetchProgramAssign.js"></script>
+
+
 
 </body>
 

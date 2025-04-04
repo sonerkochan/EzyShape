@@ -1,6 +1,9 @@
 ﻿using EzyShape.Core.Contracts;
+using EzyShape.Core.Models.Requests;
 using EzyShape.Core.Models.User;
+using EzyShape.Core.Models.WorkoutSplit;
 using EzyShape.Core.Services;
+using EzyShape.Infrastructure.Data;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +14,8 @@ namespace EzyShape.Areas.Trainer.Controllers
 {
     public class ClientController : BaseController
     {
+        private readonly ApplicationDbContext context;
+
         private readonly UserManager<User> userManager;
 
         private readonly SignInManager<User> signInManager;
@@ -29,7 +34,8 @@ namespace EzyShape.Areas.Trainer.Controllers
             RoleManager<IdentityRole> _roleManager,
             IUserService _userService,
             ITrainerService _trainerService,
-            IUtilityService _utilityService
+            IUtilityService _utilityService,
+            ApplicationDbContext _context
             )
         {
             userManager = _userManager;
@@ -38,6 +44,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             userService = _userService;
             trainerService = _trainerService;
             utilityService = _utilityService;
+            context = _context;
         }
 
         [Route("/clients/new")]
@@ -128,6 +135,49 @@ namespace EzyShape.Areas.Trainer.Controllers
             var model = await trainerService.GetClientAndSplitsAsync(trainerId, clientId);
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignSplit([FromBody] AssignSplitRequest request)
+        {
+            var result = new { Success = true, Message = "Splits assigned successfully" };
+
+            try
+            {
+                if (request.SplitIds == null || !request.SplitIds.Any())
+                {
+                    return Json(new { success = false, errors = new[] { "No splits selected" } });
+                }
+
+                var existingSplits = context.ClientSplits
+                    .Where(cs => cs.UserId == request.ClientId && request.SplitIds.Contains(cs.SplitId))
+                    .Select(cs => cs.SplitId)
+                    .ToList();
+
+                var newSplits = request.SplitIds.Where(splitId => !existingSplits.Contains(splitId)).ToList();
+
+                foreach (var splitId in newSplits)
+                {
+                    var clientSplit = new ClientSplit
+                    {
+                        SplitId = splitId,
+                        UserId = request.ClientId
+                    };
+
+                    context.ClientSplits.Add(clientSplit);
+                }
+
+                await context.SaveChangesAsync();
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errors = new[] { "An error occurred: " + ex.Message } });
+            }
+        }
+
+
+
+
 
     }
 }
