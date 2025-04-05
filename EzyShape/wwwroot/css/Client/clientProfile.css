@@ -6,22 +6,33 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
+    height: auto; /* Full viewport height */
 }
 
 /* Header */
 .app-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: fixed; /* Keep the header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
     background: white;
-    color: white;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    z-index: 10; /* Ensure it stays above the main content */
 }
 
-.app-header p{
-    color:black;
-    font-weight:600;
-}
+    .app-header p {
+        font-weight: 600;
+    }
 
+/* Main Content */
+main {
+    margin-top: 60px; /* Ensure the content starts below the fixed header */
+    flex-grow: 1;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 60px; /* Space for the bottom navigation */
+}
 
 /* General Section Container */
 .container {
@@ -34,20 +45,18 @@ body {
     background-color: white;
 }
 
-/* Info Section*/
-.info-section{
-    height:125px;
+/* Info Section */
+.info-section {
+    height: 125px;
 }
 
-.name-div{
-    height:50%;
-    display:flex;
-    flex-direction:row;
+.name-div {
+    height: 50%;
+    display: flex;
+    flex-direction: row;
 }
 
-/*photo div*/
-
-
+/* photo div */
 .photo-div {
     width: 50px; /* Adjust as needed */
     height: 50px; /* Ensure it's the same as width */
@@ -65,19 +74,19 @@ body {
     color: #2051f1;
 }
 
-.name-email-div{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    margin-left:10px;
+.name-email-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
 }
 
 .name-p {
-    width:100%;
-    margin:0;
-    margin-bottom:3px;
-    font-weight:900;
-    font-style:italic;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 3px;
+    font-weight: 900;
+    font-style: italic;
 }
 
 .email-p {
@@ -95,33 +104,67 @@ body {
     height: 50%;
 }
 
-.workouts-count-div {
-    background-color: green;
-    height: 100%;
-    width: 50%;
+.count-div{
+    width:50%;
+    height:100%;
+    display:flex;
+    flex-direction:row;
 }
 
-.checkins-count-div {
-    background-color: blue;
-    height: 100%;
-    width: 50%;
+.workout-count-div {
+    border-right: 1px solid #d9d9d9;
 }
 
-/* Check Ins Section*/
+.icon-div {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+}
+
+.count-icon {
+    padding: 0;
+    margin: 0;
+    width: 30%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    font-size: 32px;
+    color: #0000ff
+}
+.counts-text-div {
+    padding: 0;
+    margin: 0;
+    justify-content:center;
+    align-content:center;
+}
+
+.count-number{
+    padding:0;
+    margin:0;
+    font-size:20px;
+}
+
+.count-text {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    color: gray;
+}
+/* Check Ins Section */
 .checkins-section {
     height: 50px;
 }
 
-/* Weights Section*/
+/* Weights Section */
 .weight-section {
     height: 75px;
 }
 
-/* Gallery Section*/
+/* Gallery Section */
 .gallery-section {
-    height: 50px;
+    height: 150px;
 }
-
 
 /* Bottom Navigation */
 .bottom-nav {
@@ -132,6 +175,7 @@ body {
     justify-content: space-around;
     background: white;
     padding: 10px 0;
+    z-index: 10; /* Ensure it stays above other content */
 }
 
 .nav-item {
@@ -143,13 +187,6 @@ body {
     .nav-item.active {
         color: blue;
     }
-
-
-
-
-
-
-
 
 .box-shadow {
     box-shadow: 0 1px 5px 0 #a1c9ff;
