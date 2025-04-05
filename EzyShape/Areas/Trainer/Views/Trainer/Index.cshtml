@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Dashboard ● EzyShape";
     @model ClientsTasksViewModel
+    @Html.AntiForgeryToken()
 }
 
 <!DOCTYPE html>
@@ -9,8 +10,10 @@
 <head>
     <title>Dashboard | EzyShape</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/trainer-dashboard-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/finishTaskModal.css" asp-append-version="true" />
 </head>
 
 <body>
@@ -81,7 +84,9 @@
                                     </p>
                                     <p class="task-date">@task.DueDate</p>
                                 </div>
-                                <button class="task-button">+</button>
+                                <button id="finishTaskButton" class="task-button" data-task-id="@task.Id">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
                             </div>
                         }
                     }
@@ -92,6 +97,23 @@
 
         </div>
     </div>
+
+
+    <!-- Confirm Task Finish Modal -->
+    <div id="finishTaskModal" class="finish-task-modal-overlay hidden">
+        <div class="finish-task-modal-box">
+            <h3>Are you sure?</h3>
+            <p>This will mark the task as finished for this client.</p>
+            <div class="finish-task-modal-actions">
+                <button id="cancelFinishTaskBtn" class="btn-cancel">Cancel</button>
+                <button id="confirmFinishTaskBtn" class="btn-finish">Finish Task</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/js/finishTask.js"></script>
 
 
 </body>

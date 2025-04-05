@@ -273,6 +273,10 @@ a {
     padding: 8px 16px;
 }
 
+    .submit-task-button:hover{
+        cursor:pointer;
+    }
+
 
 .modal-title, .modal-undertitle {
     padding: 0;

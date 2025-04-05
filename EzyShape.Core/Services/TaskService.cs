@@ -2,6 +2,7 @@
 using EzyShape.Core.Models.Clients;
 using EzyShape.Core.Models.Exercises;
 using EzyShape.Core.Models.Tasks;
+using EzyShape.Infrastructure.Data;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using EzyShape.Web.ViewModels;
@@ -18,10 +19,13 @@ namespace EzyShape.Core.Services
     public class TaskService : ITaskService
     {
         private readonly IRepository repo;
+        private readonly ApplicationDbContext _context;
 
-        public TaskService(IRepository _repo)
+        public TaskService(IRepository _repo,
+                           ApplicationDbContext context)
         {
             repo = _repo;
+            _context = context;
         }
 
         [Description("Creates a new exercise and adds it to the database.")]
@@ -50,11 +54,23 @@ namespace EzyShape.Core.Services
                 .Where(t => t.UserId == TrainerId)
                 .Select(t => new TaskViewModel()
                 {
+                    Id= t.Id,
                     Name = t.Name,
                     Description = t.Description,
                     DueDate = t.DueDate,
                 })
                 .ToListAsync();
+        }
+
+        public async Task<TrainingTask> GetTaskByIdAsync(int taskId)
+        {
+            return await _context.TrainingTasks.FindAsync(taskId);
+        }
+
+        public async Task UpdateTaskAsync(TrainingTask task)
+        {
+            _context.TrainingTasks.Update(task);
+            await _context.SaveChangesAsync();
         }
     }
 }

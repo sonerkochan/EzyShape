@@ -42,12 +42,13 @@ namespace EzyShape.Core.Services
                 })
                 .ToListAsync();
 
-            model.Tasks= await repo.AllReadonly<TrainingTask>()
+            model.Tasks = await repo.AllReadonly<TrainingTask>()
                 .OrderByDescending(t => t.DueDate)
-                .Where(t => t.UserId == TrainerId)
+                .Where(t => t.UserId == TrainerId && t.Status == false)
                 .Take(5)
                 .Select(t => new TaskViewModel()
                 {
+                    Id= t.Id,
                     Name = t.Name,
                     Description = t.Description,
                     DueDate = t.DueDate,

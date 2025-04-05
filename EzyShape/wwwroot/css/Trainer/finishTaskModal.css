@@ -1,0 +1,72 @@
+﻿.finish-task-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.finish-task-modal-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 32px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+    .finish-task-modal-box h3 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .finish-task-modal-box p {
+        color: #555;
+        margin-bottom: 24px;
+    }
+
+.finish-task-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.btn-cancel {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.btn-finish {
+    background: #2ecc71; /* Green color for Finish button */
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

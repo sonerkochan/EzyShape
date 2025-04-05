@@ -40,5 +40,38 @@ namespace EzyShape.Areas.Trainer.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> FinishTask(int taskId)
+        {
+            try
+            {
+                var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var task = await taskService.GetTaskByIdAsync(taskId);
+
+                if (task == null)
+                {
+                    return Json(new { success = false, errors = new[] { "Task not found." } });
+                }
+
+                // Ensure the task belongs to the current trainer
+                if (task.UserId != trainerId)
+                {
+                    return Json(new { success = false, errors = new[] { "You are not authorized to finish this task." } });
+                }
+
+                // Update the task status and set CompletedDate
+                task.Status = true;
+                task.CompletedDate = DateTime.Now;
+
+                await taskService.UpdateTaskAsync(task);
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, errors = new[] { "An error occurred while finishing the task: " + ex.Message } });
+            }
+        }
+
     }
 }
