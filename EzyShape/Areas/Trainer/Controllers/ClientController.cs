@@ -8,6 +8,7 @@ using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace EzyShape.Areas.Trainer.Controllers
@@ -174,6 +175,25 @@ namespace EzyShape.Areas.Trainer.Controllers
                 return Json(new { success = false, errors = new[] { "An error occurred: " + ex.Message } });
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteClientSplit(int splitId, string clientId)
+        {
+            var clientSplit = await context.ClientSplits
+                .FirstOrDefaultAsync(cs => cs.UserId == clientId && cs.SplitId == splitId);
+
+            if (clientSplit == null)
+            {
+                return Json(new { success = false, message = "Split not found for this client." });
+            }
+
+            context.ClientSplits.Remove(clientSplit);
+            await context.SaveChangesAsync();
+
+            return Json(new { success = true });
+        }
+
 
 
 
