@@ -42,5 +42,19 @@ namespace EzyShape.Core.Services
             .ThenInclude(ws => ws.Workout) // if you need workout details
             .FirstOrDefaultAsync(s => s.Id == id);
         }
+
+        public async Task<IEnumerable<SplitViewModel>> GetClientSplitsAsync(string clientId)
+        {
+
+            return await repo.AllReadonly<ClientSplit>()
+                .Where(c => c.UserId==clientId)
+                .Select(s => new SplitViewModel()
+                {
+                    Id = s.SplitId,
+                    Name = s.Split.Name,
+                    Description = s.Split.Description,
+                })
+                .ToListAsync();
+        }
     }
 }

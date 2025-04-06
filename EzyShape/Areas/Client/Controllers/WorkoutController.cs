@@ -17,6 +17,8 @@ namespace EzyShape.Areas.Client.Controllers
 
         private readonly IClientService clientService;
 
+        private readonly ISplitService splitService;
+
         private readonly IUserService userService;
 
         private readonly IUtilityService utilityService;
@@ -27,7 +29,8 @@ namespace EzyShape.Areas.Client.Controllers
             RoleManager<IdentityRole> _roleManager,
             IUserService _userService,
             IClientService _clientService,
-            IUtilityService _utilityService
+            IUtilityService _utilityService,
+            ISplitService _splitService
             )
         {
             userManager = _userManager;
@@ -36,13 +39,18 @@ namespace EzyShape.Areas.Client.Controllers
             userService = _userService;
             clientService = _clientService;
             utilityService = _utilityService;
+            splitService = _splitService;
         }
 
         [Route("/programs")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View();
+            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var model = await splitService.GetClientSplitsAsync(clientId);
+
+            return View(model);
         }
     }
 }

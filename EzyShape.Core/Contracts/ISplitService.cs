@@ -7,5 +7,6 @@ namespace EzyShape.Core.Contracts
     {
         Task AddSplitAsync(AddSplitViewModel model, string trainerId);
         Task<Split> GetDetailedSplitAsync(int id);
+        Task<IEnumerable<SplitViewModel>> GetClientSplitsAsync(string clientId);
     }
 }
