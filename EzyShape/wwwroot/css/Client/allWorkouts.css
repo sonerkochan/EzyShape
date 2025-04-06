@@ -1,0 +1,107 @@
+﻿/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f1f6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: auto; /* Full viewport height */
+}
+
+/* Header */
+.app-header {
+    position: fixed; /* Keep the header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    color: black;
+    text-align: center;
+    z-index: 10; /* Ensure it stays above the main content */
+}
+
+    .app-header p {
+        font-weight: 600;
+    }
+
+
+/*Sub Navigation Div*/
+
+.sub-nav-div {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+}
+
+.suv-nav-button {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    width: calc(100%/5);
+    height: 30px;
+    width: 50%;
+    font-weight: 600;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sub-active {
+    color: rgb(32, 81, 241);
+    border-bottom: 2px solid rgb(32, 81, 241);
+}
+
+.suv-nav-button:hover {
+    cursor: pointer;
+    color: rgb(32, 81, 241);
+}
+
+.button-current-page {
+    color: rgb(22, 119, 255);
+    border-bottom: 1px solid rgb(22, 119, 255);
+}
+
+
+/* Main Content */
+main {
+    margin-top: 90px; /* Ensure the content starts below the fixed header */
+    flex-grow: 1;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 60px; /* Space for the bottom navigation */
+}
+
+/* Programs div*/
+
+.programs-div {
+    display: none;
+}
+
+/* History div*/
+.history-div {
+    display: none;
+}
+
+/* Active div*/
+.div-active {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* General Section Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    text-align: left;
+    margin: 20px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+.box-shadow {
+    box-shadow: 0 1px 5px 0 #a1c9ff;
+}

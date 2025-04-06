@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace EzyShape.Areas.Client.Controllers
 {
-    public class ClientController : BaseController
+    public class WorkoutController : BaseController
     {
         private readonly UserManager<User> userManager;
 
@@ -21,7 +21,7 @@ namespace EzyShape.Areas.Client.Controllers
 
         private readonly IUtilityService utilityService;
 
-        public ClientController(
+        public WorkoutController(
             UserManager<User> _userManager,
             SignInManager<User> _signInManager,
             RoleManager<IdentityRole> _roleManager,
@@ -38,30 +38,11 @@ namespace EzyShape.Areas.Client.Controllers
             utilityService = _utilityService;
         }
 
-        [Route("/home")]
+        [Route("/programs")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-            var model = await clientService.GetClientById(clientId);
-
-            return View(model);
+            return View();
         }
-
-        [Route("/profile")]
-        [HttpGet]
-        public async Task<IActionResult> Profile()
-        {
-            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-            var model = await clientService.GetClientById(clientId);
-
-            return View(model);
-        }
-
-
     }
 }
