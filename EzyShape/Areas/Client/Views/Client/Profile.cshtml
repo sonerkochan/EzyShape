@@ -18,11 +18,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EzyShape | Personal Trainer Software for Professionals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="~/css/normalize.css">
     <link rel="stylesheet" href="~/css/Client/clientProfile.css">
-    <link rel="stylesheet" href="~/css/Client/addWeightModal.css">
+    <link rel="stylesheet" href="~/css/Client/addWeightModal.css"><!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <!-- jQuery (required by Toastr) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+
 </head>
 <body>
 
@@ -147,35 +158,26 @@
     <!-- Modal content -->
     <div id="addWeightLogModal" class="modal" style="display: none;">
         <div class="modal-content weight-modal-content">
-            <span class="close" id="closeModalBtn">&times;</span>
+            <span class="close" id="closeWeightModalBtn">&times;</span>
 
             <div class="weight-title">Weight</div>
 
             <div class="weight-display">
-                <input type="number"
-                       id="weightInput"
-                       class="weight-input"
-                       value="0"
-                       min="0"
-                       inputmode="numeric"
-                       pattern="[0-9]*" />
+                <input type="number" id="weightInput" class="weight-input" placeholder="0" min="0" inputmode="numeric" pattern="[0-9]*" required>
                 <span class="weight-unit">kg</span>
             </div>
 
-
-            <input type="date"
-                   id="weightDate"
-                   class="weight-date"
-                   value="">
-
+            <input type="date" id="weightDate" class="weight-date" required>
 
             <div class="modal-footer weight-footer">
-                <button class="weight-add-button">Add</button>
+                <button id="submitWeightButton" class="weight-add-button">Add</button>
             </div>
         </div>
     </div>
+
     
     <script src="~/js/weightModal.js"></script>
+    <script src="~/js/addWeight.js"></script>
     <script>
         const dateInput = document.getElementById("weightDate");
         const today = new Date().toISOString().split("T")[0];

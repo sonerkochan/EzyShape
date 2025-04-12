@@ -4,7 +4,7 @@ document.getElementById("add-weight-button").onclick = function () {
 };
 
 // Close Modal on 'X' click
-document.getElementById("closeModalBtn").onclick = closeWeightModal;
+document.getElementById("closeWeightModalBtn").onclick = closeWeightModal;
 
 function closeWeightModal() {
     document.getElementById("addWeightLogModal").style.display = "none";

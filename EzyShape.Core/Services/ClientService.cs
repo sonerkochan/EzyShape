@@ -59,8 +59,6 @@ namespace EzyShape.Core.Services
 
             await repo.AddAsync(entity);
             await repo.SaveChangesAsync();
-
-            throw new NotImplementedException();
         }
 
 

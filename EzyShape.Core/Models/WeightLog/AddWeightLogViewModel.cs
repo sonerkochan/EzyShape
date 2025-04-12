@@ -14,8 +14,7 @@ namespace EzyShape.Core.Models.WeightLog
         [Display(Name = "Log Date")]
         public DateTime LogDate { get; set; }
 
-        [Required(ErrorMessage = "User ID is required.")]
         [Display(Name = "User ID")]
-        public string UserId { get; set; } = null!;
+        public string? UserId { get; set; }
     }
 }
