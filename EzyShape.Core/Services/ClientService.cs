@@ -87,6 +87,7 @@ namespace EzyShape.Core.Services
                     Weight = x.Weight,
                     LogDate = x.LogDate
                 })
+                .OrderBy(x=>x.LogDate)
                 .ToListAsync();
             return model;
         }
