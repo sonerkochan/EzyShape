@@ -1,4 +1,4 @@
-﻿@model ClientViewModel
+﻿@model ClientProfileViewModel
 
 @{
     ViewData["Title"] = "EzyShape | Personal Trainer Software for Professionals";
@@ -46,12 +46,12 @@
         <!-- Info Section -->
         <section class="info-section container box-shadow">
             <div class="name-div">
-                <div class="photo-div" style="background-color:@Model.ColorCode">
-                    <p class="photo-letter">@Model.FirstName[0]</p>
+                <div class="photo-div" style="background-color:@Model.Client.ColorCode">
+                    <p class="photo-letter">@Model.Client.FirstName[0]</p>
                 </div>
                 <div class="name-email-div">
-                    <p class="name-p">@Model.FirstName @Model.LastName</p>
-                    <p class="email-p">@Model.Email</p>
+                    <p class="name-p">@Model.Client.FirstName @Model.Client.LastName</p>
+                    <p class="email-p">@Model.Client.Email</p>
                 </div>
             </div>
             <div class="counts-div">
@@ -109,8 +109,15 @@
                 </div>
             </div>
             <div class="weight-content-div">
-
+                @if(!Model.WeightLogs.Any())
+                {
                 <p class="no-weight-p"> No metrics to show yet!</p>
+                }
+                else
+                {
+                    <canvas id="weightChart" width="400" height="200"></canvas>
+
+                }
 
             </div>
         </section>
@@ -175,14 +182,63 @@
         </div>
     </div>
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/weightModal.js"></script>
     <script src="~/js/addWeight.js"></script>
+    <script src="~/js/weightChart.js"></script>
     <script>
         const dateInput = document.getElementById("weightDate");
         const today = new Date().toISOString().split("T")[0];
         dateInput.value = today;
     </script>
+    <script>
+        const weightLabels = [
+        @foreach (var log in Model.WeightLogs)
+        {
+            @Html.Raw("\"" + log.LogDate.ToString("MM/dd/yyyy") + "\",")
+        }
+        ];
+
+        const weightData = [
+        @foreach (var log in Model.WeightLogs)
+        {
+            @Html.Raw(log.Weight + ",")
+        }
+        ];
+
+        const ctx = document.getElementById('weightChart').getContext('2d');
+        const weightChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: weightLabels,
+                datasets: [{
+                    // label: 'Weight Over Time', // <== REMOVE THIS
+                    data: weightData,
+                    borderColor: '#2051f1',
+                    backgroundColor: 'rgba(32, 81, 241, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#2051f1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false // <== HIDE THE LEGEND COMPLETELY
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+
 
 </body>
 </html>

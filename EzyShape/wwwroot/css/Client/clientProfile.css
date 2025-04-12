@@ -267,3 +267,9 @@ main {
 .box-shadow {
     box-shadow: 0 1px 5px 0 #a1c9ff;
 }
+
+/* Chart */
+#weightChart {
+    width: 100%;
+    height: 200px;
+}

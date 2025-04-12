@@ -57,7 +57,7 @@ namespace EzyShape.Areas.Client.Controllers
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
-            var model = await clientService.GetClientById(clientId);
+            var model = await clientService.GetClientProfileInfoAsync(clientId);
 
             return View(model);
         }

@@ -1,4 +1,5 @@
 ﻿using EzyShape.Core.Models.Clients;
+using EzyShape.Core.Models.LargeViewModels;
 using EzyShape.Core.Models.WeightLog;
 
 namespace EzyShape.Core.Contracts
@@ -7,5 +8,6 @@ namespace EzyShape.Core.Contracts
     {
         Task<ClientViewModel> GetClientById(string clientId);
         Task AddWeightAsync(AddWeightLogViewModel model, string clientId);
+        Task<ClientProfileViewModel> GetClientProfileInfoAsync(string clientId);
     }
 }
