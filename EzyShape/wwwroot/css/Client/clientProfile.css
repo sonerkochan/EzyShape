@@ -153,17 +153,93 @@ main {
 }
 /* Check Ins Section */
 .checkins-section {
-    height: 50px;
+    min-height: 50px;
+}
+
+.no-checkins-p {
+    color: gray;
+    text-align: center;
+    font-size: 15px;
 }
 
 /* Weights Section */
 .weight-section {
-    height: 75px;
+    min-height: 75px;
+}
+
+
+.no-weight-p {
+    color: gray;
+    text-align: center;
+    font-size: 15px;
+}
+
+.weight-icon {
+    color: #0000ff
 }
 
 /* Gallery Section */
 .gallery-section {
-    height: 150px;
+    min-height: 150px;
+}
+.gallery-icon {
+    color: #0000ff
+}
+
+.no-photos-p {
+    color: gray;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* General Section Styling */
+.container {
+    padding: 10px;
+}
+
+.section-title-div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    padding:5px 0px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.section-text-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+    .section-text-div > i {
+        font-size: 24px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .section-text-div > p {
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        text-wrap: nowrap;
+        height: auto;
+        margin-left:10px;
+    }
+
+.section-buttons-div {
+    display: flex;
+    flex-direction: row;
+}
+.add-item-buttom {
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    font-size:24px;
 }
 
 /* Bottom Navigation */
