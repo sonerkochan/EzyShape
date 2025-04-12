@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="~/css/normalize.css">
     <link rel="stylesheet" href="~/css/Client/clientProfile.css">
+    <link rel="stylesheet" href="~/css/Client/addWeightModal.css">
 </head>
 <body>
 
@@ -74,7 +75,7 @@
                 </div>
 
                 <div class="section-buttons-div">
-                    <button class="add-item-buttom" id="add-checkin-button">+</button>
+                    <button class="add-item-button" id="add-checkin-button">+</button>
                 </div>
             </div>
             <div class="checkins-content-div">
@@ -93,7 +94,7 @@
                 </div>
 
                 <div class="section-buttons-div">
-                    <button class="add-item-buttom" id="add-weight-button">+</button>
+                    <button class="add-item-button" id="add-weight-button">+</button>
                 </div>
             </div>
             <div class="weight-content-div">
@@ -112,7 +113,7 @@
                 </div>
 
                 <div class="section-buttons-div">
-                    <button class="add-item-buttom" id="add-photo-button">+</button>
+                    <button class="add-item-button" id="add-photo-button">+</button>
                 </div>
             </div>
             <div class="gallery-content-div">
@@ -141,6 +142,45 @@
         <a href="#" class="nav-item"><i class="icon-water"><i class="fa-solid fa-chart-line"></i></i></a>
         <a href="#" class="nav-item active"><i class="icon-settings"><i class="fa-solid fa-user"></i></i></a>
     </nav>
+
+
+    <!-- Modal content -->
+    <div id="addWeightLogModal" class="modal" style="display: none;">
+        <div class="modal-content weight-modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+
+            <div class="weight-title">Weight</div>
+
+            <div class="weight-display">
+                <input type="number"
+                       id="weightInput"
+                       class="weight-input"
+                       value="0"
+                       min="0"
+                       inputmode="numeric"
+                       pattern="[0-9]*" />
+                <span class="weight-unit">kg</span>
+            </div>
+
+
+            <input type="date"
+                   id="weightDate"
+                   class="weight-date"
+                   value="">
+
+
+            <div class="modal-footer weight-footer">
+                <button class="weight-add-button">Add</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="~/js/weightModal.js"></script>
+    <script>
+        const dateInput = document.getElementById("weightDate");
+        const today = new Date().toISOString().split("T")[0];
+        dateInput.value = today;
+    </script>
 
 </body>
 </html>

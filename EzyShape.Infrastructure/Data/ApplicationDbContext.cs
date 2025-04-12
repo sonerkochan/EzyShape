@@ -26,6 +26,7 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<Level> Levels { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<TrainingTask> TrainingTasks { get; set; }
+        public DbSet<WeightLog> WeightLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
