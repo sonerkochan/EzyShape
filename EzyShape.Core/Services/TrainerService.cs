@@ -4,6 +4,7 @@ using EzyShape.Core.Models.Exercises;
 using EzyShape.Core.Models.LargeViewModels;
 using EzyShape.Core.Models.Splits;
 using EzyShape.Core.Models.Tasks;
+using EzyShape.Core.Models.WeightLog;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -131,6 +132,35 @@ namespace EzyShape.Core.Services
                 })
                 .ToListAsync();
 
+            return model;
+        }
+
+        public async Task<ClientOverviewViewModel> GetClientOverviewInfoAsync(string clientId)
+        {
+            var model = new ClientOverviewViewModel();
+
+            model.Client = await repo.AllReadonly<User>()
+                .Where(u => u.Id == clientId)
+                .Select(u => new ClientViewModel()
+                {
+                    Id = u.Id,
+                    Username = u.UserName,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    ColorCode = u.ColorCode,
+                })
+                .FirstOrDefaultAsync();
+
+            model.WeightLogs = await repo.AllReadonly<WeightLog>()
+                .Where(x => x.UserId == clientId)
+                .Select(x => new WeightLogViewModel()
+                {
+                    Weight = x.Weight,
+                    LogDate = x.LogDate
+                })
+                .OrderBy(x => x.LogDate)
+                .ToListAsync();
             return model;
         }
     }

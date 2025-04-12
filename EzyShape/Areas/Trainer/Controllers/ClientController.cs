@@ -125,7 +125,7 @@ namespace EzyShape.Areas.Trainer.Controllers
         [HttpGet]
         public async Task<IActionResult> Overview(string clientId)
         {
-            var model = await trainerService.GetClientById(clientId);
+            var model = await trainerService.GetClientOverviewInfoAsync(clientId);
             return View(model);
         }
 

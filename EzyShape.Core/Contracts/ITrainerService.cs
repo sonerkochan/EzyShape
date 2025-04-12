@@ -20,5 +20,7 @@ namespace EzyShape.Core.Contracts
         Task<ClientViewModel> GetClientById(string clientId);
 
         Task<ClientsSplitsViewModel> GetClientAndSplitsAsync(string TrainerId, string ClientId);
+        Task<ClientOverviewViewModel> GetClientOverviewInfoAsync(string clientId);
+        
     }
 }

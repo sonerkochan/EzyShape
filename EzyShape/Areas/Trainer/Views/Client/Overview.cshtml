@@ -1,9 +1,9 @@
-﻿@model ClientViewModel
+﻿@model ClientOverviewViewModel
 
 
 
 @{
-    ViewData["Title"] = $"{Model.FirstName} {Model.LastName} ● Overview ● EzyShape";
+    ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName} ● Overview ● EzyShape";
 }
 
 <html>
@@ -19,11 +19,11 @@
 
     <div class="div-title">
         <div class="client-item">
-            <div class="photo-div" style="background-color:@Model.ColorCode">
-                <p class="photo-letter">@Model.FirstName[0]</p>
+            <div class="photo-div" style="background-color:@Model.Client.ColorCode">
+                <p class="photo-letter">@Model.Client.FirstName[0]</p>
             </div>
             <p class="client-name-p">
-                @($"{Model.FirstName} {Model.LastName}")
+                @($"{Model.Client.FirstName} {Model.Client.LastName}")
             </p>
         </div>
         <div class="buttons-top">
@@ -44,8 +44,8 @@
         <button class="button-nav">
             Check Ins
         </button>
-        <button class="button-nav" 
-            onclick="window.location.href='@Url.Action("Training", "Client", new { area = "Trainer", clientId = @Model.Id })';">
+        <button class="button-nav"
+                onclick="window.location.href='@Url.Action("Training", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
             Training
         </button>
 
@@ -75,8 +75,17 @@
         </div>
         <div class="box-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-payments.png" alt="Payments" width="24" height="24">
-                <h5 class="title-container">Payments</h5>
+                <img src="~/img/container-images/container-activity.png" alt="Activity History" width="24" height="24">
+                <h5 class="title-container">Activity History</h5>
+            </div>
+        </div>
+        <div class="box-container box-shadow">
+            <div class="div-container-title">
+                <img src="~/img/container-images/container-data.png" alt="Client Data" width="24" height="24">
+                <h5 class="title-container">Weight Graph</h5>
+            </div>
+            <div style="height: 250px;">
+                <canvas id="weightChart"></canvas>
             </div>
         </div>
         <div class="box-container box-shadow">
@@ -91,14 +100,58 @@
                 <h5 class="title-container">Recent Photos</h5>
             </div>
         </div>
-        <div class="box-container box-shadow">
-            <div class="div-container-title">
-                <img src="~/img/container-images/container-activity.png" alt="Activity History" width="24" height="24">
-                <h5 class="title-container">Activity History</h5>
-            </div>
-        </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        const weightLabels = [
+        @foreach (var log in Model.WeightLogs)
+        {
+            @Html.Raw("\"" + log.LogDate.ToString("MM/dd/yyyy") + "\",")
+        }
+        ];
+
+        const weightData = [
+        @foreach (var log in Model.WeightLogs)
+        {
+            @Html.Raw(log.Weight + ",")
+        }
+        ];
+
+        const ctx = document.getElementById('weightChart').getContext('2d');
+        const weightChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: weightLabels,
+                datasets: [{
+                    // label: 'Weight Over Time', // <== REMOVE THIS
+                    data: weightData,
+                    borderColor: '#2051f1',
+                    backgroundColor: 'rgba(32, 81, 241, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#2051f1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false // <== HIDE THE LEGEND COMPLETELY
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
