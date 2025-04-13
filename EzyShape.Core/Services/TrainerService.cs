@@ -173,6 +173,33 @@ namespace EzyShape.Core.Services
                             UploadDate = p.UploadDate
                         })
                             .ToListAsync();
+
+            var logs = model.WeightLogs.OrderBy(x => x.LogDate).ToList();
+
+            var startWeight = (double)logs.First().Weight;
+            var currentWeight = (double)logs.Last().Weight;
+
+
+            var totalDays = (logs.Last().LogDate - logs.First().LogDate).TotalDays;
+            var monthsTracked = (int)Math.Ceiling(totalDays / 30);
+
+            var averageMonthlyChange = (currentWeight - startWeight) / monthsTracked;
+
+            string trend = "Stable";
+            if (averageMonthlyChange < -1) trend = "Losing weight";
+            else if (averageMonthlyChange > 1) trend = "Gaining weight";
+            else if (Math.Abs(averageMonthlyChange) <= 1 && Math.Abs(currentWeight - startWeight) > 1) trend = "Fluctuating";
+
+            model.Stats = new ClientWeightStatsViewModel
+            {
+                StartWeight = startWeight,
+                CurrentWeight = currentWeight,
+                AverageMonthlyChange = averageMonthlyChange,
+                MonthsTracked = monthsTracked,
+                TrendDescription = trend
+            };
+
+
             return model;
         }
     }

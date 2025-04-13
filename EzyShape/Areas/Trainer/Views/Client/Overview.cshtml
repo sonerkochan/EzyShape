@@ -142,6 +142,14 @@
                 <img src="~/img/container-images/container-data.png" alt="Client Data" width="24" height="24">
                 <h5 class="container-title-text">Client Data</h5>
             </div>
+            <div class="client-data-body">
+                <p><strong>Start Weight:</strong> @Model.Stats.StartWeight kg</p>
+                <p><strong>Current Weight:</strong> @Model.Stats.CurrentWeight kg</p>
+                <p><strong>Change:</strong> @Model.Stats.WeightChange.ToString("+#.##;-#.##;0") kg</p>
+                <p><strong>Tracked:</strong> @Model.Stats.MonthsTracked month(s)</p>
+                <p><strong>Avg Change/Month:</strong> @Model.Stats.AverageMonthlyChange.ToString("+#.##;-#.##;0") kg</p>
+                <p><strong>Trend:</strong> @Model.Stats.TrendDescription</p>
+            </div>
         </div>
         <div class="box-container photos-container box-shadow">
             <div class="div-container-title">
