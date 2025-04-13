@@ -150,6 +150,7 @@ namespace EzyShape.Core.Services
                     LastName = u.LastName,
                     Email = u.Email,
                     ColorCode = u.ColorCode,
+                    LastOnline=u.LastOnline
                 })
                 .FirstOrDefaultAsync();
 

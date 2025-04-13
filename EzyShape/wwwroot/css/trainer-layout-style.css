@@ -19,7 +19,7 @@ header {
 nav {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 300px;
     border-right: 1px solid lightgray;
     color: rgb(121, 121, 134);
     height: 100%;

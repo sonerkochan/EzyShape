@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using EzyShape.Core.Models.User;
 using EzyShape.Infrastructure.Data.Models;
 using EzyShape.Core.Contracts;
+using System.Security.Claims;
 
 namespace EzyShape.Controllers
 {
@@ -158,6 +159,13 @@ namespace EzyShape.Controllers
         /// <returns>Returns the user to the index page.</returns>
         public async Task<IActionResult> Logout()
         {
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await userManager.FindByIdAsync(userId);
+            user.LastOnline = DateTime.UtcNow;
+            await userManager.UpdateAsync(user);
+
+
             await signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");

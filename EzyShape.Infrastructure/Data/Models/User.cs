@@ -33,5 +33,8 @@ namespace EzyShape.Infrastructure.Data.Models
         [Description("Hexadecimal color code for user profile photo when there is no picture uploaded.")]
         public string? ColorCode { get; set; }
 
+
+        public DateTime? LastOnline { get; set; }
+
     }
 }

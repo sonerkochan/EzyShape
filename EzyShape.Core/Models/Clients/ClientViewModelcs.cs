@@ -25,5 +25,6 @@ namespace EzyShape.Core.Models.Clients
 
         public IEnumerable<Split> Splits { get; set; } = new List<Split>();
 
+        public DateTime? LastOnline { get; set; }
     }
 }

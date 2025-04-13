@@ -64,25 +64,74 @@
         <div class="box-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-info.png" alt="Client Info" width="24" height="24">
-                <h5 class="title-container">Client Info</h5>
+                <h5 class="container-container-title-text">Client Info</h5>
+            </div>
+
+            <div class="info-content-div">
+                <div class="info-row">
+                    <p class="info-label">First name:</p>
+                    <p class="info-value">@Model.Client.FirstName</p>
+                </div>
+                <div class="info-row">
+                    <p class="info-label">Last name:</p>
+                    <p class="info-value">@Model.Client.LastName</p>
+                </div>
+                <div class="info-row">
+                    <p class="info-label">Email:</p>
+                    <p class="info-value">@Model.Client.Email</p>
+                </div>
+                <div class="info-row">
+                    <p class="info-label">Last Check-In:</p>
+                    <div class="last-checking-div">
+                        <p>TBA</p>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <p class="info-label">Last Active:</p>
+                    <div class="last-active-div">
+                        @{
+                            var lastOnline = Model.Client.LastOnline;
+                            string lastOnlineText = "Never";
+
+                            if (lastOnline.HasValue)
+                            {
+                                var timeAgo = DateTime.UtcNow - lastOnline.Value;
+
+                                if (timeAgo.TotalMinutes < 60)
+                                {
+                                    lastOnlineText = $"{(int)timeAgo.TotalMinutes} minutes ago";
+                                }
+                                else if (timeAgo.TotalHours < 24)
+                                {
+                                    lastOnlineText = $"{(int)timeAgo.TotalHours} hours ago";
+                                }
+                                else
+                                {
+                                    lastOnlineText = $"{(int)timeAgo.TotalDays} days ago";
+                                }
+                            }
+                        }
+                        <p">@lastOnlineText</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="box-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-notes.png" alt="Notes" width="24" height="24">
-                <h5 class="title-container">Notes</h5>
+                <h5 class="container-title-text">Notes</h5>
             </div>
         </div>
         <div class="box-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-activity.png" alt="Activity History" width="24" height="24">
-                <h5 class="title-container">Activity History</h5>
+                <h5 class="container-title-text">Activity History</h5>
             </div>
         </div>
         <div class="box-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-data.png" alt="Client Data" width="24" height="24">
-                <h5 class="title-container">Weight Graph</h5>
+                <h5 class="container-title-text">Weight Graph</h5>
             </div>
             <div style="height: 250px;">
                 <canvas id="weightChart"></canvas>
@@ -91,13 +140,13 @@
         <div class="box-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-data.png" alt="Client Data" width="24" height="24">
-                <h5 class="title-container">Client Data</h5>
+                <h5 class="container-title-text">Client Data</h5>
             </div>
         </div>
         <div class="box-container photos-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-photos.png" alt="Recent Photos" width="24" height="24">
-                <h5 class="title-container">Recent Photos</h5>
+                <h5 class="container-title-text">Recent Photos</h5>
             </div>
 
             @if (Model.Photos.Any())
