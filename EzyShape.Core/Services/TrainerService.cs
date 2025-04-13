@@ -2,6 +2,7 @@
 using EzyShape.Core.Models.Clients;
 using EzyShape.Core.Models.Exercises;
 using EzyShape.Core.Models.LargeViewModels;
+using EzyShape.Core.Models.Photos;
 using EzyShape.Core.Models.Splits;
 using EzyShape.Core.Models.Tasks;
 using EzyShape.Core.Models.WeightLog;
@@ -161,6 +162,16 @@ namespace EzyShape.Core.Services
                 })
                 .OrderBy(x => x.LogDate)
                 .ToListAsync();
+
+
+            model.Photos = await repo.AllReadonly<Photo>()
+                        .Where(p => p.ClientId == clientId)
+                        .Select(p => new PhotoViewModel
+                        {
+                            FileName = p.FileName,
+                            UploadDate = p.UploadDate
+                        })
+                            .ToListAsync();
             return model;
         }
     }

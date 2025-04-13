@@ -94,12 +94,27 @@
                 <h5 class="title-container">Client Data</h5>
             </div>
         </div>
-        <div class="box-container box-shadow">
+        <div class="box-container photos-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-photos.png" alt="Recent Photos" width="24" height="24">
                 <h5 class="title-container">Recent Photos</h5>
             </div>
+
+            @if (Model.Photos.Any())
+            {
+                <div class="gallery-content-div">
+                    @foreach (var photo in Model.Photos)
+                    {
+                        <img src="@Url.Content("~/images/" + photo.FileName)" alt="Uploaded Photo" class="gallery-photo" />
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="no-photos-p">There are still no photos uploaded!</p>
+            }
         </div>
+
     </div>
 
 
