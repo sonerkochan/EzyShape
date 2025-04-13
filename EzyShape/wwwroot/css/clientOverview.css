@@ -220,6 +220,21 @@
         font-size: 12px;
     }
 
+/* Client Data Container */
+.weight-up-div {
+    background-color: #fed7d7;
+    color: #842a2a;
+    padding: 0 8px;
+    border-radius: 16px;
+}
+
+.weight-down-div {
+    background-color: #d3f9d8;
+    color: #1a5e20;
+    padding: 0 8px;
+    border-radius: 16px;
+}
+
 
 
 
