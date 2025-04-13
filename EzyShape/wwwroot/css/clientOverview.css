@@ -198,8 +198,10 @@
 }
 
 .last-active-div {
-    background-color: lightgreen;
-    padding: 0;
+    background-color: #d3f9d8;
+    color: #1a5e20;
+    font-weight: 600;
+    padding: 5px 0px;
     border-radius: 16px;
 }
     .last-active-div > p {
@@ -210,8 +212,10 @@
 
 
 .last-checking-div {
-    background-color: lightgreen;
-    padding: 0;
+    background-color: #d3f9d8;
+    color: #1a5e20;
+    font-weight: 600;
+    padding: 5px 0px;
     border-radius: 16px;
 }
     .last-checking-div > p {
