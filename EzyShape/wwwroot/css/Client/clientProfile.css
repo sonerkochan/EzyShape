@@ -192,6 +192,15 @@ main {
     font-size: 15px;
 }
 
+.gallery-photo {
+    width: 30%;
+    height: 100px;
+    object-fit: scale-down;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
 /* General Section Styling */
 .container {
     padding: 10px;

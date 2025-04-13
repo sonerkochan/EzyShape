@@ -9,5 +9,6 @@ namespace EzyShape.Core.Contracts
         Task<ClientViewModel> GetClientById(string clientId);
         Task AddWeightAsync(AddWeightLogViewModel model, string clientId);
         Task<ClientProfileViewModel> GetClientProfileInfoAsync(string clientId);
+        Task AddPhotoAsync(string fileName, string clientId);
     }
 }

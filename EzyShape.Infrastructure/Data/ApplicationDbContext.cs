@@ -23,6 +23,7 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<Split> Splits { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         public DbSet<Level> Levels { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<TrainingTask> TrainingTasks { get; set; }

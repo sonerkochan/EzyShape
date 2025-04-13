@@ -132,14 +132,26 @@
 
                 <div class="section-buttons-div">
                     <button class="add-item-button" id="add-photo-button">+</button>
+                    <input type="file" id="photo-upload-input" style="display: none;" accept="image/*" />
                 </div>
             </div>
             <div class="gallery-content-div">
-
-                <p class="no-photos-p"> There are still no photos uploaded!</p>
-
+                @if(Model.Photos.Any())
+                {
+                    <div class="gallery-content-div">
+                        @foreach (var photo in Model.Photos) // Assuming you have a Photos property on the Client model
+                        {
+                            <img src="@Url.Content("~/images/" + photo.FileName)" alt="Uploaded Photo" class="gallery-photo" />
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="no-photos-p"> There are still no photos uploaded!</p>
+                }
             </div>
         </section>
+
     </main>
 
 
@@ -186,6 +198,11 @@
     <script src="~/js/weightModal.js"></script>
     <script src="~/js/addWeight.js"></script>
     <script src="~/js/weightChart.js"></script>
+
+    <script src="~/js/photoButtonTrigger.js"></script>
+    <script src="~/js/addPhoto.js"></script>
+
+
     <script>
         const dateInput = document.getElementById("weightDate");
         const today = new Date().toISOString().split("T")[0];
