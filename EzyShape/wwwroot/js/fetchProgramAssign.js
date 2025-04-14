@@ -1,4 +1,21 @@
-﻿document.getElementById("submitButton").onclick = function () {
+﻿document.getElementById("add-program").onclick = function () {
+    document.getElementById("addProgramModal").style.display = "flex";
+};
+
+document.getElementById("closeModalBtn").onclick = closeAddProgramModal;
+
+function closeAddProgramModal() {
+    document.getElementById("addProgramModal").style.display = "none";
+}
+
+window.onclick = function (event) {
+    const modal = document.getElementById("addProgramModal");
+    if (event.target === modal) {
+        closeAddProgramModal();
+    }
+};
+
+document.getElementById("submitButton").onclick = function () {
     const clientId = document.getElementById('clientId').value;
     const selectedSplits = [];
 
@@ -30,8 +47,8 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                closeAddProgramModal(); // Close the modal after success
                 toastr.success("Programs assigned successfully");
-                closeModal(); // Close the modal after success
             } else {
                 toastr.error(data.errors ? data.errors.join(' ') : "An error occurred while assigning the programs.");
             }
