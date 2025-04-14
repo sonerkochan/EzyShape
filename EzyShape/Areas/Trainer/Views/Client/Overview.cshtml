@@ -156,21 +156,30 @@
                 <h5 class="container-title-text">Client Data</h5>
             </div>
             <div class="client-data-body">
-                <p><strong>Start Weight:</strong> @Model.Stats.StartWeight kg</p>
-                <p><strong>Current Weight:</strong> @Model.Stats.CurrentWeight kg</p>
+                @if (Model.Stats == null || Model.Stats.StartWeight == 0 || Model.Stats.CurrentWeight == 0)
+                {
+                    <p><strong>Not enough data to show.</strong></p>
+                }
+                else
+                {
+                    <p><strong>Start Weight:</strong> @Model.Stats.StartWeight kg</p>
+                    <p><strong>Current Weight:</strong> @Model.Stats.CurrentWeight kg</p>
 
-                <p>
-                    <strong>Change:</strong>
-                    <span class="@weightChangeClass" style="padding: 4px 8px;">
-                        @Html.Raw(icon) @weightChange.ToString("+#.##;-#.##;0") kg
-                    </span>
-                </p>
+                    <p>
+                        <strong>Change:</strong>
+                        <span class="@weightChangeClass" style="padding: 4px 8px;">
+                            @Html.Raw(icon) @weightChange.ToString("+#.##;-#.##;0") kg
+                        </span>
+                    </p>
 
-                <p><strong>Tracked:</strong> @Model.Stats.MonthsTracked month(s)</p>
-                <p><strong>Avg Change/Month:</strong> @Model.Stats.AverageMonthlyChange.ToString("+#.##;-#.##;0") kg</p>
-                <p><strong>Trend:</strong> @Model.Stats.TrendDescription</p>
+                    <p><strong>Tracked:</strong> @Model.Stats.MonthsTracked month(s)</p>
+                    <p><strong>Avg Change/Month:</strong> @Model.Stats.AverageMonthlyChange.ToString("+#.##;-#.##;0") kg</p>
+                    <p><strong>Trend:</strong> @Model.Stats.TrendDescription</p>
+                }
             </div>
         </div>
+
+
         <div class="box-container photos-container box-shadow">
             <div class="div-container-title">
                 <img src="~/img/container-images/container-photos.png" alt="Recent Photos" width="24" height="24">

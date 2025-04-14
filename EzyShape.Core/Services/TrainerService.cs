@@ -176,28 +176,42 @@ namespace EzyShape.Core.Services
 
             var logs = model.WeightLogs.OrderBy(x => x.LogDate).ToList();
 
-            var startWeight = (double)logs.First().Weight;
-            var currentWeight = (double)logs.Last().Weight;
-
-
-            var totalDays = (logs.Last().LogDate - logs.First().LogDate).TotalDays;
-            var monthsTracked = (int)Math.Ceiling(totalDays / 30);
-
-            var averageMonthlyChange = (currentWeight - startWeight) / monthsTracked;
-
-            string trend = "Stable";
-            if (averageMonthlyChange < -1) trend = "Losing weight";
-            else if (averageMonthlyChange > 1) trend = "Gaining weight";
-            else if (Math.Abs(averageMonthlyChange) <= 1 && Math.Abs(currentWeight - startWeight) > 1) trend = "Fluctuating";
-
-            model.Stats = new ClientWeightStatsViewModel
+            if (logs.Any())
             {
-                StartWeight = startWeight,
-                CurrentWeight = currentWeight,
-                AverageMonthlyChange = averageMonthlyChange,
-                MonthsTracked = monthsTracked,
-                TrendDescription = trend
-            };
+                var startWeight = (double)logs.First().Weight;
+                var currentWeight = (double)logs.Last().Weight;
+
+                var totalDays = (logs.Last().LogDate - logs.First().LogDate).TotalDays;
+                var monthsTracked = (int)Math.Ceiling(totalDays / 30);
+
+                var averageMonthlyChange = (currentWeight - startWeight) / monthsTracked;
+
+                string trend = "Stable";
+                if (averageMonthlyChange < -1) trend = "Losing weight";
+                else if (averageMonthlyChange > 1) trend = "Gaining weight";
+                else if (Math.Abs(averageMonthlyChange) <= 1 && Math.Abs(currentWeight - startWeight) > 1) trend = "Fluctuating";
+
+                model.Stats = new ClientWeightStatsViewModel
+                {
+                    StartWeight = startWeight,
+                    CurrentWeight = currentWeight,
+                    AverageMonthlyChange = averageMonthlyChange,
+                    MonthsTracked = monthsTracked,
+                    TrendDescription = trend
+                };
+            }
+            else
+            {
+                model.Stats = new ClientWeightStatsViewModel
+                {
+                    StartWeight = 0,
+                    CurrentWeight = 0,
+                    AverageMonthlyChange = 0,
+                    MonthsTracked = 0,
+                    TrendDescription = "No data"
+                };
+            }
+
 
 
             return model;
