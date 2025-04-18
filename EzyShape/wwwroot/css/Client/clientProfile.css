@@ -284,6 +284,8 @@ main {
 }
 
 
+/* Settings modal */
+
 .settings-button-div{
     display:flex;
     flex-direction:row-reverse;
@@ -304,10 +306,10 @@ main {
 .settingsModal {
     position: fixed;
     top: 0;
-    right: -100%; /* Start off screen */
+    right: -100%;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: #f2f1f6;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     z-index: 999;
     transition: right 0.3s ease;
@@ -324,7 +326,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 60px; /* Same as .app-header height */
+    height: 60px;
     padding: 0 15px;
     border-bottom: 1px solid #ccc;
     background-color: #fff;
@@ -368,4 +370,68 @@ main {
     background-color: #f55231;
     border-radius: 16px;
     padding: 5px 10px;
+}
+
+
+.settings-info-section {
+    display:flex;
+    padding:10px;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+
+.settings-info-top-div {
+    display: flex;
+    border-bottom: 1px solid #f2f1f6;
+    padding-bottom: 10px;
+}
+
+.settings-info-top-div >p{
+    margin:0 5px;
+}
+
+.settings-info-bottom-div {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.name-input {
+    background-color: #f2f1f6;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 12px;
+    outline: none;
+    flex: 1 1 auto; /* grow, shrink, basis */
+    margin-right: 5px;
+    min-width: 0; /* important to allow shrinking inside a flex row */
+}
+
+
+.save-name-button {
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 12px;
+    height: 30px;
+    width:100px;
+    font-size: 16px;
+    color:#fff;
+}
+
+.settings-language-section {
+    min-height: 100px;
+}
+
+
+.language-select {
+    background-color: #f2f1f6;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 12px;
+    outline: none;
+    flex: 1 1 auto;
+    margin-right: 5px;
+    min-width: 0;
+    font-size: 16px;
 }

@@ -217,6 +217,34 @@
 
         </div>
         <div class="settings-body">
+            <div class="settings-info-section container box-shadow">
+                <div class="settings-info-top-div">
+                    <p>
+                        <i class="fa-regular fa-user"></i>
+                        User
+                    </p>
+                </div>
+                <div class="settings-info-bottom-div">
+                    <input class="name-input" type="text" value="@Model.Client.FirstName @Model.Client.LastName">
+                    <button class="save-name-button">Save</button>
+                </div>
+            </div>
+
+            <div class="settings-language-section container box-shadow">
+                <div class="settings-info-top-div">
+                    <p>
+                        <i class="fa-solid fa-language"></i>
+                        Language
+                    </p>
+                </div>
+                <div class="settings-info-bottom-div">
+                    <select class="language-select">
+                        <option value="bg">Bulgarian</option>
+                        <option value="en">English</option>
+                    </select>
+                    <button class="save-name-button">OK</button>
+                </div>
+            </div>
 
         </div>
     </div>
