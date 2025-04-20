@@ -58,6 +58,7 @@
     text-align: left;
     background-color: white;
     height: 220px;
+    width:100%;
     background-image: url('/img/ClientArea/workoutBackground.jpg');
     background-size: cover;
     background-position: center;
@@ -149,3 +150,4 @@
     .start-workout-button:hover {
         background-color: #0056b3;
     }
+
