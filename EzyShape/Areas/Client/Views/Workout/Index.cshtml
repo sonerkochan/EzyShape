@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SplitViewModel>
+﻿@model ClientWorkoutViewModel
 @Html.AntiForgeryToken()
 
 
@@ -45,7 +45,7 @@
     <main>
         <div class="programs-div div-active">
 
-            @foreach (var split in Model)
+            @foreach (var split in Model.Splits)
             {
                 <div class="container">
                     <div class="container-texts-div">

@@ -48,7 +48,7 @@ namespace EzyShape.Areas.Client.Controllers
         {
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var model = await splitService.GetClientSplitsAsync(clientId);
+            var model = await clientService.GetClientWorkoutsInfoAsync(clientId);
 
             return View(model);
         }

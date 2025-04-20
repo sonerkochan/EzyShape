@@ -103,6 +103,22 @@ namespace EzyShape.Core.Services
             return model;
         }
 
+        public async Task<ClientWorkoutViewModel> GetClientWorkoutsInfoAsync(string clientId)
+        {
+            var model = new ClientWorkoutViewModel();
+
+            model.Splits = await repo.AllReadonly<ClientSplit>()
+                .Where(c => c.UserId == clientId)
+                .Select(s => new SplitViewModel()
+                {
+                    Id = s.SplitId,
+                    Name = s.Split.Name,
+                    Description = s.Split.Description,
+                })
+                .ToListAsync();
+
+            return model;
+        }
         public async Task AddPhotoAsync(string fileName, string clientId)
         {
             var entity = new Photo()
