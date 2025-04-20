@@ -1,0 +1,151 @@
+﻿.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #222;
+    z-index: 9999;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-slider {
+    display: flex;
+    width: 500vw;
+    height: 100%;
+    transform: translateX(0);
+    transition: transform 0.4s ease;
+}
+
+.concrete-workout-container {
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+    background-color: #fafafa;
+    color: black;
+    flex-shrink: 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #222;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.concrete-workout-top-div {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: left;
+    background-color: white;
+    height: 220px;
+    background-image: url('/img/ClientArea/workoutBackground.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+.concrete-workout-name-text {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px #000;
+    margin: 0;
+}
+
+.concrete-workout-content-div {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.exercises-count-div {
+    margin-bottom: 10px;
+}
+
+.exercises-count-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.exercises-list-div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.exercise-item-div {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    padding: 10px;
+    min-width: 180px;
+    flex: 1 1 45%;
+}
+
+.exercise-img {
+    margin-right: 10px;
+}
+
+    .exercise-img img {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+
+.exercise-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #222;
+    margin: 0;
+}
+
+.workout-bottom-div {
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.start-workout-button {
+    background-color: #212121;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: auto;
+}
+
+    .start-workout-button:hover {
+        background-color: #0056b3;
+    }

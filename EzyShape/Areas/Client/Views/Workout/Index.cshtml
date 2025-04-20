@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/css/normalize.css">
     <link rel="stylesheet" href="~/css/Client/allWorkouts.css">
     <link rel="stylesheet" href="~/css/Client/bottomNavigation.css">
+    <link rel="stylesheet" href="~/css/Client/workoutModal.css">
 </head>
 <body>
 
@@ -47,7 +48,7 @@
 
             @foreach (var split in Model.Splits)
             {
-                <div class="container">
+                <div class="split-container container" data-id="@split.Id   ">
                     <div class="container-texts-div">
                         <div class="workout-name-div">
                             <p class="workout-name-text">
@@ -66,7 +67,7 @@
         <div class="history-div">
             History
         </div>
-        
+
     </main>
 
 
@@ -90,6 +91,95 @@
 
     </nav>
 
+    <!-- Fullscreen Bottom Modal -->
+    <div id="workoutModal" class="modal-overlay" data-id="" style="display: none;">
+        <div class="modal-slider">
+            @for(int i=0;i<5;i++)
+            {
+                <div class="concrete-workout-container">
+                    <button class="close-modal-btn" onclick="closeModal()">×</button>
+                    <div class="concrete-workout-top-div">
+                        <h3 class="concrete-workout-name-text">
+                            Workout @i
+                        </h3>
+                    </div>
+                    <div class="concrete-workout-content-div">
+                        <div class="exercises-count-div">
+                            <p class="exercises-count-text">X Exercises</p>
+                        </div>
+                        <div class="exercises-list-div">
+                            @for(int j=0;j<8;j++)
+                            {
+                                <div class="exercise-item-div">
+                                    <div class="exercise-img">
+                                        <img src="img/ClientArea/workoutBackground.jpg" alt="Alternate Text" style="height:20px; width:20px;"/>
+                                    </div>
+                                    <p class="exercise-name">
+                                        Exercise Name
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="workout-bottom-div">
+                        <button class="start-workout-button">
+                            Start Workout
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
     <script src="~/js/toggleTrainingSubNavigation.js" asp-append-version="true"></script>
+    <
+    <script>
+        const modal = document.getElementById("workoutModal");
+        const slider = modal.querySelector(".modal-slider");
+        let currentIndex = 0;
+        let startX = 0;
+
+        document.querySelectorAll(".split-container").forEach(container => {
+            container.addEventListener("click", () => {
+                const id = container.dataset.id;
+                modal.dataset.id = id;
+                modal.style.display = "block";
+                currentIndex = 0;
+                slider.style.transform = `translateX(0)`;
+            });
+        });
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Swipe functionality
+        slider.addEventListener("touchstart", e => {
+            startX = e.touches[0].clientX;
+        });
+
+        slider.addEventListener("touchend", e => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentIndex < 4) currentIndex++; // Swipe Left
+                else if (diff < 0 && currentIndex > 0) currentIndex--; // Swipe Right
+
+                slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+            }
+        });
+
+        // Optional: close modal when clicking outside (disable if you only want to use the X button)
+        modal.addEventListener("click", e => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+
+
 </body>
 </html>
