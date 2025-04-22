@@ -40,6 +40,8 @@ namespace EzyShape.Core.Services
             return await context.Splits
             .Include(s => s.WorkoutIds)
             .ThenInclude(ws => ws.Workout) // if you need workout details
+            .ThenInclude(wkts=>wkts.ExerciseIds)
+            .ThenInclude(e=>e.Exercise)
             .FirstOrDefaultAsync(s => s.Id == id);
         }
 

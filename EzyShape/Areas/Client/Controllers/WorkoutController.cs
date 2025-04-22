@@ -52,5 +52,18 @@ namespace EzyShape.Areas.Client.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetSplitWorkoutsPartial(int id)
+        {
+            var model = await splitService.GetDetailedSplitAsync(id);
+
+            if (model.WorkoutIds == null || !model.WorkoutIds.Any())
+            {
+                return new EmptyResult(); // Or return Json(null), or your own logic
+            }
+
+            return PartialView("_SplitWorkoutsPartial", model);
+        }
     }
 }
