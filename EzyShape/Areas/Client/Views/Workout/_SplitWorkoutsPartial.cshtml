@@ -13,7 +13,7 @@
     <div class="modal-slider">
         @foreach(var workout in Model.WorkoutIds)
         {
-            <div class="concrete-workout-container">
+            <div class="concrete-workout-container" data-workoutId="@workout.Workout.Id">
                 <button class="close-modal-btn" onclick="closeModal()">×</button>
                 <div class="concrete-workout-top-div">
                     <h3 class="concrete-workout-name-text">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="concrete-workout-content-div">
                     <div class="exercises-count-div">
-                        <p class="exercises-count-text">X Exercises</p>
+                        <p class="exercises-count-text">@workout.Workout.ExerciseIds.Count() Exercises</p>
                     </div>
                     <div class="exercises-list-div">
                         @foreach (var exercise in workout.Workout.ExerciseIds)
@@ -35,6 +35,7 @@
                                     @exercise.Exercise.Name
                                 </p>
                             </div>
+
                         }
                     </div>
                 </div>
