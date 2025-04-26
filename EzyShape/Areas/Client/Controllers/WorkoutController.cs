@@ -44,7 +44,7 @@ namespace EzyShape.Areas.Client.Controllers
 
         [Route("/programs")]
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Programs()
         {
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
