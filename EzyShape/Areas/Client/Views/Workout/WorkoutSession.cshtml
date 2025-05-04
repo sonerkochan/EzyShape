@@ -1,22 +1,148 @@
 ﻿@model Workout
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Session</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="~/css/normalize.css">
-    <link rel="stylesheet" href="~/css/Client/workoutSession.css">
+    <link rel="stylesheet" href="~/css/normalize.css" />
+    <link rel="stylesheet" href="~/css/Client/workoutSession.css" />
 </head>
+<body>
+    <header class="app-header">
+        <div class="header-top-div">
+            <h1 class="workout-name-text">@Model.Name</h1>
+        </div>
+        <div class="header-bottom-div">
+            <div id="timer">
+                00:00
+            </div>
+
+            <div class="buttons-div">
+                <button id="btn-finish">Finish workout</button>
+                <button id="btn-cancel"><i class="fa-solid fa-x"></i></button>
+            </div>
+        </div>
 
 
-<p>
-    @Model.Name
-</p>
-<p>
-    @Model.Description
-</p>
+    </header>
 
-@foreach (var exercise in Model.ExerciseIds)
-{
-    <p>@exercise.Exercise.Name</p>
-}
+    <section id="workoutBody" class="body-overlay">
+        <div class="modal-slider">
+            @foreach (var exercise in Model.ExerciseIds)
+            {
+                <div class="concrete-exercise-container" data-workoutId="@exercise.Exercise.Id">
+                    <div class="exercise-name-div">
+                        <h4>@exercise.Exercise.Name</h4>
+                    </div>
+                    <div class="exercise-sets-div" id="exercise-@exercise.Exercise.Id">
+                        <div class="column-names-div">
+                            <p class="column-sets-name">Set</p>
+                            <p class="column-reps-name">Reps</p>
+                            <p class="column-weight-name">Weight</p>
+                         </div>
+                        <div class="concrete-set-div">
+                            <p class="row-sets-number">1</p>
+                            <input class="row-reps-input">
+                            <input class="row-weigth-input" />
+                        </div>
+                    </div>
+                    <div class="exercise-buttons-div">
+                        <button class="btn-remove">Remove Set</button>
+                        <button class="btn-repeat"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                        <button class="btn-add">Add Set</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <!-- Bottom Navigation with Dots -->
+    <div class="dot-indicator">
+        <div class="dots-container">
+            @for (int i = 0; i < Model.ExerciseIds.Count(); i++)
+            {
+                <span class="dot @(i == 0 ? "active" : "")" data-index="@i"></span>
+            }
+        </div>
+    </div>
+
+    <script>
+        let minutes = 0;
+        let seconds = 0;
+
+        function updateTimer() {
+          const timer = document.getElementById('timer');
+          seconds++;
+          if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+          }
+          timer.textContent =
+            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        setInterval(updateTimer, 1000);
+    </script>
+
+    <script>
+        function enableExerciseSlider() {
+            const slider = document.querySelector('.modal-slider');
+            const slides = document.querySelectorAll('.concrete-exercise-container');
+            const dots = document.querySelectorAll('.dot');
+            let currentIndex = 0;
+
+            function updateDots(index) {
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            function goToSlide(index) {
+                if (!slider || slides.length === 0) return;
+                index = Math.max(0, Math.min(slides.length - 1, index));
+                slider.style.transform = `translateX(-${index * 100}vw)`;
+                currentIndex = index;
+                updateDots(index);
+            }
+
+            // Add click event to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToSlide(index));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (document.getElementById('workoutBody')) {
+                    if (e.key === 'ArrowRight') {
+                        goToSlide(currentIndex + 1);
+                    } else if (e.key === 'ArrowLeft') {
+                        goToSlide(currentIndex - 1);
+                    }
+                }
+            });
+
+            let startX = 0;
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+
+            slider.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                if (startX - endX > 50) {
+                    goToSlide(currentIndex + 1);
+                } else if (endX - startX > 50) {
+                    goToSlide(currentIndex - 1);
+                }
+            });
+
+            window.nextExercise = () => goToSlide(currentIndex + 1);
+            window.prevExercise = () => goToSlide(currentIndex - 1);
+        }
+
+        window.addEventListener('DOMContentLoaded', enableExerciseSlider);
+    </script>
+</body>
+</html>
