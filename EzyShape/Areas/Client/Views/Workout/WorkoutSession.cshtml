@@ -43,7 +43,7 @@
                             <p class="column-sets-name">Set</p>
                             <p class="column-reps-name">Reps</p>
                             <p class="column-weight-name">Weight</p>
-                         </div>
+                        </div>
                         <div class="concrete-set-div">
                             <p class="row-sets-number">1</p>
                             <input class="row-reps-input">
@@ -144,5 +144,60 @@
 
         window.addEventListener('DOMContentLoaded', enableExerciseSlider);
     </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const exerciseContainers = document.querySelectorAll('.concrete-exercise-container');
+
+            exerciseContainers.forEach(container => {
+                const setsDiv = container.querySelector('.exercise-sets-div');
+                const btnAdd = container.querySelector('.btn-add');
+                const btnRepeat = container.querySelector('.btn-repeat');
+                const btnRemove = container.querySelector('.btn-remove');
+
+                btnAdd.addEventListener('click', () => {
+                    const currentSets = setsDiv.querySelectorAll('.concrete-set-div');
+                    const newSetNumber = currentSets.length + 1;
+
+                    const newSet = document.createElement('div');
+                    newSet.className = 'concrete-set-div';
+                    newSet.innerHTML = `
+                        <p class="row-sets-number">${newSetNumber}</p>
+                        <input class="row-reps-input">
+                        <input class="row-weigth-input" />
+                    `;
+                    setsDiv.appendChild(newSet);
+                });
+
+                btnRepeat.addEventListener('click', () => {
+                    const currentSets = setsDiv.querySelectorAll('.concrete-set-div');
+                    if (currentSets.length === 0) return;
+
+                    const lastSet = currentSets[currentSets.length - 1];
+                    const lastReps = lastSet.querySelector('.row-reps-input').value;
+                    const lastWeight = lastSet.querySelector('.row-weigth-input').value;
+
+                    const newSet = document.createElement('div');
+                    newSet.className = 'concrete-set-div';
+                    newSet.innerHTML = `
+                        <p class="row-sets-number">${currentSets.length + 1}</p>
+                        <input class="row-reps-input" value="${lastReps}">
+                        <input class="row-weigth-input" value="${lastWeight}" />
+                    `;
+                    setsDiv.appendChild(newSet);
+                });
+
+                btnRemove.addEventListener('click', () => {
+                    const currentSets = setsDiv.querySelectorAll('.concrete-set-div');
+                    if (currentSets.length > 1) {
+                        setsDiv.removeChild(currentSets[currentSets.length - 1]);
+                    }
+                });
+            });
+        });
+    </script>
+
+
 </body>
 </html>

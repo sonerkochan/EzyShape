@@ -44,11 +44,31 @@
     margin-top: 5%;
 }
 
-.exercise-name-div{
-    height:auto;
-    width:100%;
-    font-weight:bold;
-    text-align:center;
+.exercise-sets-div {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 60%;
+    padding-right: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    scrollbar-width: thin;
+}
+
+.exercise-sets-div::-webkit-scrollbar {
+    width: 6px;
+}
+
+.exercise-sets-div::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+
+.exercise-name-div {
+    height: auto;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
 }
 
 .column-names-div{
@@ -71,6 +91,7 @@
 
 .concrete-set-div{
     display:flex;
+    margin-bottom:10px;
 }
 
 .row-sets-number {
