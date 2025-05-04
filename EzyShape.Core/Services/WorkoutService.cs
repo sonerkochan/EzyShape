@@ -29,5 +29,13 @@ namespace EzyShape.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<Workout> GetWorkoutByIdAsync(int id)
+        {
+            return await repo.AllReadonly<Workout>()
+                .Where(w => w.Id == id)
+                .Include(w => w.ExerciseIds)
+                .ThenInclude(e => e.Exercise)
+                .FirstOrDefaultAsync();
+        }
     }
 }

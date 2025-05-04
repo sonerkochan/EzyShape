@@ -12,5 +12,6 @@ namespace EzyShape.Core.Contracts
     public interface IWorkoutService
     {
         Task<IEnumerable<Workout>> GetTrainersAllWorkouts(string TrainerId);
+        Task<Workout> GetWorkoutByIdAsync(int id);
     }
 }

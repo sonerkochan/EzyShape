@@ -19,6 +19,8 @@ namespace EzyShape.Areas.Client.Controllers
 
         private readonly ISplitService splitService;
 
+        private readonly IWorkoutService workoutService;
+
         private readonly IUserService userService;
 
         private readonly IUtilityService utilityService;
@@ -30,7 +32,8 @@ namespace EzyShape.Areas.Client.Controllers
             IUserService _userService,
             IClientService _clientService,
             IUtilityService _utilityService,
-            ISplitService _splitService
+            ISplitService _splitService,
+            IWorkoutService _workoutService
             )
         {
             userManager = _userManager;
@@ -40,6 +43,7 @@ namespace EzyShape.Areas.Client.Controllers
             clientService = _clientService;
             utilityService = _utilityService;
             splitService = _splitService;
+            workoutService = _workoutService;
         }
 
         [Route("/programs")]
@@ -64,6 +68,14 @@ namespace EzyShape.Areas.Client.Controllers
             }
 
             return PartialView("_SplitWorkoutsPartial", model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> WorkoutSession(int id)
+        {
+            var model = await workoutService.GetWorkoutByIdAsync(id);
+
+            return View(model);
         }
     }
 }

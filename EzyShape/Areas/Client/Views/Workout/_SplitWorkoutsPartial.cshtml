@@ -40,9 +40,14 @@
                     </div>
                 </div>
                 <div class="workout-bottom-div">
-                    <button class="start-workout-button">
+                    <a asp-controller="Workout"
+                       asp-action="WorkoutSession"
+                       asp-route-id="@workout.Workout.Id"
+                       class="start-workout-button"
+                       style="text-decoration:none;">
                         Start Workout
-                    </button>
+                    </a>
+
                 </div>
             </div>
         }
