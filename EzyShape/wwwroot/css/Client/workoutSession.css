@@ -91,7 +91,7 @@
 
 .concrete-set-div{
     display:flex;
-    margin-bottom:10px;
+    align-items:center;
 }
 
 .row-sets-number {
@@ -99,17 +99,25 @@
     margin-right: 10%;
     text-align: center;
 }
-.row-reps-input {
-    width: 24%;
-    margin:0 3%;
-    border-radius:16px;
-}
-.row-weigth-input {
+.input-field {
     width: 24%;
     margin: 0 3%;
+    height: 36px;
+    padding: 0 10px;
     border-radius: 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    outline: none;
 }
 
+    .input-field:focus {
+        border-color: #2093f1;
+        box-shadow: 0 0 5px rgba(32, 147, 241, 0.5);
+    }
 .exercise-buttons-div {
     margin-top: auto;
     margin-bottom: 20px;

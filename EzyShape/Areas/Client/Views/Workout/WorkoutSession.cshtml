@@ -46,8 +46,8 @@
                         </div>
                         <div class="concrete-set-div">
                             <p class="row-sets-number">1</p>
-                            <input class="row-reps-input">
-                            <input class="row-weigth-input" />
+                            <input class="row-reps-input input-field">
+                            <input class="row-weigth-input input-field" />
                         </div>
                     </div>
                     <div class="exercise-buttons-div">
@@ -164,8 +164,8 @@
                     newSet.className = 'concrete-set-div';
                     newSet.innerHTML = `
                         <p class="row-sets-number">${newSetNumber}</p>
-                        <input class="row-reps-input">
-                        <input class="row-weigth-input" />
+                        <input class="row-reps-input input-field">
+                        <input class="row-weigth-input input-field" />
                     `;
                     setsDiv.appendChild(newSet);
                 });
@@ -182,8 +182,8 @@
                     newSet.className = 'concrete-set-div';
                     newSet.innerHTML = `
                         <p class="row-sets-number">${currentSets.length + 1}</p>
-                        <input class="row-reps-input" value="${lastReps}">
-                        <input class="row-weigth-input" value="${lastWeight}" />
+                        <input class="row-reps-input input-field" value="${lastReps}">
+                        <input class="row-weigth-input input-field" value="${lastWeight}" />
                     `;
                     setsDiv.appendChild(newSet);
                 });
@@ -197,6 +197,7 @@
             });
         });
     </script>
+
 
 
 </body>
