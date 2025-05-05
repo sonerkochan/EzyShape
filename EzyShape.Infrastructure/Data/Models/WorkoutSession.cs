@@ -18,16 +18,17 @@ namespace EzyShape.Infrastructure.Data.Models
         public string Logs { get; set; }
 
         [Required]
-        public bool Finished { get; set; } = false; // False means still is running 
+        public bool Finished { get; set; } = false;
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime StartTime { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime? EndTime { get; set; }
+        public DateTime Date { get; set; }
 
         [Description("Id of the user performing the workout.")]
         public string UserId { get; set; } = null!;
+
+        [Required]
+        [Description("Duration of the workout in hours and minutes.")]
+        public TimeSpan Duration { get; set; }
     }
 }

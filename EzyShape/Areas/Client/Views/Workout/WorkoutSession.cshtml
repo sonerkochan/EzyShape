@@ -71,21 +71,34 @@
     </div>
 
     <script>
+        let hours = 0;
         let minutes = 0;
         let seconds = 0;
 
         function updateTimer() {
-          const timer = document.getElementById('timer');
-          seconds++;
-          if (seconds === 60) {
-            seconds = 0;
-            minutes++;
-          }
-          timer.textContent =
-            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            const timer = document.getElementById('timer');
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+            }
+            if (minutes === 60) {
+                minutes = 0;
+                hours++;
+            }
+
+            let timeDisplay = '';
+            if (hours > 0) {
+                timeDisplay = `${String(hours).padStart(2, '0')}:`;
+            }
+            timeDisplay += `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            timer.textContent = timeDisplay;
         }
 
         setInterval(updateTimer, 1000);
+
+
     </script>
 
     <script>
