@@ -16,7 +16,7 @@ namespace EzyShape.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(450)] // Assuming UserId is a foreign key from the AspNetUsers table
+        [StringLength(450)]
         [Description("ID of the user performing the workout (FK to AspNetUsers)")]
         public string UserId { get; set; }
 
@@ -32,7 +32,6 @@ namespace EzyShape.Infrastructure.Data.Models
         [Description("Additional notes for the workout session")]
         public string? Notes { get; set; }
 
-        // Navigation property to ExerciseLogs
         [InverseProperty("WorkoutLog")]
         [Description("Collection of exercises performed during this workout session")]
         public ICollection<ExerciseLog> ExerciseLogs { get; set; }

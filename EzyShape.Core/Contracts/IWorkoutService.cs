@@ -1,5 +1,6 @@
 ﻿using EzyShape.Core.Models.Clients;
 using EzyShape.Core.Models.Exercises;
+using EzyShape.Core.Models.WorkoutLog;
 using EzyShape.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,6 @@ namespace EzyShape.Core.Contracts
     {
         Task<IEnumerable<Workout>> GetTrainersAllWorkouts(string TrainerId);
         Task<Workout> GetWorkoutByIdAsync(int id);
+        Task LogWorkoutAsync(WorkoutLogViewModel model, string clientId);
     }
 }

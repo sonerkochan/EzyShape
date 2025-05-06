@@ -82,14 +82,15 @@ namespace EzyShape.Areas.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult LogWorkout([FromBody] WorkoutLogViewModel model)
+        public async Task<IActionResult> LogWorkout([FromBody] WorkoutLogViewModel model)
         {
             if (model == null)
             {
                 return BadRequest("Invalid model.");
             }
+            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Debugging - inspect the received model
+            // Debugging
             Console.WriteLine("Received Workout:");
             Console.WriteLine($"Duration: {model.Duration}");
             foreach (var exercise in model.Exercises)
@@ -101,7 +102,17 @@ namespace EzyShape.Areas.Client.Controllers
                 }
             }
 
-            return Ok("Workout logged successfully");
+            try
+            {
+                await workoutService.LogWorkoutAsync(model, clientId);
+
+                return RedirectToAction(nameof(Programs));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error logging workout: " + ex.Message);
+                return StatusCode(500, "Internal server error");
+            }
         }
 
 
