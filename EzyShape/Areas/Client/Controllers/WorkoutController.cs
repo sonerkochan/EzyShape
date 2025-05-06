@@ -1,9 +1,12 @@
 ﻿using EzyShape.Core.Contracts;
+using EzyShape.Core.Models.WorkoutLog;
 using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace EzyShape.Areas.Client.Controllers
 {
@@ -77,5 +80,30 @@ namespace EzyShape.Areas.Client.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult LogWorkout([FromBody] WorkoutLogViewModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest("Invalid model.");
+            }
+
+            // Debugging - inspect the received model
+            Console.WriteLine("Received Workout:");
+            Console.WriteLine($"Duration: {model.Duration}");
+            foreach (var exercise in model.Exercises)
+            {
+                Console.WriteLine($"Exercise ID: {exercise.ExerciseId}");
+                foreach (var set in exercise.Sets)
+                {
+                    Console.WriteLine($"Set {set.SetNumber}: {set.Reps} reps, {set.Weight} weight");
+                }
+            }
+
+            return Ok("Workout logged successfully");
+        }
+
+
     }
 }

@@ -18,7 +18,10 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
         public DbSet<WorkoutSplit> WorkoutSplits { get; set; }
         public DbSet<ClientSplit> ClientSplits { get; set; }
-        public DbSet<WorkoutSession> WorkoutSessions { get; set; }
+        public DbSet<WorkoutLog> WorkoutLogs { get; set; }
+        public DbSet<ExerciseLog> ExerciseLogs { get; set; }
+        public DbSet<SetLog> SetLogs { get; set; }
+
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Split> Splits { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
@@ -56,6 +59,21 @@ namespace EzyShape.Infrastructure.Data
 
             builder.Entity<Split>()
                 .HasMany(u => u.WorkoutIds);
+
+            // WorkoutLog configuration
+            builder.Entity<WorkoutLog>()
+                .HasMany(wl => wl.ExerciseLogs)
+                .WithOne(el => el.WorkoutLog)
+                .HasForeignKey(el => el.WorkoutLogId)
+                .OnDelete(DeleteBehavior.Cascade); // To Delete ExerciseLogs when a WorkoutLog is deleted
+
+            // ExerciseLog configuration
+            builder.Entity<ExerciseLog>()
+                .HasMany(el => el.SetLogs)
+                .WithOne(sl => sl.ExerciseLog)
+                .HasForeignKey(sl => sl.ExerciseLogId)
+                .OnDelete(DeleteBehavior.Cascade); // To Delete SetLogs when an ExerciseLog is deleted
+
 
 
             builder.ApplyConfiguration(new RoleConfigration());
