@@ -36,5 +36,10 @@ namespace EzyShape.Infrastructure.Data.Models
 
         public DateTime? LastOnline { get; set; }
 
+
+        [Description("Preferred language code of the user (e.g., 'en', 'bg')")]
+        [StringLength(5)]
+        public string PreferredLanguage { get; set; } = "en";
+
     }
 }

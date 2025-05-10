@@ -47,6 +47,11 @@ namespace EzyShape.Infrastructure.Data
             builder.Entity<User>()
                 .HasMany(u => u.SplitIds);
 
+            builder.Entity<User>()
+                .Property(u => u.PreferredLanguage)
+                .HasDefaultValue("en");
+
+
 
 
             builder.Entity<ClientSplit>()

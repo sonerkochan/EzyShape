@@ -1,4 +1,5 @@
 ﻿using EzyShape.Core.Contracts;
+using EzyShape.Core.Requests;
 using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -60,6 +61,25 @@ namespace EzyShape.Areas.Client.Controllers
             var model = await clientService.GetClientProfileInfoAsync(clientId);
 
             return View(model);
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeLanguage([FromBody] LanguageRequest languageRequest)
+        {
+            if (string.IsNullOrEmpty(languageRequest.LanguageCode))
+            {
+                return BadRequest("Language code is required.");
+            }
+
+            var languageCode = languageRequest.LanguageCode;
+            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await clientService.ChangePreferredLanguageAsync(clientId, languageCode);
+
+
+            return Ok(new { success = true });
         }
 
 

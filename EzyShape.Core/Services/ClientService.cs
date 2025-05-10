@@ -6,15 +6,9 @@ using EzyShape.Core.Models.Splits;
 using EzyShape.Core.Models.WeightLog;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
-using EzyShape.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EzyShape.Core.Services
 {
@@ -78,6 +72,7 @@ namespace EzyShape.Core.Services
                     LastName = u.LastName,
                     Email = u.Email,
                     ColorCode = u.ColorCode,
+                    PreferredLanguage=u.PreferredLanguage
                 })
                 .FirstOrDefaultAsync();
 
@@ -129,6 +124,26 @@ namespace EzyShape.Core.Services
             };
 
             await repo.AddAsync(entity);
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task ChangePreferredLanguageAsync(string clientId, string languageCode)
+        {
+
+            // Fetch the client
+            var client = await repo.All<User>()
+                .Where(u => u.Id == clientId)
+                .FirstOrDefaultAsync();
+
+            if (client == null)
+            {
+                throw new Exception("Client not found");
+            }
+
+            // Change the preferred language
+            client.PreferredLanguage = languageCode.ToLower(); // Ensure the language is in lowercase
+
+            // Update the client in the database
             await repo.SaveChangesAsync();
         }
     }

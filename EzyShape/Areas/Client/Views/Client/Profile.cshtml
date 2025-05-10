@@ -238,11 +238,19 @@
                     </p>
                 </div>
                 <div class="settings-info-bottom-div">
-                    <select class="language-select">
-                        <option value="bg">Bulgarian</option>
-                        <option value="en">English</option>
+                    @{
+                        var currentLang = Model.Client.PreferredLanguage?.ToLower() ?? "en";
+                        var otherLang = currentLang == "en" ? "bg" : "en";
+                        var languageDisplay = new Dictionary<string, string> {
+                    { "en", "English" },
+                    { "bg", "Bulgarian" }
+                    };
+                    }
+                    <select class="language-select" id="languageSelect">
+                        <option value="@currentLang" disabled selected>@languageDisplay[currentLang] (Current)</option>
+                        <option value="@otherLang">@languageDisplay[otherLang]</option>
                     </select>
-                    <button class="save-name-button">OK</button>
+                    <button id="changeLanguageBtn" class="save-language-button">OK</button>
                 </div>
             </div>
 
@@ -256,6 +264,7 @@
 
     <script src="~/js/photoButtonTrigger.js"></script>
     <script src="~/js/addPhoto.js"></script>
+    <script src="~/js/Client/changeLanguage.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
