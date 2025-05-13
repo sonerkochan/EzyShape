@@ -8,7 +8,7 @@
         button.disabled = true;
         button.classList.add("disabled");
     } else {
-        button.disabled = false; 
+        button.disabled = false;
         button.classList.remove("disabled");
     }
 }
@@ -32,6 +32,7 @@ document.getElementById("changeLanguageBtn").onclick = function () {
         .then(data => {
             if (data.success) {
                 toastr.success("Language changed successfully.");
+                window.location.href = window.location.href; // This reloads the page
             } else {
                 toastr.error("Failed to change language.");
             }

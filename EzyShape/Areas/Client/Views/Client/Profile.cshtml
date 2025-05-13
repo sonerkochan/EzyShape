@@ -1,4 +1,5 @@
 ﻿@model ClientProfileViewModel
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "EzyShape | Personal Trainer Software for Professionals";
@@ -31,15 +32,12 @@
 
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
-
 </head>
 <body>
 
     <!-- Header -->
     <header class="app-header">
-        <p>Profile</p>
+        <p>@Localizer["ProfileTitle"]</p>
     </header>
 
     <main>
@@ -66,7 +64,7 @@
                     </div>
                     <div class="counts-text-div">
                         <h4 class="count-number">0</h4>
-                        <p class="count-text"># Workouts</p>
+                        <p class="count-text">@Localizer["WorkoutsCountLabel"]</p>
                     </div>
                 </div>
 
@@ -76,7 +74,7 @@
                     </div>
                     <div class="counts-text-div">
                         <h4 class="count-number">0</h4>
-                        <p class="count-text"># Check-Ins</p>
+                        <p class="count-text">@Localizer["CheckInsCountLabel"]</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +85,7 @@
             <div class="section-title-div">
                 <div class="section-text-div">
                     <i class="fa-solid fa-list-check count-icon"></i>
-                    <p>Check Ins</p>
+                    <p>@Localizer["CheckInsCountLabel"]</p>
                 </div>
 
                 <div class="section-buttons-div">
@@ -95,9 +93,7 @@
                 </div>
             </div>
             <div class="checkins-content-div">
-
-                <p class="no-checkins-p"> Your coach hasn't assigned you any check'in forms yet.<br /> You'll see them here once they do!</p>
-
+                <p class="no-checkins-p">@Localizer["NoCheckInsText"]</p>
             </div>
         </section>
 
@@ -106,7 +102,7 @@
             <div class="section-title-div">
                 <div class="section-text-div">
                     <i class="fa-solid fa-weight-scale weight-icon"></i>
-                    <p>Weight</p>
+                    <p>@Localizer["WeightSectionTitle"]</p>
                 </div>
 
                 <div class="section-buttons-div">
@@ -114,16 +110,14 @@
                 </div>
             </div>
             <div class="weight-content-div">
-                @if(!Model.WeightLogs.Any())
+                @if (!Model.WeightLogs.Any())
                 {
-                <p class="no-weight-p"> No metrics to show yet!</p>
+                    <p class="no-weight-p">@Localizer["NoWeightsText"]</p>
                 }
                 else
                 {
                     <canvas id="weightChart" width="400" height="200"></canvas>
-
                 }
-
             </div>
         </section>
 
@@ -132,7 +126,7 @@
             <div class="section-title-div">
                 <div class="section-text-div">
                     <i class="fa-solid fa-image gallery-icon"></i>
-                    <p>Gallery</p>
+                    <p>@Localizer["GallerySectionTitle"]</p>
                 </div>
 
                 <div class="section-buttons-div">
@@ -141,10 +135,10 @@
                 </div>
             </div>
             <div class="gallery-content-div">
-                @if(Model.Photos.Any())
+                @if (Model.Photos.Any())
                 {
                     <div class="gallery-content-div">
-                        @foreach (var photo in Model.Photos) // Assuming you have a Photos property on the Client model
+                        @foreach (var photo in Model.Photos)
                         {
                             <img src="@Url.Content("~/images/" + photo.FileName)" alt="Uploaded Photo" class="gallery-photo" />
                         }
@@ -152,39 +146,34 @@
                 }
                 else
                 {
-                    <p class="no-photos-p"> There are still no photos uploaded!</p>
+                    <p class="no-photos-p">@Localizer["NoPhotosText"]</p>
                 }
             </div>
         </section>
 
     </main>
 
-
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
         <a asp-area="Client" asp-controller="Client" asp-action="Index" class="nav-item">
             <i class="icon-home">
-                <i class="fa-solid fa-house"></i></i>
+                <i class="fa-solid fa-house"></i>
+            </i>
         </a>
-
-
         <a asp-area="Client" asp-controller="Workout" asp-action="Programs" class="nav-item">
             <i class="icon-nutrition"></i>
             <i class="fa-solid fa-dumbbell"></i>
         </a>
-
-
         <a href="#" class="nav-item"><i class="icon-water"><i class="fa-solid fa-chart-line"></i></i></a>
         <a href="#" class="nav-item active"><i class="icon-settings"><i class="fa-solid fa-user"></i></i></a>
     </nav>
-
 
     <!-- Modal content -->
     <div id="addWeightLogModal" class="modal" style="display: none;">
         <div class="modal-content weight-modal-content">
             <span class="close" id="closeWeightModalBtn">&times;</span>
 
-            <div class="weight-title">Weight</div>
+            <div class="weight-title">@Localizer["WeightLabel"]</div>
 
             <div class="weight-display">
                 <input type="number" id="weightInput" class="weight-input" placeholder="0" min="0" inputmode="numeric" pattern="[0-9]*" required>
@@ -194,7 +183,7 @@
             <input type="date" id="weightDate" class="weight-date" required>
 
             <div class="modal-footer weight-footer">
-                <button id="submitWeightButton" class="weight-add-button">Add</button>
+                <button id="submitWeightButton" class="weight-add-button">@Localizer["AddButton"]</button>
             </div>
         </div>
     </div>
@@ -205,28 +194,27 @@
             <button class="back-button" id="back-button">
                 <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <h3 class="settings-title-text">Settings</h3>
+            <h3 class="settings-title-text">@Localizer["SettingsTitle"]</h3>
 
             <a class="logout-button"
                asp-controller="User"
                asp-action="Logout"
                asp-route-id="@UserManager.GetUserId(User)">
-                Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                @Localizer["LogoutButton"] <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </a>
-
-
         </div>
+
         <div class="settings-body">
             <div class="settings-info-section container box-shadow">
                 <div class="settings-info-top-div">
                     <p>
                         <i class="fa-regular fa-user"></i>
-                        User
+                        @Localizer["UserLabel"]
                     </p>
                 </div>
                 <div class="settings-info-bottom-div">
                     <input class="name-input" type="text" value="@Model.Client.FirstName @Model.Client.LastName">
-                    <button class="save-name-button">Save</button>
+                    <button class="save-name-button">@Localizer["SaveButton"]</button>
                 </div>
             </div>
 
@@ -234,7 +222,7 @@
                 <div class="settings-info-top-div">
                     <p>
                         <i class="fa-solid fa-language"></i>
-                        Language
+                        @Localizer["LanguageLabel"]
                     </p>
                 </div>
                 <div class="settings-info-bottom-div">
@@ -243,25 +231,24 @@
                         var otherLang = currentLang == "en" ? "bg" : "en";
                         var languageDisplay = new Dictionary<string, string> {
                     { "en", "English" },
-                    { "bg", "Bulgarian" }
+                    { "bg", "Български" }
                     };
                     }
                     <select class="language-select" id="languageSelect">
-                        <option value="@currentLang" disabled selected>@languageDisplay[currentLang] (Current)</option>
+                        <option value="@currentLang" disabled selected>@languageDisplay[currentLang] (@Localizer["Current"])</option>
                         <option value="@otherLang">@languageDisplay[otherLang]</option>
                     </select>
                     <button id="changeLanguageBtn" class="save-language-button">OK</button>
                 </div>
             </div>
-
         </div>
     </div>
 
+    <!-- Scripts (unchanged) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/weightModal.js"></script>
     <script src="~/js/addWeight.js"></script>
     <script src="~/js/weightChart.js"></script>
-
     <script src="~/js/photoButtonTrigger.js"></script>
     <script src="~/js/addPhoto.js"></script>
     <script src="~/js/Client/changeLanguage.js"></script>
@@ -269,7 +256,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const dateInput = document.getElementById('weightDate');
-
             dateInput.addEventListener('click', function () {
                 dateInput.showPicker?.();
             });
@@ -279,15 +265,12 @@
         document.addEventListener('DOMContentLoaded', function () {
             const dateInput = document.getElementById('weightDate');
             const today = new Date();
-
             const yyyy = today.getFullYear();
             const mm = String(today.getMonth() + 1).padStart(2, '0');
             const dd = String(today.getDate()).padStart(2, '0');
-
             dateInput.max = `${yyyy}-${mm}-${dd}`;
         });
     </script>
-
     <script>
         const dateInput = document.getElementById("weightDate");
         const today = new Date().toISOString().split("T")[0];
@@ -299,22 +282,19 @@
         {
             @Html.Raw("\"" + log.LogDate.ToString("MM/dd/yyyy") + "\",")
         }
-        ];
-
+                ];
         const weightData = [
         @foreach (var log in Model.WeightLogs)
         {
             @Html.Raw(log.Weight + ",")
         }
-        ];
-
+                ];
         const ctx = document.getElementById('weightChart').getContext('2d');
         const weightChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: weightLabels,
                 datasets: [{
-                    // label: 'Weight Over Time', // <== REMOVE THIS
                     data: weightData,
                     borderColor: '#2051f1',
                     backgroundColor: 'rgba(32, 81, 241, 0.1)',
@@ -328,15 +308,9 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: false // <== HIDE THE LEGEND COMPLETELY
-                    }
+                    legend: { display: false }
                 },
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
-                }
+                scales: { y: { beginAtZero: false } }
             }
         });
     </script>
@@ -355,7 +329,6 @@
             });
         });
     </script>
-
 
 </body>
 </html>
