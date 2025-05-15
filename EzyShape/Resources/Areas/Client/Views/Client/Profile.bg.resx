@@ -132,7 +132,7 @@
   <data name="WeightSectionTitle" xml:space="preserve">
     <value>Тегло</value>
   </data>
-  <data name="NoWeightText" xml:space="preserve">
+  <data name="NoWeightsText" xml:space="preserve">
     <value>Няма налични метрики все още!</value>
   </data>
   <data name="GallerySectionTitle" xml:space="preserve">
