@@ -1,11 +1,20 @@
 ﻿@model ClientProfileViewModel
 @inject IViewLocalizer Localizer
+@using System.Text.Json
 
 @{
     ViewData["Title"] = "EzyShape | Personal Trainer Software for Professionals";
     Layout = null;
-}
 
+    var orderedWeightLogs = Model.WeightLogs.OrderBy(x => x.LogDate).ToList();
+
+    var weightLabelsJson = JsonSerializer.Serialize(
+        orderedWeightLogs.Select(x => x.LogDate.ToString("MM/dd/yyyy"))
+    );
+    var weightDataJson = JsonSerializer.Serialize(
+        orderedWeightLogs.Select(x => x.Weight)
+    );
+}
 @using Microsoft.AspNetCore.Identity
 @using EzyShape.Infrastructure.Data.Models
 
@@ -104,7 +113,6 @@
                     <i class="fa-solid fa-weight-scale weight-icon"></i>
                     <p>@Localizer["WeightSectionTitle"]</p>
                 </div>
-
                 <div class="section-buttons-div">
                     <button class="add-item-button" id="add-weight-button">+</button>
                 </div>
@@ -247,7 +255,6 @@
     <!-- Scripts (unchanged) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/weightModal.js"></script>
-    <script src="~/js/addWeight.js"></script>
     <script src="~/js/weightChart.js"></script>
     <script src="~/js/photoButtonTrigger.js"></script>
     <script src="~/js/addPhoto.js"></script>
@@ -277,40 +284,39 @@
         dateInput.value = today;
     </script>
     <script>
-        const weightLabels = [
-        @foreach (var log in Model.WeightLogs)
-        {
-            @Html.Raw("\"" + log.LogDate.ToString("MM/dd/yyyy") + "\",")
-        }
-                ];
-        const weightData = [
-        @foreach (var log in Model.WeightLogs)
-        {
-            @Html.Raw(log.Weight + ",")
-        }
-                ];
-        const ctx = document.getElementById('weightChart').getContext('2d');
-        const weightChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: weightLabels,
-                datasets: [{
-                    data: weightData,
-                    borderColor: '#2051f1',
-                    backgroundColor: 'rgba(32, 81, 241, 0.1)',
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 5,
-                    pointBackgroundColor: '#2051f1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: { y: { beginAtZero: false } }
+        document.addEventListener('DOMContentLoaded', function () {
+            const weightLabels = @Html.Raw(weightLabelsJson);
+            const weightData = @Html.Raw(weightDataJson);
+
+            const ctx = document.getElementById('weightChart')?.getContext('2d');
+            if (ctx) {
+                window.weightChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: weightLabels,
+                        datasets: [{
+                            data: weightData,
+                            borderColor: '#2051f1',
+                            backgroundColor: 'rgba(32, 81, 241, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#2051f1'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
             }
         });
     </script>
@@ -329,6 +335,7 @@
             });
         });
     </script>
+    <script src="~/js/addWeight.js"></script>
 
 </body>
 </html>
