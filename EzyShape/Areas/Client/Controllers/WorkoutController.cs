@@ -106,7 +106,8 @@ namespace EzyShape.Areas.Client.Controllers
             {
                 await workoutService.LogWorkoutAsync(model, clientId);
 
-                return RedirectToAction(nameof(Programs));
+                return Json(new { redirectUrl = Url.Action(nameof(Programs)) });
+
             }
             catch (Exception ex)
             {

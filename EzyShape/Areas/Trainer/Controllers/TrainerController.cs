@@ -24,6 +24,8 @@ namespace EzyShape.Areas.Trainer.Controllers
             dashboardService= _dashboardService;
         }
 
+
+
         [Route("/dashboard")]
         [HttpGet]
         public async Task<IActionResult> Index()

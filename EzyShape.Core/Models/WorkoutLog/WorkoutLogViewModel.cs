@@ -6,6 +6,11 @@ namespace EzyShape.Core.Models.WorkoutLog
 
     public class WorkoutLogViewModel
     {
+
+        public string Name { get; set; }
+
+        public string StartDate { get; set; }
+
         [JsonPropertyName("duration")]
         public string Duration { get; set; }
 

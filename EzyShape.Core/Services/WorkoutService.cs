@@ -46,6 +46,7 @@ namespace EzyShape.Core.Services
         {
             var workoutLog = new WorkoutLog
             {
+                Name= model.Name,
                 UserId = clientId,
                 StartTime = DateTime.UtcNow,
                 Duration = TimeSpan.Parse(model.Duration),

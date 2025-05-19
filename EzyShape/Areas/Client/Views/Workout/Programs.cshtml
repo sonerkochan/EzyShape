@@ -65,7 +65,14 @@
 
 
         <div class="history-div">
-            History
+            @foreach (var workout in Model.WorkoutLogs.OrderByDescending(w => w.StartDate))
+            {
+                <div class="history-entry">
+                    <p class="history-title">@workout.Name</p>
+                    <p class="history-date">@workout.StartDate</p>
+                    <p class="history-duration">Duration: @workout.Duration</p>
+                </div>
+            }
         </div>
 
     </main>

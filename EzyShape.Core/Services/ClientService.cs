@@ -4,6 +4,7 @@ using EzyShape.Core.Models.LargeViewModels;
 using EzyShape.Core.Models.Photos;
 using EzyShape.Core.Models.Splits;
 using EzyShape.Core.Models.WeightLog;
+using EzyShape.Core.Models.WorkoutLog;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -111,6 +112,27 @@ namespace EzyShape.Core.Services
                     Description = s.Split.Description,
                 })
                 .ToListAsync();
+
+            model.WorkoutLogs = await repo.AllReadonly<WorkoutLog>()
+                .Where(w => w.UserId == clientId)
+                .OrderByDescending(w => w.StartTime)
+                .Select(w => new WorkoutLogViewModel
+                {
+                    Name = w.Name,
+                    Duration = w.Duration.ToString(@"hh\:mm\:ss"),
+                    StartDate =w.StartTime.ToString("dd MMM yyyy, HH:mm"),
+                    Exercises = w.ExerciseLogs.Select(e => new ExerciseLogViewModel
+                    {
+                        ExerciseId = e.ExerciseId,
+                        Sets = e.SetLogs.Select(s => new SetLogViewModel
+                        {
+                            SetNumber = s.SetNumber,
+                            Reps = s.Reps,
+                            Weight = s.Weight
+                        }).ToList()
+                    }).ToList()
+                }).ToListAsync();
+
 
             return model;
         }

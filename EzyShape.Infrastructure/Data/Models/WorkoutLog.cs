@@ -15,6 +15,9 @@ namespace EzyShape.Infrastructure.Data.Models
         [Description("Unique identifier for the workout log")]
         public int Id { get; set; }
 
+        [Description("Name of the Workout")]
+        public string Name { get; set; }
+
         [Required]
         [StringLength(450)]
         [Description("ID of the user performing the workout (FK to AspNetUsers)")]

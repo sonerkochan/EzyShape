@@ -39,6 +39,7 @@ namespace EzyShape.Areas.Client.Controllers
             utilityService = _utilityService;
         }
 
+
         [Route("/home")]
         [HttpGet]
         public async Task<IActionResult> Index()
