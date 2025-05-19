@@ -120,7 +120,7 @@ namespace EzyShape.Core.Services
                 {
                     Name = w.Name,
                     Duration = w.Duration.ToString(@"hh\:mm\:ss"),
-                    StartDate =w.StartTime.ToString("dd MMM yyyy, HH:mm"),
+                    StartDate =w.StartTime.ToString("dd MMM yyyy"),
                     Exercises = w.ExerciseLogs.Select(e => new ExerciseLogViewModel
                     {
                         ExerciseId = e.ExerciseId,
