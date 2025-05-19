@@ -133,7 +133,7 @@ namespace EzyShape.Areas.Trainer.Controllers
         public async Task<IActionResult> Training(string clientId)
         {
             var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var model = await trainerService.GetClientAndSplitsAsync(trainerId, clientId);
+            var model = await trainerService.GetClientTrainingInfoAsync(trainerId, clientId);
             return View(model);
         }
 

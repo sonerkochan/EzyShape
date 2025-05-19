@@ -6,6 +6,7 @@ using EzyShape.Core.Models.Photos;
 using EzyShape.Core.Models.Splits;
 using EzyShape.Core.Models.Tasks;
 using EzyShape.Core.Models.WeightLog;
+using EzyShape.Core.Models.WorkoutLog;
 using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -95,9 +96,9 @@ namespace EzyShape.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<ClientsSplitsViewModel> GetClientAndSplitsAsync(string TrainerId, string ClientId)
+        public async Task<ClientTrainingViewModel> GetClientTrainingInfoAsync(string TrainerId, string ClientId)
         {
-            var model = new ClientsSplitsViewModel();
+            var model = new ClientTrainingViewModel();
 
             model.Client = await repo.AllReadonly<User>()
             .Where(u => u.TrainerId == TrainerId && u.Id == ClientId)
@@ -132,6 +133,27 @@ namespace EzyShape.Core.Services
                     Description = s.Split.Description,
                 })
                 .ToListAsync();
+
+
+            model.WorkoutLogs = await repo.AllReadonly<WorkoutLog>()
+                .Where(w => w.UserId == ClientId)
+                .OrderByDescending(w => w.StartTime)
+                .Select(w => new WorkoutLogViewModel
+                {
+                    Name = w.Name,
+                    Duration = w.Duration.ToString(@"hh\:mm\:ss"),
+                    StartDate = w.StartTime.ToString("dd MMM yyyy"),
+                    Exercises = w.ExerciseLogs.Select(e => new ExerciseLogViewModel
+                    {
+                        ExerciseId = e.ExerciseId,
+                        Sets = e.SetLogs.Select(s => new SetLogViewModel
+                        {
+                            SetNumber = s.SetNumber,
+                            Reps = s.Reps,
+                            Weight = s.Weight
+                        }).ToList()
+                    }).ToList()
+                }).ToListAsync();
 
             return model;
         }

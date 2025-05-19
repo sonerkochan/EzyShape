@@ -1,4 +1,4 @@
-﻿@model ClientsSplitsViewModel
+﻿@model ClientTrainingViewModel
 @Html.AntiForgeryToken()
 
 
@@ -109,8 +109,16 @@
     </div>
 
     <div class="history-div">
-
-        <p>History div paragraph</p>
+        @foreach (var workout in Model.WorkoutLogs.OrderByDescending(w => w.StartDate))
+        {
+            <div class="log-div box-shadow">
+                <h4 class="log-name">@workout.Name</h4>
+                <div class="log-time-div">
+                    <p class="log-duration"><i class="fa-solid fa-stopwatch"></i>: @workout.Duration</p>
+                    <p class="log-date">@workout.StartDate</p>
+                </div>
+            </div>
+        }
 
     </div>
 
