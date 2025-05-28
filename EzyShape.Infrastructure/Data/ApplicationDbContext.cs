@@ -21,7 +21,6 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<WorkoutLog> WorkoutLogs { get; set; }
         public DbSet<ExerciseLog> ExerciseLogs { get; set; }
         public DbSet<SetLog> SetLogs { get; set; }
-
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Split> Splits { get; set; }
         public DbSet<Muscle> Muscles { get; set; }
@@ -31,6 +30,7 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<TrainingTask> TrainingTasks { get; set; }
         public DbSet<WeightLog> WeightLogs { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

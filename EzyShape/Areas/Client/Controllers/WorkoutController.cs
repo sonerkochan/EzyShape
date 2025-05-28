@@ -89,18 +89,7 @@ namespace EzyShape.Areas.Client.Controllers
                 return BadRequest("Invalid model.");
             }
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // Debugging
-            Console.WriteLine("Received Workout:");
-            Console.WriteLine($"Duration: {model.Duration}");
-            foreach (var exercise in model.Exercises)
-            {
-                Console.WriteLine($"Exercise ID: {exercise.ExerciseId}");
-                foreach (var set in exercise.Sets)
-                {
-                    Console.WriteLine($"Set {set.SetNumber}: {set.Reps} reps, {set.Weight} weight");
-                }
-            }
+            
 
             try
             {

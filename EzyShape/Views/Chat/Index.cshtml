@@ -1,0 +1,317 @@
+﻿@{
+    ViewData["Title"] = "Trainer Messages";
+    var clients = ViewBag.Partners as IEnumerable<dynamic>;
+    var selectedClientId = ViewBag.SelectedClientId as string;
+    Layout = "~/Views/Shared/_TrainerLayout.cshtml";
+}
+
+<body>
+
+
+<style>
+    .clients-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+        .clients-list li {
+            padding: 12px 16px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            font-weight: 500;
+            color: #444;
+            transition: background-color 0.3s ease;
+        }
+
+            .clients-list li:hover {
+                background-color: #f0f0f0;
+            }
+
+            .clients-list li.active {
+                background-color: #007bff;
+                color: white;
+                font-weight: 700;
+            }
+
+    #chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 16px;
+        background-color: #fafafa;
+    }
+
+    #chat-box {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-right: 8px;
+        margin-bottom: 12px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    #chat-form {
+        display: flex;
+    }
+
+    #messageText {
+        flex-grow: 1;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+        font-size: 1rem;
+    }
+
+        #messageText:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 3px #007bff;
+        }
+
+    #sendButton {
+        border-radius: 0 4px 4px 0;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+        #sendButton:hover {
+            background-color: #0056b3;
+        }
+
+        .page-container {
+            display: flex;
+            height: calc(100vh - 100px);
+            width: 100%;
+            /* no margin-left: auto here */
+        }
+
+        .clients-container {
+            width: 20%;
+            border-left: 1px solid #ddd;
+            padding-left: 15px;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-container {
+            flex-grow: 1; /* Fill all available space */
+            flex-shrink: 1; /* Allow shrinking if needed */
+            flex-basis: 0; /* Start from zero base to distribute space */
+            padding-right: 0;
+            height: 100%;
+            box-sizing: border-box;
+            max-width: 1350px; /* Remove any max-width restriction */
+            width: auto; /* Let flex control width */
+        }
+
+    .clients-header {
+        padding: 10px 16px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+        .message-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 8px;
+        }
+
+            .message-container.right {
+                justify-content: flex-end;
+            }
+
+        .message-bubble {
+            padding: 8px 12px;
+            border-radius: 18px;
+            width: fit-content;
+            word-wrap: break-word;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+            .message-bubble.sent {
+                background-color: #007bff;
+                color: white;
+                border-bottom-right-radius: 4px;
+            }
+
+            .message-bubble.received {
+                background-color: #e4e6eb;
+                color: black;
+                border-bottom-left-radius: 4px;
+            }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 2px;
+            padding: 0 10px;
+        }
+
+        .message-time-inside {
+            font-size: 0.75rem;
+            color: #ccc;
+            text-align: right;
+            margin-top: 4px;
+        }
+</style>
+
+<div class="container-fluid py-4 page-container">
+    <!-- Chat on the LEFT -->
+    <div class="chat-container">
+        @if (!string.IsNullOrEmpty(selectedClientId))
+        {
+            <div id="chat-container">
+                <div id="chat-box">
+                    <!-- Messages will load here -->
+                </div>
+                <form id="chat-form" autocomplete="off">
+                    <input type="hidden" id="receiverId" value="@selectedClientId" />
+                    <input type="text" id="messageText" placeholder="Type a message..." />
+                    <button type="submit" id="sendButton">Send</button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">Select a client to start chatting.</p>
+        }
+    </div>
+        @Html.AntiForgeryToken()
+    <!-- Clients list on the RIGHT -->
+    <div class="clients-container">
+        <div class="clients-header">
+            <h4>Clients</h4>
+        </div>
+        <ul class="clients-list">
+            @foreach (var client in clients)
+            {
+                <li class="@(selectedClientId == client.Id ? "active" : "")">
+                    <a asp-action="Index" asp-route-receiverId="@client.Id"
+                       style="text-decoration:none; color: inherit; display: block;">
+                        @client.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+</div>
+@using System.Security.Claims
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatForm = document.getElementById('chat-form');
+            const messageInput = document.getElementById('messageText');
+            const chatBox = document.getElementById('chat-box');
+            const receiverIdInput = document.getElementById('receiverId');
+
+            if (!chatForm) return; // no chat on page
+
+            // Helper: Format message HTML (you can customize styling)
+            function formatMessage(message) {
+                const currentUserId = '@User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier)';
+                const isCurrentUser = message.senderId === currentUserId;
+
+                return `
+                <div class="message-container ${isCurrentUser ? 'right' : ''}">
+                    <div class="message-bubble ${isCurrentUser ? 'sent' : 'received'}">
+                        <div class="message-text">${message.text}</div>
+                        <div class="message-time-inside" style="color: inherit;">
+                            ${message.time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </div>
+                    </div>
+                </div>
+            `;
+            }
+
+
+
+            // Load chat messages from server and render
+            async function loadMessages() {
+                const receiverId = receiverIdInput.value;
+                if (!receiverId) return;
+
+                try {
+                    const response = await fetch(`/Chat/GetMessages?receiverId=${encodeURIComponent(receiverId)}`);
+                    if (!response.ok) throw new Error('Failed to load messages');
+                    const messages = await response.json();
+
+                    // Clear and rebuild all messages to avoid duplicates
+                    chatBox.innerHTML = '';
+
+                    messages.forEach(message => {
+                        chatBox.innerHTML += formatMessage({
+                            senderId: message.senderId,
+                            text: message.text,
+                            time: message.time
+                        });
+                    });
+
+                    // Scroll to bottom
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                } catch (err) {
+                    console.error('Error loading messages:', err);
+                }
+            }
+
+            // Send message to server
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const receiverId = receiverIdInput.value;
+                const messageText = messageInput.value.trim();
+                if (!messageText || !receiverId) return;
+
+                try {
+                    const response = await fetch('/Chat/SendMessage', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': getAntiForgeryToken()
+                        },
+                        body: JSON.stringify({ receiverId, messageText })
+                    });
+
+                    if (!response.ok) throw new Error('Failed to send message');
+
+                    // Clear input only after successful send
+                    messageInput.value = '';
+                    messageInput.focus();
+
+                    // Instead of manually adding, trigger a refresh
+                    loadMessages();
+                } catch (err) {
+                    console.error('Error sending message:', err);
+                    alert('Error sending message. Please try again.');
+                }
+            });
+
+            // Get the antiforgery token from the page
+            function getAntiForgeryToken() {
+                const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+                return tokenElement ? tokenElement.value : '';
+            }
+
+            // Periodically refresh messages every 5 seconds
+            setInterval(loadMessages, 115000);
+
+            // Initial load
+            loadMessages();
+        });
+    </script>
+
+</body>

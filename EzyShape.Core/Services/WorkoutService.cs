@@ -50,7 +50,6 @@ namespace EzyShape.Core.Services
                 UserId = clientId,
                 StartTime = DateTime.UtcNow,
                 Duration = TimeSpan.Parse(model.Duration),
-                //Notes = model.Notes // TBA?
             };
 
             await repo.AddAsync(workoutLog);
