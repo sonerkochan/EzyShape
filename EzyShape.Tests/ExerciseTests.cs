@@ -22,6 +22,7 @@ namespace EzyShape.Tests
 
             context = new ApplicationDbContext(contextOptions);
 
+
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
         }
@@ -51,6 +52,59 @@ namespace EzyShape.Tests
 
             Assert.That(exercises.Count(), Is.EqualTo(1));
             Assert.That(lastExercise.Name, Is.EqualTo("Bench Press"));
+        }
+
+
+        [Test]
+        public async Task Test_MuscleConfigurationLoadedSuccessfully()
+        {
+            var repo = new Repository(context);
+
+            IExerciseService exerciseService = new ExerciseService(repo);
+
+            var models = await exerciseService.GetMusclesAsync();
+
+
+            Assert.That(models.Count(), Is.EqualTo(18));
+        }
+
+        [Test]
+        public async Task Test_CategoriesConfigurationLoadedSuccessfully()
+        {
+            var repo = new Repository(context);
+
+            IExerciseService exerciseService = new ExerciseService(repo);
+
+            var models = await exerciseService.GetCategoriesAsync();
+
+
+            Assert.That(models.Count(), Is.EqualTo(7));
+        }
+
+        [Test]
+        public async Task Test_LevelsConfigurationLoadedSuccessfully()
+        {
+            var repo = new Repository(context);
+
+            IExerciseService exerciseService = new ExerciseService(repo);
+
+            var models = await exerciseService.GetLevelsAsync();
+
+
+            Assert.That(models.Count(), Is.EqualTo(4));
+        }
+
+        [Test]
+        public async Task Test_EquipmentsConfigurationLoadedSuccessfully()
+        {
+            var repo = new Repository(context);
+
+            IExerciseService exerciseService = new ExerciseService(repo);
+
+            var models = await exerciseService.GetEquipmentsAsync();
+
+
+            Assert.That(models.Count(), Is.EqualTo(19));
         }
 
 
