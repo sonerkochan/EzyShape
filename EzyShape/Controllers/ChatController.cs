@@ -27,7 +27,8 @@ namespace EzyShape.Controllers
             roleManager = _roleManager;
         }
 
-        
+
+        [Route("/messages")]
         [HttpGet]
         public async Task<IActionResult> Index(string receiverId = null)
         {
@@ -47,13 +48,24 @@ namespace EzyShape.Controllers
 
                 ViewBag.Partners = clients;
                 ViewBag.SelectedClientId = receiverId;
+
+                // Return TrainerChat.cshtml explicitly
+                return View("TrainerChat");
+            }
+            else if (User.IsInRole("Client"))
+            {
+                // You can do client-specific data loading here if needed
+                var currentUser = await repo.GetByIdAsync<User>(currentUserId);
+                receiverId = currentUser.TrainerId;
+                ViewBag.SelectedTrainerId = receiverId; // example
+
+                // Return ClientChat.cshtml explicitly
+                return View("ClientChat");
             }
             else
             {
-                return Forbid(); // Only trainer sees this view
+                return Forbid(); // Only Trainer or Client can access
             }
-
-            return View();
         }
 
 
