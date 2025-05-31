@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Messages";
     var SelectedTrainerId = ViewBag.SelectedTrainerId as string;
+    var TrainerName = ViewBag.TrainerName as string;
+
+    
     Layout = null;
 }
 
@@ -153,7 +156,7 @@
         <form method="get" action="@Url.Action("Index", "Client", new { area = "Client" })" style="display:inline;">
             <button type="submit" class="back-button" aria-label="Back to Client Area">&larr; Back</button>
         </form>
-        Chat with your Trainer
+            @TrainerName
     </div>
 
         <div class="messages" id="messages">

@@ -57,7 +57,11 @@ namespace EzyShape.Controllers
                 // You can do client-specific data loading here if needed
                 var currentUser = await repo.GetByIdAsync<User>(currentUserId);
                 receiverId = currentUser.TrainerId;
+                var myTrainer = await repo.GetByIdAsync<User>(receiverId);
+                string TrainerName= $"{myTrainer.FirstName} {myTrainer.LastName}";
+
                 ViewBag.SelectedTrainerId = receiverId; // example
+                ViewBag.TrainerName = TrainerName; // example
 
                 // Return ClientChat.cshtml explicitly
                 return View("ClientChat");
