@@ -2,6 +2,7 @@
 using EzyShape.Core.Models.Exercises;
 using EzyShape.Core.Models.LargeViewModels;
 using EzyShape.Core.Models.Splits;
+using EzyShape.Core.Models.Trainer;
 using EzyShape.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,9 @@ namespace EzyShape.Core.Contracts
 
         Task<ClientTrainingViewModel> GetClientTrainingInfoAsync(string TrainerId, string ClientId);
         Task<ClientOverviewViewModel> GetClientOverviewInfoAsync(string clientId);
-        
+
+        Task<TrainerViewModel> GetTrainerInfoAsync(string trainerId);
+
+
     }
 }

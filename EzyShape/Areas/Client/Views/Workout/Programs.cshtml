@@ -1,5 +1,7 @@
 ﻿@model ClientWorkoutViewModel
 @Html.AntiForgeryToken()
+@inject IViewLocalizer Localizer
+
 
 
 @{
@@ -15,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EzyShape | Personal Trainer Software for Professionals</title>
+    <title>@Localizer["Title"]</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="~/css/normalize.css">
@@ -27,17 +29,17 @@
 
     <!-- Header -->
     <header class="app-header">
-        <p>Training</p>
+        <p>@Localizer["PageHeading"]</p>
         <div class="sub-nav-div">
 
             <button class="suv-nav-button sub-active">
                 <i class="fa-solid fa-dumbbell"></i>
-                Programs
+                @Localizer["Programs"]
             </button>
 
             <button class="suv-nav-button">
                 <i class="fa fa-history" aria-hidden="true"></i>
-                History
+                @Localizer["History"]
             </button>
 
         </div>

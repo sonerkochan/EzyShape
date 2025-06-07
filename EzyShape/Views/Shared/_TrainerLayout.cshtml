@@ -54,7 +54,7 @@
                             <p class="dropdown-name">Your Name</p>
                             <p class="dropdown-email">Your email</p>
                         </div>
-                        <a>Settings</a>
+                        <a id="settingsButton" class="nav-link text-dark" asp-area="Trainer" asp-controller="Trainer" asp-action="Settings" asp-route-id="@UserManager.GetUserId(User)">Settings</a>
                         <a id="logoutForm" class="nav-link text-dark" asp-controller="User" asp-action="Logout" asp-route-id="@UserManager.GetUserId(User)">Logout</a>
                     </div>
                 </div>

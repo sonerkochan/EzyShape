@@ -1,7 +1,8 @@
 ﻿@model ClientViewModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "EzyShape | Personal Trainer Software for Professionals";
+    ViewData["Title"] = @Localizer["Title"];
     Layout = null;
 }
 
@@ -17,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EzyShape | Personal Trainer Software for Professionals</title>
+    <title>@Localizer["Title"]</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="~/css/normalize.css">
@@ -44,8 +45,8 @@
 
         <!-- Greeting -->
         <section class="greeting-section">
-            <p class="greeting-text">Hello @Model.FirstName @Model.LastName,</p>
-            <p class="greeting-subtext"><em>Your potential is endless</em></p>
+            <p class="greeting-text">@Localizer["Hello"] @Model.FirstName @Model.LastName,</p>
+            <p class="greeting-subtext"><em>@Localizer["YourPotentialIsEndless"]</em></p>
         </section>
 
     </header>

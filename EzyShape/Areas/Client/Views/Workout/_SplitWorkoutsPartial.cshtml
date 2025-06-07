@@ -1,4 +1,5 @@
 ﻿@model Split
+@inject IViewLocalizer Localizer
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +23,7 @@
                 </div>
                 <div class="concrete-workout-content-div">
                     <div class="exercises-count-div">
-                        <p class="exercises-count-text">@workout.Workout.ExerciseIds.Count() Exercises</p>
+                        <p class="exercises-count-text">@workout.Workout.ExerciseIds.Count() @Localizer["ExercisesLabel"]</p>
                     </div>
                     <div class="exercises-list-div">
                         @foreach (var exercise in workout.Workout.ExerciseIds)
@@ -45,7 +46,7 @@
                        asp-route-id="@workout.Workout.Id"
                        class="start-workout-button"
                        style="text-decoration:none;">
-                        Start Workout
+                        @Localizer["StartWorkout"]
                     </a>
 
                 </div>

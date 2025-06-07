@@ -38,19 +38,17 @@ namespace EzyShape.Areas.Trainer.Controllers
             return View(model);
         }
 
-        /*
-         
-        [Route("/clients")]
+
+        [Route("/settings")]
         [HttpGet]
-        public async Task<IActionResult> AllClients()
+        public async Task<IActionResult> Settings()
         {
             var trainerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var model = await trainerService.GetTrainersAllClients(trainerId);
+
+            var model = await trainerService.GetTrainerInfoAsync(trainerId);
 
             return View(model);
         }
-
-         */
     }
 }

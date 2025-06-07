@@ -5,6 +5,7 @@ using EzyShape.Core.Models.LargeViewModels;
 using EzyShape.Core.Models.Photos;
 using EzyShape.Core.Models.Splits;
 using EzyShape.Core.Models.Tasks;
+using EzyShape.Core.Models.Trainer;
 using EzyShape.Core.Models.WeightLog;
 using EzyShape.Core.Models.WorkoutLog;
 using EzyShape.Infrastructure.Data.Common;
@@ -235,6 +236,27 @@ namespace EzyShape.Core.Services
             }
 
 
+
+            return model;
+        }
+
+
+        public async Task<TrainerViewModel> GetTrainerInfoAsync(string trainerId)
+        {
+            var model = new TrainerViewModel();
+
+            model = await repo.AllReadonly<User>()
+                .Where(u => u.Id == trainerId)
+                .Select(u => new TrainerViewModel()
+                {
+                    Id = u.Id,
+                    Username = u.UserName,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    PreferredLanguage = u.PreferredLanguage
+                })
+                .FirstOrDefaultAsync();
 
             return model;
         }

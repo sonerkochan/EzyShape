@@ -132,9 +132,6 @@
   <data name="WeightSectionTitle" xml:space="preserve">
     <value>Weight</value>
   </data>
-  <data name="NoWeightText" xml:space="preserve">
-    <value>No metrics to show yet!</value>
-  </data>
   <data name="GallerySectionTitle" xml:space="preserve">
     <value>Gallery</value>
   </data>
@@ -173,5 +170,11 @@
   </data>
   <data name="Current" xml:space="preserve">
     <value>Current</value>
+  </data>
+  <data name="NoWeightText" xml:space="preserve">
+    <value>No metrics to show yet!</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>EzyShape | Personal Trainer Software for Professionals</value>
   </data>
 </root>

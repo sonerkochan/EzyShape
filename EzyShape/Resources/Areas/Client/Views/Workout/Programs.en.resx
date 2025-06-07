@@ -117,67 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ProfileTitle" xml:space="preserve">
-    <value>-</value>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="WorkoutsCountLabel" xml:space="preserve">
-    <value>-</value>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
   </data>
-  <data name="CheckInsCountLabel" xml:space="preserve">
-    <value>-</value>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
   </data>
-  <data name="NoCheckInsText" xml:space="preserve">
-    <value>-</value>
+  <data name="PageHeading" xml:space="preserve">
+    <value>Training</value>
   </data>
-  <data name="WeightSectionTitle" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="NoWeightsText" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="GallerySectionTitle" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="NoPhotosText" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="WeightModalTitle" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="AddButton" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="LogoutButton" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="UserLabel" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="SaveButton" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="LanguageLabel" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="OKButton" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="English" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="Bulgarian" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="Current" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="NoWeightText" xml:space="preserve">
-    <value />
+  <data name="Programs" xml:space="preserve">
+    <value>Programs</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value />
+    <value>My Programs | Personal Trainer Software for Professionals</value>
   </data>
 </root>
