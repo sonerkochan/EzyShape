@@ -1,6 +1,9 @@
-﻿@model ClientOverviewViewModel
+﻿@{
+    @model ClientOverviewViewModel
 
-@{
+    @inject IViewLocalizer Localizer
+
+
     var weightChange = Model.Stats.WeightChange;
     var weightChangeClass = weightChange > 0
         ? "weight-up-div"
@@ -14,9 +17,8 @@
             : "<i class='fa-solid fa-minus'></i>";
 }
 
-
 @{
-    ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName} ● Overview ● EzyShape";
+    ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName} {Localizer["Title"].Value}";
 }
 
 <html>
@@ -41,70 +43,70 @@
         </div>
         <div class="buttons-top">
             <button class="button-chat">
-                <i class="fa-regular fa-message"></i> Chat
+                <i class="fa-regular fa-message"></i> @Localizer["Chat"]
             </button>
 
             <button class="button-access">
-                <i class="fa-solid fa-user-lock"></i> Share Access
+                <i class="fa-solid fa-user-lock"></i> @Localizer["ShareAccess"]
             </button>
         </div>
     </div>
 
     <div class="div-navigation">
         <button class="button-nav button-current-page">
-            Overview
+            @Localizer["Overview"]
         </button>
         <button class="button-nav">
-            Check Ins
+            @Localizer["CheckIns"]
         </button>
         <button class="button-nav"
                 onclick="window.location.href='@Url.Action("Training", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
-            Training
+            @Localizer["Training"]
         </button>
 
         <button class="button-nav">
-            Gallery
+            @Localizer["Gallery"]
         </button>
         <button class="button-nav">
-            Metrics
+            @Localizer["Metrics"]
         </button>
         <button class="button-nav">
-            Settings
+            @Localizer["Settings"]
         </button>
     </div>
 
     <div class="div-containers">
         <div class="box-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-info.png" alt="Client Info" width="24" height="24">
-                <h5 class="container-container-title-text">Client Info</h5>
+                <img src="~/img/container-images/container-info.png" alt="@Localizer["ClientInfo"]" width="24" height="24">
+                <h5 class="container-container-title-text">@Localizer["ClientInfo"]</h5>
             </div>
 
             <div class="info-content-div">
                 <div class="info-row">
-                    <p class="info-label">First name:</p>
+                    <p class="info-label">@Localizer["FirstName"]</p>
                     <p class="info-value">@Model.Client.FirstName</p>
                 </div>
                 <div class="info-row">
-                    <p class="info-label">Last name:</p>
+                    <p class="info-label">@Localizer["LastName"]</p>
                     <p class="info-value">@Model.Client.LastName</p>
                 </div>
                 <div class="info-row">
-                    <p class="info-label">Email:</p>
+                    <p class="info-label">@Localizer["Email"]</p>
                     <p class="info-value">@Model.Client.Email</p>
                 </div>
                 <div class="info-row">
-                    <p class="info-label">Last Check-In:</p>
+                    <p class="info-label">@Localizer["LastCheckIn"]</p>
                     <div class="last-checking-div">
-                        <p>TBA</p>
+                        <p>TBA</p>  <!-- You may localize this later if needed -->
                     </div>
                 </div>
                 <div class="info-row">
-                    <p class="info-label">Last Active:</p>
+                    <p class="info-label">@Localizer["LastActive"]</p>
                     <div class="last-active-div">
                         @{
                             var lastOnline = Model.Client.LastOnline;
-                            string lastOnlineText = "Never";
+                            string lastOnlineText = Localizer["Never"].Value;
 
                             if (lastOnline.HasValue)
                             {
@@ -112,78 +114,82 @@
 
                                 if (timeAgo.TotalMinutes < 60)
                                 {
-                                    lastOnlineText = $"{(int)timeAgo.TotalMinutes} minutes ago";
+                                    lastOnlineText = string.Format(Localizer["MinutesAgo"].Value, (int)timeAgo.TotalMinutes);
                                 }
                                 else if (timeAgo.TotalHours < 24)
                                 {
-                                    lastOnlineText = $"{(int)timeAgo.TotalHours} hours ago";
+                                    lastOnlineText = string.Format(Localizer["HoursAgo"].Value, (int)timeAgo.TotalHours);
                                 }
                                 else
                                 {
-                                    lastOnlineText = $"{(int)timeAgo.TotalDays} days ago";
+                                    lastOnlineText = string.Format(Localizer["DaysAgo"].Value, (int)timeAgo.TotalDays);
                                 }
                             }
                         }
                         <p>@lastOnlineText</p>
                     </div>
+
                 </div>
             </div>
         </div>
+
         <div class="box-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-notes.png" alt="Notes" width="24" height="24">
-                <h5 class="container-title-text">Notes</h5>
+                <img src="~/img/container-images/container-notes.png" alt="@Localizer["Notes"]" width="24" height="24">
+                <h5 class="container-title-text">@Localizer["Notes"]</h5>
             </div>
         </div>
+
         <div class="box-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-activity.png" alt="Activity History" width="24" height="24">
-                <h5 class="container-title-text">Activity History</h5>
+                <img src="~/img/container-images/container-activity.png" alt="@Localizer["ActivityHistory"]" width="24" height="24">
+                <h5 class="container-title-text">@Localizer["ActivityHistory"]</h5>
             </div>
         </div>
+
         <div class="box-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-data.png" alt="Client Data" width="24" height="24">
-                <h5 class="container-title-text">Weight Graph</h5>
+                <img src="~/img/container-images/container-data.png" alt="@Localizer["WeightGraph"]" width="24" height="24">
+                <h5 class="container-title-text">@Localizer["WeightGraph"]</h5>
             </div>
             <div style="height: 250px;">
                 <canvas id="weightChart"></canvas>
             </div>
         </div>
+
         <div class="box-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-data.png" alt="Client Data" width="24" height="24">
-                <h5 class="container-title-text">Client Data</h5>
+                <img src="~/img/container-images/container-data.png" alt="@Localizer["ClientData"]" width="24" height="24">
+                <h5 class="container-title-text">@Localizer["ClientData"]</h5>
             </div>
             <div class="client-data-body">
                 @if (Model.Stats == null || Model.Stats.StartWeight == 0 || Model.Stats.CurrentWeight == 0)
                 {
-                    <p><strong>Not enough data to show.</strong></p>
+                    <p><strong>@Localizer["NotEnoughData"]</strong></p>
                 }
                 else
                 {
-                    <p><strong>Start Weight:</strong> @Model.Stats.StartWeight kg</p>
-                    <p><strong>Current Weight:</strong> @Model.Stats.CurrentWeight kg</p>
+                    <p><strong>@Localizer["StartWeight"]</strong> @Model.Stats.StartWeight kg</p>
+                    <p><strong>@Localizer["CurrentWeight"]</strong> @Model.Stats.CurrentWeight kg</p>
 
                     <p>
-                        <strong>Change:</strong>
+                        <strong>@Localizer["Change"]</strong>
                         <span class="@weightChangeClass" style="padding: 4px 8px;">
                             @Html.Raw(icon) @weightChange.ToString("+#.##;-#.##;0") kg
                         </span>
                     </p>
 
-                    <p><strong>Tracked:</strong> @Model.Stats.MonthsTracked month(s)</p>
-                    <p><strong>Avg Change/Month:</strong> @Model.Stats.AverageMonthlyChange.ToString("+#.##;-#.##;0") kg</p>
-                    <p><strong>Trend:</strong> @Model.Stats.TrendDescription</p>
+                    <p><strong>@Localizer["Tracked"]</strong> @Model.Stats.MonthsTracked month(s)</p>
+                    <p><strong>@Localizer["AvgChangePerMonth"]</strong> @Model.Stats.AverageMonthlyChange.ToString("+#.##;-#.##;0") kg</p>
+                    <p><strong>@Localizer["Trend"]</strong> @Model.Stats.TrendDescription</p>
                 }
             </div>
         </div>
 
-
         <div class="box-container photos-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-photos.png" alt="Recent Photos" width="24" height="24">
-                <h5 class="container-title-text">Recent Photos</h5>
+                <img src="~/img/container-images/container-photos.png" alt="@Localizer["RecentPhotos"]" width="24" height="24">
+                <h5 class="container-title-text">@Localizer["RecentPhotos"]</h5>
             </div>
 
             @if (Model.Photos.Any())
@@ -191,21 +197,20 @@
                 <div class="gallery-content-div">
                     @foreach (var photo in Model.Photos)
                     {
-                        <img src="@Url.Content("~/images/" + photo.FileName)" alt="Uploaded Photo" class="gallery-photo" />
+                        <img src="@Url.Content("~/images/" + photo.FileName)" alt="@Localizer["RecentPhotos"]" class="gallery-photo" />
                     }
                 </div>
             }
             else
             {
-                <p class="no-photos-p">There are still no photos uploaded!</p>
+                <p class="no-photos-p">@Localizer["NoPhotos"]</p>
             }
         </div>
 
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script>
         const weightLabels = [
         @foreach (var log in Model.WeightLogs)
