@@ -1,4 +1,5 @@
 ﻿using EzyShape.Core.Contracts;
+using EzyShape.Core.Requests;
 using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -12,16 +13,19 @@ namespace EzyShape.Areas.Trainer.Controllers
         private readonly UserManager<User> userManager;
         private readonly ITrainerService trainerService;
         private readonly IDashboardService dashboardService;
+        private readonly IUtilityService utilityService;
 
         public TrainerController(
             UserManager<User> _userManager,
             ITrainerService _trainerService,
-            IDashboardService _dashboardService
+            IDashboardService _dashboardService,
+            IUtilityService _utilityService
             )
         {
             userManager = _userManager;
             trainerService = _trainerService;
             dashboardService= _dashboardService;
+            utilityService = _utilityService;
         }
 
 
@@ -49,6 +53,25 @@ namespace EzyShape.Areas.Trainer.Controllers
             var model = await trainerService.GetTrainerInfoAsync(trainerId);
 
             return View(model);
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeLanguage([FromBody] LanguageRequest languageRequest)
+        {
+            if (string.IsNullOrEmpty(languageRequest.LanguageCode))
+            {
+                return BadRequest("Language code is required.");
+            }
+
+            var languageCode = languageRequest.LanguageCode;
+            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await utilityService.ChangePreferredLanguageAsync(clientId, languageCode);
+
+
+            return Ok(new { success = true });
         }
     }
 }

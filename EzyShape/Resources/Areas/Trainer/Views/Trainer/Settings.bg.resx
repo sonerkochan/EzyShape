@@ -117,68 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ProfileTitle" xml:space="preserve">
-    <value>Профил</value>
-  </data>
-  <data name="WorkoutsCountLabel" xml:space="preserve">
-    <value># Тренировки</value>
-  </data>
-  <data name="CheckInsCountLabel" xml:space="preserve">
-    <value># Отчитания</value>
-  </data>
-  <data name="NoCheckInsText" xml:space="preserve">
-    <value>Вашият треньор все още не ви е назначил формуляри за отчитане. Те ще се появят тук, когато бъдат назначени.</value>
-  </data>
-  <data name="WeightSectionTitle" xml:space="preserve">
-    <value>Тегло</value>
-  </data>
-  <data name="NoWeightsText" xml:space="preserve">
-    <value>Няма налични метрики все още!</value>
-  </data>
-  <data name="GallerySectionTitle" xml:space="preserve">
-    <value>Галерия</value>
-  </data>
-  <data name="NoPhotosText" xml:space="preserve">
-    <value>Все още няма качени снимки!</value>
-  </data>
-  <data name="WeightModalTitle" xml:space="preserve">
-    <value>Тегло</value>
-  </data>
-  <data name="AddButton" xml:space="preserve">
-    <value>Добави</value>
-  </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
-  <data name="LogoutButton" xml:space="preserve">
-    <value>Изход</value>
-  </data>
-  <data name="UserLabel" xml:space="preserve">
-    <value>Потребител</value>
-  </data>
-  <data name="SaveButton" xml:space="preserve">
-    <value>Запази</value>
+  <data name="Current" xml:space="preserve">
+    <value>Текущ</value>
   </data>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Език</value>
   </data>
-  <data name="OKButton" xml:space="preserve">
-    <value>ОК</value>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Запази</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Английски</value>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Настройки</value>
   </data>
-  <data name="Bulgarian" xml:space="preserve">
-    <value>Български</value>
-  </data>
-  <data name="Current" xml:space="preserve">
-    <value>Текущ</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="NoWeightText" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>EzyShape | Софтуер за лични треньори</value>
+  <data name="UserLabel" xml:space="preserve">
+    <value>Потребител</value>
   </data>
 </root>

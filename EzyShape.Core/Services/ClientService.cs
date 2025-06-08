@@ -148,25 +148,5 @@ namespace EzyShape.Core.Services
             await repo.AddAsync(entity);
             await repo.SaveChangesAsync();
         }
-
-        public async Task ChangePreferredLanguageAsync(string clientId, string languageCode)
-        {
-
-            // Fetch the client
-            var client = await repo.All<User>()
-                .Where(u => u.Id == clientId)
-                .FirstOrDefaultAsync();
-
-            if (client == null)
-            {
-                throw new Exception("Client not found");
-            }
-
-            // Change the preferred language
-            client.PreferredLanguage = languageCode.ToLower(); // Ensure the language is in lowercase
-
-            // Update the client in the database
-            await repo.SaveChangesAsync();
-        }
     }
 }

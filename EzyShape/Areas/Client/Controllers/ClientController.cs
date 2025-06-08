@@ -77,7 +77,7 @@ namespace EzyShape.Areas.Client.Controllers
             var languageCode = languageRequest.LanguageCode;
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            await clientService.ChangePreferredLanguageAsync(clientId, languageCode);
+            await utilityService.ChangePreferredLanguageAsync(clientId, languageCode);
 
 
             return Ok(new { success = true });

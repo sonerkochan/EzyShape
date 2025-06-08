@@ -11,7 +11,6 @@ namespace EzyShape.Core.Contracts
         Task<ClientProfileViewModel> GetClientProfileInfoAsync(string clientId);
         Task<ClientWorkoutViewModel> GetClientWorkoutsInfoAsync(string clientId);
         Task AddPhotoAsync(string fileName, string clientId);
-        Task ChangePreferredLanguageAsync(string clientId, string languageCode);
 
         
     }

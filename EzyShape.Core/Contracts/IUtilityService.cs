@@ -9,5 +9,6 @@ namespace EzyShape.Core.Contracts
     public interface IUtilityService
     {
         Task<string> GenerateRandomLightHexColorAsync();
+        Task ChangePreferredLanguageAsync(string userId, string languageCode);
     }
 }
