@@ -1,0 +1,113 @@
+﻿/* Container styling */
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+h2 {
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-bottom: 2px solid #007bff;
+    margin-bottom: 2rem;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Form group */
+.mb-3 {
+    display: flex;
+    flex-direction: column;
+}
+
+    /* Labels */
+    .mb-3 label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #444;
+        font-size: 1.1rem;
+    }
+
+    /* Inputs and textarea */
+    .mb-3 input.form-control,
+    .mb-3 textarea.form-control {
+        padding: 0.65rem 1rem;
+        font-size: 1rem;
+        border: 1.8px solid #ccc;
+        border-radius: 8px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        resize: vertical;
+        font-family: inherit;
+    }
+
+        .mb-3 input.form-control:focus,
+        .mb-3 textarea.form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+        }
+
+/* Validation error text */
+.text-danger {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #dc3545;
+}
+
+/* Submit button */
+.mb-3 input[type="submit"] {
+    align-self: center;
+    padding: 0.6rem 2.5rem;
+    font-size: 1.15rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+}
+
+    .mb-3 input[type="submit"]:hover {
+        background-color: #0056b3;
+        box-shadow: 0 6px 18px rgba(0,86,179,0.5);
+    }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .mb-3 input[type="submit"] {
+        width: 100%;
+        padding: 0.75rem 0;
+    }
+}

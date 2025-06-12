@@ -1,0 +1,119 @@
+﻿/* Container styling */
+.container {
+    max-width: 700px;
+    margin: 2.5rem auto;
+    padding: 2rem 2.5rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading style */
+h2 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+/* Stylish underline */
+hr {
+    width: 90px;
+    margin: 0 auto 2.5rem;
+    border: none;
+    border-bottom: 3px solid #007bff;
+    border-radius: 2px;
+}
+
+/* Form wrapper to center on larger screens */
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+/* Form card */
+form {
+    width: 100%;
+}
+
+/* Form group layout */
+.mb-3 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.75rem;
+}
+
+    /* Labels */
+    .mb-3 label {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #444;
+        margin-bottom: 0.6rem;
+    }
+
+    /* Inputs and textarea styling */
+    .mb-3 input.form-control,
+    .mb-3 textarea.form-control {
+        font-size: 1rem;
+        padding: 0.7rem 1.1rem;
+        border-radius: 10px;
+        border: 1.8px solid #ccc;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        font-family: inherit;
+        resize: vertical;
+    }
+
+        .mb-3 input.form-control:focus,
+        .mb-3 textarea.form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.45);
+        }
+
+/* Validation message styling */
+.text-danger {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
+/* Submit button */
+.mb-3 input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    padding: 0.7rem 3.5rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .mb-3 input[type="submit"]:hover {
+        background-color: #0056b3;
+        box-shadow: 0 7px 22px rgba(0,86,179,0.5);
+    }
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .container {
+        margin: 1.5rem 1rem;
+        padding: 1.5rem 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .mb-3 input[type="submit"] {
+        width: 100%;
+        padding: 0.85rem 0;
+    }
+}
