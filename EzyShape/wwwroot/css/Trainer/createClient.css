@@ -1,11 +1,5 @@
-﻿.mainBody {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
+﻿.main-section {
     display: flex;
-    justify-content: center;
-    align-items: center; /* Центрира вертикално */
-    color: #333;
 }
 section{
     margin:auto auto;

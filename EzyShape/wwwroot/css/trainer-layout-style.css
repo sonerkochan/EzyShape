@@ -33,11 +33,6 @@ main {
     overflow-y: auto;
 }
 
-
-.main-section {
-    display: flex;
-}
-
 #navbar {
     margin-left: 20px;
 }
