@@ -1,20 +1,22 @@
 ﻿@model ClientRegisterViewModel;
 
 @{
-    ViewData["Title"] = "New Client ● EzyShape";
+    ViewData["Title"] = "New Client";
 }
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/createClient.css" asp-append-version="true" />
 </head>
 <body>
-    <section>
+    <section class="box-shadow">
         <div>
             <div>
                 <form id="account" method="post">
 
-                    <h2 style="color:whitesmoke">@ViewData["Title"]</h2>
+                    <h2>@ViewData["Title"]</h2>
                     <div asp-validation-summary="ModelOnly" style="color:red;"></div>
 
                     <div>
