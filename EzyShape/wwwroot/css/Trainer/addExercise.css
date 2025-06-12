@@ -1,0 +1,98 @@
+﻿.main-section{
+    display:flex;
+    justify-content:center;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    max-width: 850px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-bottom: 2rem;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+input.form-control,
+select.form-control,
+textarea.form-control {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+    input.form-control:focus,
+    select.form-control:focus,
+    textarea.form-control:focus {
+        border-color: #3e8ef7;
+        outline: none;
+        box-shadow: none;
+    }
+
+.text-danger {
+    font-size: 0.9rem;
+    color: #d9534f;
+    margin-top: 0.3rem;
+}
+
+.btn-primary {
+    background-color: #3e8ef7;
+    border: none;
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #2a6fd2;
+    }
+
+
+/* addExercise.css */
+form .mb-3 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+    form .mb-3 label {
+        flex: 0 0 150px; /* fixed label width */
+        margin-bottom: 0;
+        font-weight: 500;
+    }
+
+    form .mb-3 input,
+    form .mb-3 select,
+    form .mb-3 textarea {
+        flex: 1;
+    }
+
+    form .mb-3 span.text-danger {
+        flex-basis: 100%;
+        padding-left: 150px; /* aligns with label */
+        font-size: 0.875rem;
+    }

@@ -2,13 +2,14 @@
 
 
 @{
-    ViewData["Title"] = "Add a new Exercise ● EzyShape";
+    ViewData["Title"] = "Add a new Exercise";
 }
 
 <html>
 <head>
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/addExercise.css" asp-append-version="true" />
 </head>
 
 <div class="container">
@@ -32,7 +33,7 @@
 
                 <div class="mb-3">
                     <label asp-for="Notes" class="form-label">Notes (Optional)</label>
-                    <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+                    <input asp-for="Notes" class="form-control" />
                     <span asp-validation-for="Notes" class="text-danger"></span>
                 </div>
 
