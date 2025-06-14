@@ -25,6 +25,8 @@ namespace EzyShape.Areas.Trainer.Controllers
 
         private readonly ITrainerService trainerService;
 
+        private readonly IClientService clientService;
+
         private readonly IUserService userService;
 
         private readonly IUtilityService utilityService;
@@ -35,6 +37,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             RoleManager<IdentityRole> _roleManager,
             IUserService _userService,
             ITrainerService _trainerService,
+            IClientService _clientService,
             IUtilityService _utilityService,
             ApplicationDbContext _context
             )
@@ -44,6 +47,7 @@ namespace EzyShape.Areas.Trainer.Controllers
             roleManager = _roleManager;
             userService = _userService;
             trainerService = _trainerService;
+            clientService = _clientService;
             utilityService = _utilityService;
             context = _context;
         }
@@ -126,6 +130,13 @@ namespace EzyShape.Areas.Trainer.Controllers
         public async Task<IActionResult> Overview(string clientId)
         {
             var model = await trainerService.GetClientOverviewInfoAsync(clientId);
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Metrics(string clientId)
+        {
+            var model = await clientService.GetClientMetricsAsync(clientId);
             return View(model);
         }
 

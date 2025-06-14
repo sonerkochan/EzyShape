@@ -1,0 +1,89 @@
+﻿@model ClientMetricsViewModel
+@{
+    ViewBag.Title = "Client Metrics";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/metricsPage.css" asp-append-version="true" />
+</head>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">📊 Client Weight Progress</h2>
+
+    @if (Model.WeightLogs.Any())
+    {
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <canvas id="weightChart"></canvas>
+            </div>
+
+            <div class="col-md-4 s">
+                <div class="card shadow-lg">
+                    <div class="card-body stats-div">
+                        <h5 class="card-title">📌 Stats Summary</h5>
+                        <p><strong>Start Weight:</strong> @Model.Stats.StartWeight kg</p>
+                        <p><strong>Current Weight:</strong> @Model.Stats.CurrentWeight kg</p>
+                        <p><strong>Months Tracked:</strong> @Model.Stats.MonthsTracked</p>
+                        <p><strong>Avg. Monthly Change:</strong> @Model.Stats.AverageMonthlyChange.ToString("0.##") kg</p>
+                        <p>
+                            <strong>Trend:</strong>
+                            <span class="badge
+                                @(Model.Stats.TrendDescription == "Losing weight" ? "bg-success" :
+                                  Model.Stats.TrendDescription == "Gaining weight" ? "bg-danger" :
+                                  Model.Stats.TrendDescription == "Fluctuating" ? "bg-warning text-dark" : "bg-secondary")">
+                                @Model.Stats.TrendDescription
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">No weight logs available for this client.</div>
+    }
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('weightChart');
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.WeightLogs.Select(w => w.LogDate.ToString("yyyy-MM-dd")))),
+                datasets: [{
+                    label: 'Weight (kg)',
+                    data: @Html.Raw(Json.Serialize(Model.WeightLogs.Select(w => w.Weight))),
+                    borderColor: '#2051f1',
+                    backgroundColor: 'rgba(32, 81, 241, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Weight (kg)'
+                        },
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>

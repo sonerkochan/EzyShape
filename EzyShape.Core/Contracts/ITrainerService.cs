@@ -22,7 +22,6 @@ namespace EzyShape.Core.Contracts
 
         Task<ClientTrainingViewModel> GetClientTrainingInfoAsync(string TrainerId, string ClientId);
         Task<ClientOverviewViewModel> GetClientOverviewInfoAsync(string clientId);
-
         Task<TrainerViewModel> GetTrainerInfoAsync(string trainerId);
 
 

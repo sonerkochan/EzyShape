@@ -1,0 +1,140 @@
+﻿.main-section {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+h2 {
+    color: #2051f1;
+    font-weight: 600;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    background: #ffffff;
+    transition: box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        box-shadow: 0 4px 20px rgba(32, 81, 241, 0.1);
+    }
+
+.card-title {
+    color: #2051f1;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.card-body p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5em 0.75em;
+    border-radius: 8px;
+}
+
+canvas {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(32, 81, 241, 0.1);
+}
+
+.alert-info {
+    background-color: #e7f0ff;
+    border-color: #c6d8ff;
+    color: #2051f1;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+h2 {
+    color: #2051f1;
+    font-weight: 600;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    background: #ffffff;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 20px rgba(32, 81, 241, 0.1);
+}
+
+.card-title {
+    color: #2051f1;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.card-body p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5em 0.75em;
+    border-radius: 8px;
+}
+
+canvas {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(32, 81, 241, 0.1);
+}
+
+.alert-info {
+    background-color: #e7f0ff;
+    border-color: #c6d8ff;
+    color: #2051f1;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.container {
+    max-width: 1100px;
+}
+
+.stats-div{
+    padding:0px 20px;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        text-align: center;
+    }
+
+    canvas {
+        margin-bottom: 2rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .card-body {
+        text-align: center;
+    }
+
+    canvas {
+        margin-bottom: 2rem;
+    }
+}

@@ -67,7 +67,8 @@
         <button class="button-nav">
             @Localizer["Gallery"]
         </button>
-        <button class="button-nav">
+        <button class="button-nav"
+                onclick="window.location.href='@Url.Action("Metrics", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
             @Localizer["Metrics"]
         </button>
         <button class="button-nav">

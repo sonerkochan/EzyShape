@@ -148,5 +148,64 @@ namespace EzyShape.Core.Services
             await repo.AddAsync(entity);
             await repo.SaveChangesAsync();
         }
+
+
+        public async Task<ClientMetricsViewModel> GetClientMetricsAsync(string clientId)
+        {
+
+            var model = new ClientMetricsViewModel();
+
+            model.WeightLogs = await repo.AllReadonly<WeightLog>()
+                .Where(x => x.UserId == clientId)
+                .Select(x => new WeightLogViewModel()
+                {
+                    Weight = x.Weight,
+                    LogDate = x.LogDate
+                })
+                .OrderBy(x => x.LogDate)
+                .ToListAsync();
+
+
+            var logs = model.WeightLogs.OrderBy(x => x.LogDate).ToList();
+
+            if (logs.Any())
+            {
+                var startWeight = (double)logs.First().Weight;
+                var currentWeight = (double)logs.Last().Weight;
+
+                var totalDays = (logs.Last().LogDate - logs.First().LogDate).TotalDays;
+                var monthsTracked = (int)Math.Ceiling(totalDays / 30);
+
+                var averageMonthlyChange = (currentWeight - startWeight) / monthsTracked;
+
+                string trend = "Stable";
+                if (averageMonthlyChange < -1) trend = "Losing weight";
+                else if (averageMonthlyChange > 1) trend = "Gaining weight";
+                else if (Math.Abs(averageMonthlyChange) <= 1 && Math.Abs(currentWeight - startWeight) > 1) trend = "Fluctuating";
+
+                model.Stats = new ClientWeightStatsViewModel
+                {
+                    StartWeight = startWeight,
+                    CurrentWeight = currentWeight,
+                    AverageMonthlyChange = averageMonthlyChange,
+                    MonthsTracked = monthsTracked,
+                    TrendDescription = trend
+                };
+            }
+            else
+            {
+                model.Stats = new ClientWeightStatsViewModel
+                {
+                    StartWeight = 0,
+                    CurrentWeight = 0,
+                    AverageMonthlyChange = 0,
+                    MonthsTracked = 0,
+                    TrendDescription = "No data"
+                };
+            }
+
+
+            return model;
+        }
     }
 }

@@ -166,7 +166,7 @@
     <value>Фамилия:</value>
   </data>
   <data name="Metrics" xml:space="preserve">
-    <value>Метрики:</value>
+    <value>Метрики</value>
   </data>
   <data name="MinutesAgo" xml:space="preserve">
     <value>Преди {0} минути</value>
