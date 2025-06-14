@@ -1,0 +1,125 @@
+﻿:root {
+    --primary-color: #2051f1;
+    --accent-color: #e8edfd;
+    --border-color: #f0f0f0;
+    --text-color: #333;
+    --bg-color: #fff;
+    --hover-bg: #f9f9f9;
+    --radius: 12px;
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-section {
+    margin: 0;
+    font-family: var(--font);
+    background-color: #f7f9fc;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-radius:16px;
+}
+
+    .header h1 {
+        font-size: 1.8rem;
+        margin: 0;
+        color: white;
+        margin-left:20px;
+    }
+
+.btn-primary {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+}
+
+    .btn-primary:hover {
+        background-color: #1239a8;
+        color:white;
+    }
+
+.search-container {
+    margin-bottom: 1rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+    .search-input:focus {
+        border-color: var(--primary-color);
+    }
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+    .styled-table th, .styled-table td {
+        padding: 1rem;
+        text-align: left;
+        font-size: 0.95rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .styled-table th {
+        background-color: var(--accent-color);
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--primary-color);
+    }
+
+    .styled-table tr:hover {
+        background-color: var(--hover-bg);
+        cursor: pointer;
+    }
+
+.split-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+    .split-link:hover {
+        text-decoration: underline;
+    }
+
+.no-results {
+    text-align: center;
+    font-style: italic;
+    margin-top: 2rem;
+    color: #888;
+}

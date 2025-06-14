@@ -4,7 +4,6 @@
     const closeModalBtn = document.getElementById("closeModalBtn");
     const assignForm = document.getElementById("assignWorkoutsForm");
 
-    // Open modal
     addWorkoutBtn.addEventListener("click", () => {
         modal.style.display = "flex";
         modal.setAttribute('aria-hidden', 'false');
@@ -12,7 +11,6 @@
         (firstCheckbox || closeModalBtn).focus();
     });
 
-    // Close modal
     function closeModal() {
         modal.style.display = "none";
         modal.setAttribute('aria-hidden', 'true');
@@ -47,7 +45,7 @@
                 if (result.success) {
                     toastr.success("Workouts assigned successfully.");
                     closeModal();
-                    setTimeout(() => location.reload(), 1000); // slight delay for toast
+                    setTimeout(() => location.reload(), 1000);
                 } else {
                     const errorMsg = result.errors?.join(", ") || "Unknown error";
                     toastr.error(`Error: ${errorMsg}`);
