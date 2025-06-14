@@ -8,7 +8,6 @@
     addWorkoutBtn.addEventListener("click", () => {
         modal.style.display = "flex";
         modal.setAttribute('aria-hidden', 'false');
-        // Focus first checkbox or close button for accessibility
         const firstCheckbox = modal.querySelector('.workout-checkbox');
         (firstCheckbox || closeModalBtn).focus();
     });
@@ -33,7 +32,7 @@
             .map(cb => parseInt(cb.value));
 
         if (selectedWorkoutIds.length === 0) {
-            alert("Please select at least one workout.");
+            toastr.warning("Please select at least one workout.");
             return;
         }
 
@@ -46,16 +45,17 @@
             .then(res => res.json())
             .then(result => {
                 if (result.success) {
-                    alert("Workouts assigned successfully.");
+                    toastr.success("Workouts assigned successfully.");
                     closeModal();
-                    location.reload();
+                    setTimeout(() => location.reload(), 1000); // slight delay for toast
                 } else {
-                    alert("Error: " + (result.errors?.join(", ") || "Unknown error"));
+                    const errorMsg = result.errors?.join(", ") || "Unknown error";
+                    toastr.error(`Error: ${errorMsg}`);
                 }
             })
             .catch(err => {
                 console.error(err);
-                alert("An error occurred while assigning workouts.");
+                toastr.error("An error occurred while assigning workouts.");
             });
     });
 })();
