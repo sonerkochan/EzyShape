@@ -100,7 +100,7 @@ namespace EzyShape.Areas.Trainer.Controllers
         }
 
         [HttpGet]
-        public  async Task<IActionResult> AssignExercise(int id)
+        public  async Task<IActionResult> AssignExercise(int id) // Can be removed.
         {
             var model = new WorkoutExerciseViewModel
             {

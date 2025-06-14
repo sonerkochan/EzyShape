@@ -4,70 +4,83 @@
     ViewData["Title"] = $"{Model.Name} ● EzyShape";
 }
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/splitDetails.css" asp-append-version="true" />
 </head>
 
-
-<body>
-
-
-
-    @if (Model != null)
-    {
-        <button type="button" class="button" style="background: lightgray;border:1px solid black;margin-right: 10px">
-            <div>
-                <a class="nav-link text-dark" asp-area="Trainer" asp-controller="Split" asp-action="AssignWorkout" asp-route-id="@Model.Id">Assign a workout</a>
-            </div>
-        </button>
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Model.Name</td>
-                    <td>@(string.IsNullOrEmpty(Model.Description) ? "N/A" : Model.Description)</td>
-                </tr>
-            </tbody>
-        </table>
-
-        @if (Model.WorkoutIds.Any())
+    <main class="container">
+        @if (Model != null)
         {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Workout Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var workout in Model.WorkoutIds)
-                    {
-                        <tr>
-                            <td>@workout.Workout.Name</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <header class="split-header">
+                <h1>@Model.Name</h1>
+                <p class="description">@(string.IsNullOrWhiteSpace(Model.Description) ? "No description available." : Model.Description)</p>
+                <button id="add-workout-btn" class="button">+ Add Workouts</button>
+            </header>
+
+            <section class="split-workouts">
+                @if (Model.WorkoutIds.Any())
+                {
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Workout Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var workout in Model.WorkoutIds)
+                            {
+                                <tr>
+                                    <td>@workout.Workout.Name</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-info">No exercises available for this workout.</div>
+                }
+            </section>
         }
         else
         {
-            <div class="alert alert-info">No exercises available for this workout.</div>
+            <div class="alert alert-info">No workouts available for this split.</div>
         }
-    }
-    else
-    {
-        @Model
-        <div class="alert alert-info">No workouts available for this split.</div>
-    }
+    </main>
 
-</body>
+    <!-- Modal -->
+    <div id="addWorkoutModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-content" role="document">
+            <button id="closeModalBtn" class="close" aria-label="Close modal">&times;</button>
+            <h3 id="modalTitle">Select Workouts to Assign</h3>
 
+            <input type="hidden" id="splitId" value="@Model?.Id" />
+
+            <form id="assignWorkoutsForm" class="workout-list" novalidate>
+                @if (ViewBag.AllWorkouts is List<Workout> workouts && workouts.Any())
+                {
+                    @foreach (var workout in workouts)
+                    {
+                        <label>
+                            <input type="checkbox" class="workout-checkbox" name="workoutIds" value="@workout.Id" />
+                            @workout.Name
+                        </label>
+                    }
+                }
+                else
+                {
+                    <p>No workouts available to assign.</p>
+                }
+                <button type="submit" id="submitWorkoutsBtn" class="button">Assign Workouts</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="~/js/Trainer/fetchProgramAssign.js"></script>
 </html>
