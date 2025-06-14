@@ -87,6 +87,10 @@ namespace EzyShape.Areas.Trainer.Controllers
                 .ThenInclude(we => we.Exercise)
                 .FirstOrDefaultAsync(w => w.Id == id);
 
+
+            ViewBag.AllExercises = context.Exercises.ToList();
+
+
             if (workout == null)
             {
                 return NotFound();
@@ -130,6 +134,5 @@ namespace EzyShape.Areas.Trainer.Controllers
             return RedirectToAction(nameof(Details), new { id = id });
 
         }
-
     }
 }

@@ -1,189 +1,189 @@
-﻿@model ClientTrainingViewModel
-@Html.AntiForgeryToken()
+﻿    @model ClientTrainingViewModel
+    @Html.AntiForgeryToken()
 
 
-@{
-    ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName} ● Training ● EzyShape";
-}
+    @{
+        ViewData["Title"] = $"{Model.Client.FirstName} {Model.Client.LastName} ● Training ● EzyShape";
+    }
 
-<html>
+    <html>
 
-<head>
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Trainer/ClientMenu.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Trainer/ClientTraining.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Trainer/addProgramModal.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Trainer/confirmRemoveModal.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/shadows.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+    <head>
+        <title>@ViewData["Title"]</title>
+        <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Trainer/ClientMenu.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Trainer/ClientTraining.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Trainer/addProgramModal.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Trainer/confirmRemoveModal.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/shadows.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
 
-<body>
+    <body>
 
-    <div class="div-title">
-        <div class="client-item">
-            <div class="photo-div" style="background-color:@Model.Client.ColorCode">
-                <p class="photo-letter">@Model.Client.FirstName[0]</p>
+        <div class="div-title">
+            <div class="client-item">
+                <div class="photo-div" style="background-color:@Model.Client.ColorCode">
+                    <p class="photo-letter">@Model.Client.FirstName[0]</p>
+                </div>
+                <p class="client-name-p">
+                    @($"{Model.Client.FirstName} {Model.Client.LastName}")
+                </p>
             </div>
-            <p class="client-name-p">
-                @($"{Model.Client.FirstName} {Model.Client.LastName}")
-            </p>
+            <div class="buttons-top">
+                <button class="button-chat">
+                    <i class="fa-regular fa-message"></i> Chat
+                </button>
+
+                <button class="button-access">
+                    <i class="fa-solid fa-user-lock"></i> Share Access
+                </button>
+            </div>
         </div>
-        <div class="buttons-top">
-            <button class="button-chat">
-                <i class="fa-regular fa-message"></i> Chat
+
+        <div class="div-navigation">
+            <button class="button-nav"
+                onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
+                Overview
+            </button>
+            <button class="button-nav">
+                Check Ins
+            </button>
+            <button class="button-nav button-current-page">
+                Training
             </button>
 
-            <button class="button-access">
-                <i class="fa-solid fa-user-lock"></i> Share Access
+            <button class="button-nav">
+                Gallery
+            </button>
+            <button class="button-nav">
+                Metrics
+            </button>
+            <button class="button-nav">
+                Settings
             </button>
         </div>
-    </div>
 
-    <div class="div-navigation">
-        <button class="button-nav"
-            onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
-            Overview
-        </button>
-        <button class="button-nav">
-            Check Ins
-        </button>
-        <button class="button-nav button-current-page">
-            Training
-        </button>
+        <div class="sub-nav-div">
 
-        <button class="button-nav">
-            Gallery
-        </button>
-        <button class="button-nav">
-            Metrics
-        </button>
-        <button class="button-nav">
-            Settings
-        </button>
-    </div>
+            <button class="suv-nav-button sub-active">
+                <i class="fa-solid fa-dumbbell"></i>
+                Programs/Splits
+            </button>
 
-    <div class="sub-nav-div">
+            <button class="suv-nav-button">
+                <i class="fa-solid fa-trophy"></i>
+                Completed Workouts
+            </button>
 
-        <button class="suv-nav-button sub-active">
-            <i class="fa-solid fa-dumbbell"></i>
-            Programs/Splits
-        </button>
+        </div>
 
-        <button class="suv-nav-button">
-            <i class="fa-solid fa-trophy"></i>
-            Completed Workouts
-        </button>
-
-    </div>
-
-    <div class="programs-div div-active">
+        <div class="programs-div div-active">
         
-        <div class="button-div">
+            <div class="button-div">
 
-            <button class="add-program-button" id="add-program">
-                + Add Program
-            </button>
-        </div>
-        <div class="programs-list-div box-shadow">
-            <div class="list-title-div">
-                <h3 class="div-title-text">Program</h3>
+                <button class="add-program-button" id="add-program">
+                    + Add Program
+                </button>
             </div>
-
-            @foreach (var split in Model.ClientSplits)
-            {
-                <div class="program-div">
-                    <div class="program-info-div">
-                        <h4 class="program-title">@split.Name</h4>
-                        <p class="program-description">@split.Description</p>
-                        <p class="program-description">Example1 / Example2 / Example3</p>
-                    </div>
-                    <button class="button-remove-program" data-split-id="@split.Id">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            }
-        </div>
-
-    </div>
-
-    <div class="history-div">
-        @foreach (var workout in Model.WorkoutLogs.OrderByDescending(w => w.StartDate))
-        {
-            <div class="log-div box-shadow">
-                <h4 class="log-name">@workout.Name</h4>
-                <div class="log-time-div">
-                    <p class="log-duration"><i class="fa-solid fa-stopwatch"></i>: @workout.Duration</p>
-                    <p class="log-date">@workout.StartDate</p>
-                </div>
-            </div>
-        }
-
-    </div>
-
-
-
-    <!-- Modal content -->
-    <div id="addProgramModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" id="closeModalBtn">&times;</span>
-
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <i class="fa-solid fa-dumbbell"></i>
-                    Add Program
-                </h2>
-                <p class="modal-undertitle">Program Library</p>
-            </div>
-
-            <input type="hidden" id="clientId" value="@Model.Client.Id">
-
-            <div class="library-list-div">
-                <div class="library-title-div">
-                    <h3 class="library-list-title">Program</h3>
+            <div class="programs-list-div box-shadow">
+                <div class="list-title-div">
+                    <h3 class="div-title-text">Program</h3>
                 </div>
 
-                @foreach (var split in Model.Splits)
+                @foreach (var split in Model.ClientSplits)
                 {
-                    <div class="library-item-div">
-                        <label class="library-item-label">
-                            <input type="checkbox" class="program-checkbox" data-split-id="@split.Id">
-                            <h4 class="library-item-name">@split.Name</h4>
-                        </label>
+                    <div class="program-div">
+                        <div class="program-info-div">
+                            <h4 class="program-title">@split.Name</h4>
+                            <p class="program-description">@split.Description</p>
+                            <p class="program-description">Example1 / Example2 / Example3</p>
+                        </div>
+                        <button class="button-remove-program" data-split-id="@split.Id">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                     </div>
                 }
             </div>
 
-            <div class="modal-footer">
-                <button id="submitButton" class="assign-program-button">Import Programs</button>
+        </div>
+
+        <div class="history-div">
+            @foreach (var workout in Model.WorkoutLogs.OrderByDescending(w => w.StartDate))
+            {
+                <div class="log-div box-shadow">
+                    <h4 class="log-name">@workout.Name</h4>
+                    <div class="log-time-div">
+                        <p class="log-duration"><i class="fa-solid fa-stopwatch"></i>: @workout.Duration</p>
+                        <p class="log-date">@workout.StartDate</p>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+
+
+        <!-- Modal content -->
+        <div id="addProgramModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" id="closeModalBtn">&times;</span>
+
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        <i class="fa-solid fa-dumbbell"></i>
+                        Add Program
+                    </h2>
+                    <p class="modal-undertitle">Program Library</p>
+                </div>
+
+                <input type="hidden" id="clientId" value="@Model.Client.Id">
+
+                <div class="library-list-div">
+                    <div class="library-title-div">
+                        <h3 class="library-list-title">Program</h3>
+                    </div>
+
+                    @foreach (var split in Model.Splits)
+                    {
+                        <div class="library-item-div">
+                            <label class="library-item-label">
+                                <input type="checkbox" class="program-checkbox" data-split-id="@split.Id">
+                                <h4 class="library-item-name">@split.Name</h4>
+                            </label>
+                        </div>
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <button id="submitButton" class="assign-program-button">Import Programs</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Confirm Delete Modal -->
-    <div id="deleteSplitModal" class="delete-modal-overlay hidden">
-        <div class="delete-modal-box">
-            <h3>Are you sure?</h3>
-            <p>This will permanently delete the program for this client.</p>
-            <div class="delete-modal-actions">
-                <button id="cancelDeleteSplitBtn" class="btn-cancel">Cancel</button>
-                <button id="confirmDeleteSplitBtn" class="btn-delete">Delete Program</button>
+        <!-- Confirm Delete Modal -->
+        <div id="deleteSplitModal" class="delete-modal-overlay hidden">
+            <div class="delete-modal-box">
+                <h3>Are you sure?</h3>
+                <p>This will permanently delete the program for this client.</p>
+                <div class="delete-modal-actions">
+                    <button id="cancelDeleteSplitBtn" class="btn-cancel">Cancel</button>
+                    <button id="confirmDeleteSplitBtn" class="btn-delete">Delete Program</button>
+                </div>
             </div>
         </div>
-    </div>
 
 
 
 
 
-    <script src="~/js/toggleTrainingSubNavigation.js" asp-append-version="true"></script>
-    <script src="~/js/programModal.js"></script>
-    <script src="~/js/fetchProgramAssign.js"></script>
-    <script src="~/js/removeAssignedProgram.js"></script>
+        <script src="~/js/toggleTrainingSubNavigation.js" asp-append-version="true"></script>
+        <script src="~/js/programModal.js"></script>
+        <script src="~/js/fetchProgramAssign.js"></script>
+        <script src="~/js/removeAssignedProgram.js"></script>
 
 
 
-</body>
+    </body>
 
-</html>
+    </html>

@@ -24,9 +24,12 @@
     background-color: #e8edfd;
     border: 1px solid #d1dbfb;
     border-radius: 16px;
-    color: red !important;
+    color: #2051f1 !important;
     height: 40px;
     width: 150px;
+}
+.button-add:hover{
+    cursor:pointer;
 }
 
 .button-add-link {
@@ -143,4 +146,136 @@ th {
     .button-delete:hover {
         color: rgb(32, 81, 241);
         border-color: rgb(32, 81, 241);
+    }
+
+
+/* Modals */
+/* Обща стилистика за модал */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Съдържанието на модала */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Бутон за затваряне */
+.close {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+    .close:hover {
+        color: #000;
+    }
+
+/* Заглавие */
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Списък с упражнения */
+#exerciseList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    #exerciseList li {
+        margin-bottom: 10px;
+    }
+
+.selectExerciseBtn {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #2051f1;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    .selectExerciseBtn:hover {
+        background-color: #2051a3;
+    }
+
+/* Формуляр за детайли на упражнение */
+#addExerciseForm label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+#addExerciseForm input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#addExerciseForm button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    #addExerciseForm button[type="submit"]:hover {
+        background-color: #0b5ed7;
+    }
+
+
+#paginationControls button {
+    padding: 6px 12px;
+    margin: 0 5px;
+    background-color: #2051f1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+    #paginationControls button:disabled {
+        background-color: rgb(138, 138, 138);
+        cursor: default;
+    }
+
+    #paginationControls button:hover:not(:disabled) {
+        background-color: #2051a3;
     }

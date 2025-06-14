@@ -18,9 +18,8 @@
     <main>
         <div class="div-title">
             <h1 class="tbl-header">@Model.Name</h1>
-            <button type="button" class="button-add">
-                <a class="button-add-link" asp-area="Trainer" asp-controller="Workout" asp-action="AssignExercise" asp-route-id="@Model.Id">+ Exercise</a>
-            </button>
+            <button type="button" class="button-add button-add-link" id="openSelectExerciseModal">+ Exercise</button>
+
         </div>
 
         <div class="div-content">
@@ -72,6 +71,43 @@
             <a asp-action="AllWorkouts" class="btn btn-secondary">Back to Workouts</a>
         </div>
     </main>
+
+    <div id="selectExerciseModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" id="closeSelectModal">&times;</span>
+            <h2>Select an Exercise</h2>
+            <ul id="exerciseList">
+                @foreach (var ex in ViewBag.AllExercises as List<Exercise>)
+                {
+                    <li><button class="selectExerciseBtn" data-id="@ex.Id" data-name="@ex.Name">@ex.Name</button></li>
+                }
+            </ul>
+
+            <div id="paginationControls" style="text-align:center; margin-top:10px;">
+                <button id="prevPageBtn" disabled>Prev</button>
+                <span id="pageInfo"></span>
+                <button id="nextPageBtn">Next</button>
+            </div>
+        </div>
+    </div>
+    <div id="exerciseDetailsModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" id="closeDetailsModal">&times;</span>
+            <h2>Add Exercise Details</h2>
+            <form id="addExerciseForm">
+                <input type="hidden" name="ExerciseId" id="exerciseId" />
+                <input type="hidden" name="WorkoutId" value="@Model.Id" />
+                <label>Repetitions: <input type="number" name="Repetitions" required /></label><br />
+                <label>Sets: <input type="number" name="Sets" required /></label><br />
+                <label>Tempo: <input type="text" name="Tempo" /></label><br />
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="~/js/Trainer/fetchExerciseAssign.js"></script>
+    <script src="~/js/Trainer/addExercisesModalPagination.js"></script>
 
 </body>
 
