@@ -1,5 +1,4 @@
 ﻿document.getElementById("openSelectExerciseModal").addEventListener("click", function () {
-    document.getElementById("openSelectExerciseModal").addEventListener("click", function () {
     document.getElementById("selectExerciseModal").style.display = "block";
 });
 

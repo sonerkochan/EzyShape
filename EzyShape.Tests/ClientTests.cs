@@ -15,6 +15,7 @@ namespace EzyShape.Tests
         private IRepository repo;
         private ApplicationDbContext context;
         private IClientService clientService;
+        private IUtilityService utilityService;
         private Mock<UserManager<User>> userManagerMock;
 
         [SetUp]
@@ -117,7 +118,7 @@ namespace EzyShape.Tests
             await context.Users.AddAsync(user);
             await context.SaveChangesAsync();
 
-            await clientService.ChangePreferredLanguageAsync(user.Id, "bg");
+            await utilityService.ChangePreferredLanguageAsync(user.Id, "bg");
 
             var updatedUser = await repo.AllReadonly<User>()
                 .FirstOrDefaultAsync(u => u.Id == "langClient");

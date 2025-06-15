@@ -70,13 +70,14 @@ namespace EzyShape.Core.Services
                 Subject = "Welcome to EzyShape!",
                 IsBodyHtml = true,
                 Body = $@"
-                <h2>Welcome, {fullName}!</h2>
-                <p>Your account has been created.</p>
-                <p><strong>Your password:</strong> {username}</p>
-                <p><strong>Your password:</strong> {password}</p>
-                <p>Please change it after first login.</p>
-                <hr />
-                <p style='font-size:0.8em;'>This is an automated message. Please do not reply.</p>"
+                    <h2>Welcome, {fullName}!</h2>
+                    <p>Your account has been created.</p>
+                    <p><strong>Your username:</strong> {username}</p>
+                    <p><strong>Your password:</strong> {password}</p>
+                    <p>Please change your password after your first login.</p>
+                    <p>You can access your account here: <a href='https://ezyshape.azurewebsites.net/'>https://ezyshape.azurewebsites.net/</a></p>
+                    <hr />
+                    <p style='font-size:0.8em;'>This is an automated message. Please do not reply.</p>"
             };
 
             mail.To.Add(toEmail);
