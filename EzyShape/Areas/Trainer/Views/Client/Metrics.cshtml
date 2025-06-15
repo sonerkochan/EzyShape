@@ -6,8 +6,56 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/ClientMenu.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/metricsPage.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
+
+<div class="div-title">
+    <div class="client-item">
+        <div class="photo-div" style="background-color:@Model.Client.ColorCode">
+            <p class="photo-letter">@Model.Client.FirstName[0]</p>
+        </div>
+        <p class="client-name-p">
+            @($"{Model.Client.FirstName} {Model.Client.LastName}")
+        </p>
+    </div>
+    <div class="buttons-top">
+        <button class="button-chat">
+            <i class="fa-regular fa-message"></i> Chat
+        </button>
+
+        <button class="button-access">
+            <i class="fa-solid fa-user-lock"></i> Share Access
+        </button>
+    </div>
+</div>
+
+<div class="div-navigation">
+    <button class="button-nav"
+            onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
+        Overview
+    </button>
+    <button class="button-nav">
+        Check Ins
+    </button>
+    <button class="button-nav"
+            onclick="window.location.href='@Url.Action("Training", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
+        Training
+    </button>
+
+    <button class="button-nav">
+        Gallery
+    </button>
+    <button class="button-nav button-current-page">
+        Metrics
+    </button>
+    <button class="button-nav">
+        Settings
+    </button>
+</div>
+
 
 <div class="container mt-5">
     <h2 class="mb-4 text-center">📊 Client Weight Progress</h2>

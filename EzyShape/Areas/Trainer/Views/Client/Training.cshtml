@@ -55,10 +55,11 @@
 
             <button class="button-nav">
                 Gallery
-            </button>
-            <button class="button-nav">
-                Metrics
-            </button>
+        </button>
+        <button class="button-nav"
+                onclick="window.location.href='@Url.Action("Metrics", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
+            Metrics
+        </button>
             <button class="button-nav">
                 Settings
             </button>

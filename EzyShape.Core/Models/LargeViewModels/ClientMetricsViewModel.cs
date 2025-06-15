@@ -14,6 +14,7 @@ namespace EzyShape.Core.Models.LargeViewModels
 {
     public class ClientMetricsViewModel
     {
+        public ClientViewModel Client { get; set; } = null!;
         public List<WeightLogViewModel> WeightLogs { get; set; } = new List<WeightLogViewModel>();
         public ClientWeightStatsViewModel Stats { get; set; }
     }

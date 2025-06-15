@@ -155,6 +155,21 @@ namespace EzyShape.Core.Services
 
             var model = new ClientMetricsViewModel();
 
+
+            model.Client = await repo.AllReadonly<User>()
+                .Where(u => u.Id == clientId)
+                .Select(u => new ClientViewModel()
+                {
+                    Id = u.Id,
+                    Username = u.UserName,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    ColorCode = u.ColorCode,
+                    LastOnline = u.LastOnline
+                })
+                .FirstOrDefaultAsync();
+
             model.WeightLogs = await repo.AllReadonly<WeightLog>()
                 .Where(x => x.UserId == clientId)
                 .Select(x => new WeightLogViewModel()
