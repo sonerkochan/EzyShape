@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using EzyShape.Core.Contracts;
@@ -8,6 +10,9 @@ using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols;
+using EzyShape.Core.Models.SMTP;
+using Microsoft.Extensions.Options;
 
 namespace EzyShape.Core.Services
 {
@@ -15,13 +20,16 @@ namespace EzyShape.Core.Services
     {
         private readonly IRepository repo;
         private readonly UserManager<User> userManager;
+        private readonly SmtpSettings _smtpSettings;
 
         public UtilityService(
             IRepository _repo,
-            UserManager<User> _userManager)
+            UserManager<User> _userManager,
+            IOptions<SmtpSettings> smtpOptions)
         {
             repo = _repo;
             userManager = _userManager;
+            _smtpSettings = smtpOptions.Value;
         }
         public async Task<string> GenerateRandomLightHexColorAsync()
         {
@@ -51,6 +59,35 @@ namespace EzyShape.Core.Services
             client.PreferredLanguage = languageCode.ToLower();
 
             await repo.SaveChangesAsync();
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task SendClientWelcomeEmailAsync(string toEmail, string fullName, string username, string password)
+        {
+            var mail = new MailMessage
+            {
+                From = new MailAddress(_smtpSettings.SenderEmail, _smtpSettings.SenderName),
+                Subject = "Welcome to EzyShape!",
+                IsBodyHtml = true,
+                Body = $@"
+                <h2>Welcome, {fullName}!</h2>
+                <p>Your account has been created.</p>
+                <p><strong>Your password:</strong> {username}</p>
+                <p><strong>Your password:</strong> {password}</p>
+                <p>Please change it after first login.</p>
+                <hr />
+                <p style='font-size:0.8em;'>This is an automated message. Please do not reply.</p>"
+            };
+
+            mail.To.Add(toEmail);
+
+            using var smtp = new SmtpClient(_smtpSettings.Host, _smtpSettings.Port)
+            {
+                EnableSsl = true,
+                Credentials = new NetworkCredential(_smtpSettings.User, _smtpSettings.Pass)
+            };
+
+            await smtp.SendMailAsync(mail);
         }
     }
 }

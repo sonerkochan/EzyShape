@@ -10,5 +10,6 @@ namespace EzyShape.Core.Contracts
     {
         Task<string> GenerateRandomLightHexColorAsync();
         Task ChangePreferredLanguageAsync(string userId, string languageCode);
+        Task SendClientWelcomeEmailAsync(string toEmail, string fullName, string username, string password);
     }
 }

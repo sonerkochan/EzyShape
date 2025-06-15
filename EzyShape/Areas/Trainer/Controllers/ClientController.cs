@@ -98,6 +98,12 @@ namespace EzyShape.Areas.Trainer.Controllers
                 var roleName = "Client";
                 var roleExists = await roleManager.RoleExistsAsync(roleName);
 
+                await utilityService.SendClientWelcomeEmailAsync(
+                                                                user.Email,
+                                                                $"{user.FirstName} {user.LastName}",
+                                                                user.UserName,
+                                                                model.Password);
+
                 if (roleExists)
                 {
                     var roleResult = await userManager.AddToRoleAsync(user, roleName);

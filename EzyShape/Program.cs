@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using EzyShape.Middlewares;
+using EzyShape.Core.Models.SMTP;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
+
+
+//Mailing
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
 builder.Services.AddControllersWithViews()
     .AddViewLocalization()
