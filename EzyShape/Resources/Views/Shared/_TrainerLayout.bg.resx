@@ -1,0 +1,37 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<root>
+	<resheader name="resmimetype">text/microsoft-resx</resheader>
+	<resheader name="version">2.0</resheader>
+	<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+	<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+	<data name="AddTask" xml:space="preserve"><value>Добави задача +</value></data>
+	<data name="Tasks" xml:space="preserve"><value>Задачи</value></data>
+	<data name="Profile" xml:space="preserve"><value>Профил</value></data>
+	<data name="YourName" xml:space="preserve"><value>Вашето име</value></data>
+	<data name="YourEmail" xml:space="preserve"><value>Вашият имейл</value></data>
+	<data name="Settings" xml:space="preserve"><value>Настройки</value></data>
+	<data name="Logout" xml:space="preserve"><value>Изход</value></data>
+	<data name="Main" xml:space="preserve"><value>ОСНОВНО</value></data>
+	<data name="Dashboard" xml:space="preserve"><value>Табло</value></data>
+	<data name="Clients" xml:space="preserve"><value>Клиенти</value></data>
+	<data name="Messages" xml:space="preserve"><value>Съобщения</value></data>
+	<data name="Manage" xml:space="preserve"><value>УПРАВЛЕНИЕ</value></data>
+	<data name="ComingSoon" xml:space="preserve"><value>Очаквайте скоро</value></data>
+	<data name="Subscription" xml:space="preserve"><value>Абонамент</value></data>
+	<data name="Billing" xml:space="preserve"><value>Фактуриране</value></data>
+	<data name="AccountSettings" xml:space="preserve"><value>Настройки на акаунта</value></data>
+	<data name="Library" xml:space="preserve"><value>БИБЛИОТЕКА</value></data>
+	<data name="CheckIns" xml:space="preserve"><value>Регистрации</value></data>
+	<data name="Metrics" xml:space="preserve"><value>Метрики</value></data>
+	<data name="Exercises" xml:space="preserve"><value>Упражнения</value></data>
+	<data name="Workouts" xml:space="preserve"><value>Тренировки</value></data>
+	<data name="ProgramsSplits" xml:space="preserve"><value>Програми/Сплитове</value></data>
+	<data name="Packages" xml:space="preserve"><value>Пакети</value></data>
+	<data name="Community" xml:space="preserve"><value>Общност</value></data>
+	<data name="Teams" xml:space="preserve"><value>Отбори</value></data>
+	<data name="Branding" xml:space="preserve"><value>Брандиране</value></data>
+	<data name="Training" xml:space="preserve"><value>Тренировки</value></data>
+	<data name="Nutrition" xml:space="preserve"><value>Хранене</value></data>
+	<data name="Forms" xml:space="preserve"><value>Форми</value></data>
+	<data name="Habits" xml:space="preserve"><value>Навици</value></data>
+</root>

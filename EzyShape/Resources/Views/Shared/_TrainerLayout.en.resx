@@ -1,0 +1,37 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<root>
+	<resheader name="resmimetype">text/microsoft-resx</resheader>
+	<resheader name="version">2.0</resheader>
+	<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+	<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+	<data name="AddTask" xml:space="preserve"><value>Add Task +</value></data>
+	<data name="Tasks" xml:space="preserve"><value>Tasks</value></data>
+	<data name="Profile" xml:space="preserve"><value>Profile</value></data>
+	<data name="YourName" xml:space="preserve"><value>Your Name</value></data>
+	<data name="YourEmail" xml:space="preserve"><value>Your email</value></data>
+	<data name="Settings" xml:space="preserve"><value>Settings</value></data>
+	<data name="Logout" xml:space="preserve"><value>Logout</value></data>
+	<data name="Main" xml:space="preserve"><value>MAIN</value></data>
+	<data name="Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+	<data name="Clients" xml:space="preserve"><value>Clients</value></data>
+	<data name="Messages" xml:space="preserve"><value>Messages</value></data>
+	<data name="Manage" xml:space="preserve"><value>MANAGE</value></data>
+	<data name="ComingSoon" xml:space="preserve"><value>Coming Soon</value></data>
+	<data name="Subscription" xml:space="preserve"><value>Subscription</value></data>
+	<data name="Billing" xml:space="preserve"><value>Billing</value></data>
+	<data name="AccountSettings" xml:space="preserve"><value>Account Settings</value></data>
+	<data name="Library" xml:space="preserve"><value>LIBRARY</value></data>
+	<data name="CheckIns" xml:space="preserve"><value>Check Ins</value></data>
+	<data name="Metrics" xml:space="preserve"><value>Metrics</value></data>
+	<data name="Exercises" xml:space="preserve"><value>Exercises</value></data>
+	<data name="Workouts" xml:space="preserve"><value>Workouts</value></data>
+	<data name="ProgramsSplits" xml:space="preserve"><value>Programs/Splits</value></data>
+	<data name="Packages" xml:space="preserve"><value>Packages</value></data>
+	<data name="Community" xml:space="preserve"><value>Community</value></data>
+	<data name="Teams" xml:space="preserve"><value>Teams</value></data>
+	<data name="Branding" xml:space="preserve"><value>Branding</value></data>
+	<data name="Training" xml:space="preserve"><value>Training</value></data>
+	<data name="Nutrition" xml:space="preserve"><value>Nutrition</value></data>
+	<data name="Forms" xml:space="preserve"><value>Forms</value></data>
+	<data name="Habits" xml:space="preserve"><value>Habits</value></data>
+</root>
