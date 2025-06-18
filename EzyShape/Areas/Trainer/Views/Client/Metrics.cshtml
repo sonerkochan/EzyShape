@@ -1,17 +1,17 @@
 ﻿@model ClientMetricsViewModel
 @{
-    ViewBag.Title = "Client Metrics";
+    ViewBag.Title = Localizer["Client Metrics"];
 }
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/ClientMenu.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/metricsPage.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/shareAccesModal.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
-
 
 <div class="div-title">
     <div class="client-item">
@@ -24,11 +24,11 @@
     </div>
     <div class="buttons-top">
         <button class="button-chat" onclick="window.location.href='@Url.Action("Index", "Chat", new { receiverId = @Model.Client.Id })';">
-            <i class="fa-regular fa-message"></i> Chat
+            <i class="fa-regular fa-message"></i> @Localizer["Chat"]
         </button>
 
-        <button class="button-access">
-            <i class="fa-solid fa-user-lock"></i> Share Access
+        <button class="button-access" onclick="openModal()">
+            <i class="fa-solid fa-user-lock"></i> @Localizer["ShareAccess"]
         </button>
     </div>
 </div>
@@ -36,27 +36,26 @@
 <div class="div-navigation">
     <button class="button-nav"
             onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
-        Overview
+        @Localizer["Overview"]
     </button>
     <button class="button-nav"
             onclick="window.location.href='@Url.Action("Training", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
-        Training
+        @Localizer["Training"]
     </button>
 
     <button class="button-nav">
-        Gallery
+        @Localizer["Gallery"]
     </button>
     <button class="button-nav button-current-page">
-        Metrics
+        @Localizer["Metrics"]
     </button>
     <button class="button-nav">
-        Settings
+        @Localizer["Settings"]
     </button>
 </div>
 
-
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">📊 Client Weight Progress</h2>
+    <h2 class="mb-4 text-center">📊 @Localizer["WeightProgressTitle"]</h2>
 
     @if (Model.WeightLogs.Any())
     {
@@ -68,13 +67,13 @@
             <div class="col-md-4 s">
                 <div class="card shadow-lg">
                     <div class="card-body stats-div">
-                        <h5 class="card-title">📌 Stats Summary</h5>
-                        <p><strong>Start Weight:</strong> @Model.Stats.StartWeight kg</p>
-                        <p><strong>Current Weight:</strong> @Model.Stats.CurrentWeight kg</p>
-                        <p><strong>Months Tracked:</strong> @Model.Stats.MonthsTracked</p>
-                        <p><strong>Avg. Monthly Change:</strong> @Model.Stats.AverageMonthlyChange.ToString("0.##") kg</p>
+                        <h5 class="card-title">@Localizer["StatsSummary"]</h5>
+                        <p><strong>@Localizer["StartWeight"]:</strong> @Model.Stats.StartWeight kg</p>
+                        <p><strong>@Localizer["CurrentWeight"]:</strong> @Model.Stats.CurrentWeight kg</p>
+                        <p><strong>@Localizer["MonthsTracked"]:</strong> @Model.Stats.MonthsTracked</p>
+                        <p><strong>@Localizer["AvgMonthlyChange"]:</strong> @Model.Stats.AverageMonthlyChange.ToString("0.##") kg</p>
                         <p>
-                            <strong>Trend:</strong>
+                            <strong>@Localizer["Trend"]:</strong>
                             <span class="badge
                                 @(Model.Stats.TrendDescription == "Losing weight" ? "bg-success" :
                                   Model.Stats.TrendDescription == "Gaining weight" ? "bg-danger" :
@@ -89,58 +88,57 @@
     }
     else
     {
-        <div class="alert alert-info text-center">No weight logs available for this client.</div>
+        <div class="alert alert-info text-center">@Localizer["No weight logs available for this client."]</div>
     }
 </div>
 
 <div id="accessModal" class="modal-overlay" style="display:none;">
     <div class="modal-content">
         <span class="close-button" onclick="closeModal()">&times;</span>
-        <h3>Access Credentials</h3>
-        <p><strong>Username:</strong> @Model.Client.Username</p>
-        <p><strong>Password:</strong> @($"{Model.Client.FirstName}{Model.Client.LastName}123")</p>
-
+        <h3>@Localizer["AccessCredentials"]</h3>
+        <p><strong>@Localizer["Username"]:</strong> @Model.Client.Username</p>
+        <p><strong>@Localizer["Password"]:</strong> @($"{Model.Client.FirstName}{Model.Client.LastName}123")</p>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="~/js/Trainer/shareAccessModal.js"></script>
-    <script>
-        const ctx = document.getElementById('weightChart');
+<script>
+    const ctx = document.getElementById('weightChart');
 
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: @Html.Raw(Json.Serialize(Model.WeightLogs.Select(w => w.LogDate.ToString("yyyy-MM-dd")))),
-                datasets: [{
-                    label: 'Weight (kg)',
-                    data: @Html.Raw(Json.Serialize(Model.WeightLogs.Select(w => w.Weight))),
-                    borderColor: '#2051f1',
-                    backgroundColor: 'rgba(32, 81, 241, 0.2)',
-                    borderWidth: 2,
-                    tension: 0.3,
-                    fill: true,
-                    pointRadius: 4,
-                    pointHoverRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Weight (kg)'
-                        },
-                        beginAtZero: false
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.WeightLogs.Select(w => w.LogDate.ToString("yyyy-MM-dd")))),
+            datasets: [{
+                label: '@Localizer["Weight (kg)"]',
+                data: @Html.Raw(Json.Serialize(Model.WeightLogs.Select(w => w.Weight))),
+                borderColor: '#2051f1',
+                backgroundColor: 'rgba(32, 81, 241, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: '@Localizer["Date"]'
                     }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '@Localizer["Weight (kg)"]'
+                    },
+                    beginAtZero: false
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>
