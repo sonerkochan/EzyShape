@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/ClientMenu.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/metricsPage.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/shareAccesModal.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -22,7 +23,7 @@
         </p>
     </div>
     <div class="buttons-top">
-        <button class="button-chat">
+        <button class="button-chat" onclick="window.location.href='@Url.Action("Index", "Chat", new { receiverId = @Model.Client.Id })';">
             <i class="fa-regular fa-message"></i> Chat
         </button>
 
@@ -36,9 +37,6 @@
     <button class="button-nav"
             onclick="window.location.href='@Url.Action("Overview", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
         Overview
-    </button>
-    <button class="button-nav">
-        Check Ins
     </button>
     <button class="button-nav"
             onclick="window.location.href='@Url.Action("Training", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
@@ -95,7 +93,18 @@
     }
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div id="accessModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <h3>Access Credentials</h3>
+        <p><strong>Username:</strong> @Model.Client.Username</p>
+        <p><strong>Password:</strong> @($"{Model.Client.FirstName}{Model.Client.LastName}123")</p>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="~/js/Trainer/shareAccessModal.js"></script>
     <script>
         const ctx = document.getElementById('weightChart');
 

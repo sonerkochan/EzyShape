@@ -27,6 +27,7 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/clientOverview.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Trainer/shareAccesModal.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -42,7 +43,7 @@
             </p>
         </div>
         <div class="buttons-top">
-            <button class="button-chat">
+            <button class="button-chat" onclick="window.location.href='@Url.Action("Index", "Chat", new { receiverId = @Model.Client.Id })';">
                 <i class="fa-regular fa-message"></i> @Localizer["Chat"]
             </button>
 
@@ -55,9 +56,6 @@
     <div class="div-navigation">
         <button class="button-nav button-current-page">
             @Localizer["Overview"]
-        </button>
-        <button class="button-nav">
-            @Localizer["CheckIns"]
         </button>
         <button class="button-nav"
                 onclick="window.location.href='@Url.Action("Training", "Client", new { area = "Trainer", clientId = @Model.Client.Id })';">
