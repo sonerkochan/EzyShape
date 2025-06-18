@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+	</resheader>
+
+	<data name="Title" xml:space="preserve">
+    <value>Добави ново упражнение</value>
+  </data>
+	<data name="Label_Name" xml:space="preserve">
+    <value>Име на упражнението</value>
+  </data>
+	<data name="Label_Link" xml:space="preserve">
+    <value>Връзка (по избор)</value>
+  </data>
+	<data name="Label_Notes" xml:space="preserve">
+    <value>Бележки (по избор)</value>
+  </data>
+	<data name="Label_MuscleId" xml:space="preserve">
+    <value>Основен мускул</value>
+  </data>
+	<data name="Select_Muscle" xml:space="preserve">
+    <value>Изберете основен мускул</value>
+  </data>
+	<data name="Label_CategoryId" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+	<data name="Select_Category" xml:space="preserve">
+    <value>Изберете категория</value>
+  </data>
+	<data name="Label_LevelId" xml:space="preserve">
+    <value>Ниво</value>
+  </data>
+	<data name="Select_Level" xml:space="preserve">
+    <value>Изберете ниво</value>
+  </data>
+	<data name="Label_EquipmentId" xml:space="preserve">
+    <value>Оборудване</value>
+  </data>
+	<data name="Select_Equipment" xml:space="preserve">
+    <value>Изберете оборудване</value>
+  </data>
+	<data name="Button_Add" xml:space="preserve">
+    <value>Добави упражнение</value>
+  </data>
+</root>

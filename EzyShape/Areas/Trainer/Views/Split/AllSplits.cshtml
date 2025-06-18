@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<SplitViewModel>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "All Splits ● EzyShape";
+    ViewData["Title"] = $"{Localizer["All Splits"]} ● EzyShape";
 }
 
 <!DOCTYPE html>
@@ -17,14 +18,14 @@
 <body>
     <main class="container">
         <header class="header">
-            <h1>@ViewData["Title"]</h1>
+            <h1>@Localizer["All Splits"]</h1>
             <a asp-area="Trainer" asp-controller="Split" asp-action="AddSplit" class="btn-primary">
-                <i class="fas fa-plus"></i> Add New Split
+                <i class="fas fa-plus"></i> @Localizer["Add New Split"]
             </a>
         </header>
 
         <div class="search-container">
-            <input type="text" placeholder="Search for a split..." class="search-input" id="splitSearchInput" />
+            <input type="text" placeholder="@Localizer["Search for a split..."]" class="search-input" id="splitSearchInput" />
         </div>
 
         <section class="table-wrapper">
@@ -33,8 +34,8 @@
                 <table class="styled-table" id="splitTable">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
+                            <th>@Localizer["Name"]</th>
+                            <th>@Localizer["Description"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +51,11 @@
                                         @split.Name
                                     </a>
                                 </td>
-                                <td>@(string.IsNullOrWhiteSpace(split.Description) ? "No description." : split.Description)</td>
+                                <td>
+                                    @(string.IsNullOrWhiteSpace(split.Description)
+                                        ? Localizer["No description."]
+                                        : split.Description)
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -58,7 +63,7 @@
             }
             else
             {
-                <p class="no-results">No splits found.</p>
+                <p class="no-results">@Localizer["No splits found."]</p>
             }
         </section>
     </main>

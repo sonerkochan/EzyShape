@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, ...</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, ...</value>
+	</resheader>
+
+	<!-- Заглавие на страницата -->
+	<data name="Title" xml:space="preserve">
+    <value>Add Workout</value>
+  </data>
+
+	<!-- Етикет за име -->
+	<data name="Label_Name" xml:space="preserve">
+    <value>Workout Name</value>
+  </data>
+
+	<!-- Етикет за описание -->
+	<data name="Label_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+
+	<!-- Текст на бутона -->
+	<data name="Button_Add" xml:space="preserve">
+    <value>Add Workout</value>
+  </data>
+
+</root>

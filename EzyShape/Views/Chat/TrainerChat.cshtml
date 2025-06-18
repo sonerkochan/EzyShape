@@ -3,6 +3,7 @@
     var clients = ViewBag.Partners as IEnumerable<dynamic>;
     var selectedClientId = ViewBag.SelectedClientId as string;
     Layout = "~/Views/Shared/_TrainerLayout.cshtml";
+    @inject IViewLocalizer Localizer;
 }
 
 <body>
@@ -181,21 +182,21 @@
                 </div>
                 <form id="chat-form" autocomplete="off">
                     <input type="hidden" id="receiverId" value="@selectedClientId" />
-                    <input type="text" id="messageText" placeholder="Type a message..." />
-                    <button type="submit" id="sendButton">Send</button>
+                        <input type="text" id="messageText" placeholder="@Localizer["Placeholder_Message"]" />
+                    <button type="submit" id="sendButton">@Localizer["Button_Send"]</button>
                 </form>
             </div>
         }
         else
         {
-            <p class="text-muted">Select a client to start chatting.</p>
+                <p class="text-muted">@Localizer["Prompt_SelectClient"]</p>
         }
     </div>
         @Html.AntiForgeryToken()
     <!-- Clients list on the RIGHT -->
     <div class="clients-container">
         <div class="clients-header">
-            <h4>Clients</h4>
+                <h4>@Localizer["Header_Clients"]</h4>
         </div>
         <ul class="clients-list">
             @foreach (var client in clients)
@@ -212,6 +213,7 @@
 
 </div>
 @using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.Localization
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const chatForm = document.getElementById('chat-form');

@@ -1,40 +1,44 @@
 ﻿@model AddSplitViewModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Add a new Split";
+    ViewData["Title"] = Localizer["Title"];
 }
 
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/addSplit.css" asp-append-version="true" />
 </head>
+<body>
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <hr />
 
-<div class="container">
-    <h2>@ViewData["Title"]</h2>
-    <hr />
+        <div class="row">
+            <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+                <form asp-action="AddSplit" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">@Localizer["Label_Name"]</label>
+                        <input asp-for="Name" class="form-control" aria-required="true" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
 
-    <div class="row">
-        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-            <form asp-action="AddSplit" method="post">
-                <div class="mb-3">
-                    <label asp-for="Name" class="form-label">Split Name</label>
-                    <input asp-for="Name" class="form-control" aria-required="true" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">@Localizer["Label_Description"]</label>
+                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label asp-for="Description" class="form-label">Description (Optional)</label>
-                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <input type="submit" value="Add Split" class="btn btn-primary" />
-                </div>
-            </form>
+                    <div class="mb-3">
+                        <input type="submit" value="@Localizer["Button_Add"]" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</body>
 </html>

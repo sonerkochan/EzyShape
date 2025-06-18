@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Messages";
+    ViewData["Title"] = @Localizer["Messages"];
     var SelectedTrainerId = ViewBag.SelectedTrainerId as string;
     var TrainerName = ViewBag.TrainerName as string;
-
+    @inject IViewLocalizer Localizer;
     
     Layout = null;
 }
@@ -154,7 +154,7 @@
 <div class="chat-container">
     <div class="chat-header">
         <form method="get" action="@Url.Action("Index", "Client", new { area = "Client" })" style="display:inline;">
-            <button type="submit" class="back-button" aria-label="Back to Client Area">&larr; Back</button>
+                <button type="submit" class="back-button" aria-label="Back to Client Area">&larr; @Localizer["BackButton"]</button>
         </form>
             @TrainerName
     </div>
@@ -165,13 +165,14 @@
 
     <form id="chatForm" class="chat-input-container" method="post" asp-controller="Chat" asp-action="SendMessage">
         <input type="hidden" name="receiverId" value="@SelectedTrainerId" />
-        <input type="text" name="message" class="chat-input" placeholder="Type a message..." autocomplete="off" required />
-        <button type="submit" class="send-button">Send</button>
+            <input type="text" name="message" class="chat-input" placeholder="@Localizer["MessagePlaceholder"]" autocomplete="off" required />
+            <button type="submit" class="send-button">@Localizer["SendButton"]</button>
     </form>
 </div>
 
 
     @using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.Localization
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const chatForm = document.getElementById('chatForm');

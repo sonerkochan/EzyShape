@@ -1,0 +1,26 @@
+﻿<root>
+	<data name="Exercise Library" xml:space="preserve">
+    <value>Exercise Library</value>
+  </data>
+	<data name="Add Exercise" xml:space="preserve">
+    <value>Add Exercise</value>
+  </data>
+	<data name="Search for an exercise..." xml:space="preserve">
+    <value>Search for an exercise...</value>
+  </data>
+	<data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+	<data name="Primary Focus" xml:space="preserve">
+    <value>Primary Focus</value>
+  </data>
+	<data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+	<data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+	<data name="No exercises found." xml:space="preserve">
+    <value>No exercises found.</value>
+  </data>
+</root>

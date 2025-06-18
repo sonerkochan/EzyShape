@@ -1,7 +1,9 @@
-﻿@model AddWorkoutViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model AddWorkoutViewModel
 
 @{
-    ViewData["Title"] = "Add Workout";
+    ViewData["Title"] = Localizer["Title"];
 }
 
 <head>
@@ -10,27 +12,25 @@
     <link rel="stylesheet" href="~/css/Trainer/addWorkout.css" asp-append-version="true" />
 </head>
 
-
-
 <div class="container">
     <h2>@ViewData["Title"]</h2>
     <hr />
 
     <form asp-action="AddWorkout" method="post">
         <div class="mb-3">
-            <label asp-for="Name" class="form-label">Workout Name</label>
+            <label asp-for="Name" class="form-label">@Localizer["Label_Name"]</label>
             <input asp-for="Name" class="form-control" aria-required="true" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Description" class="form-label">Description</label>
+            <label asp-for="Description" class="form-label">@Localizer["Label_Description"]</label>
             <textarea asp-for="Description" class="form-control" rows="4"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <input type="submit" value="Add Workout" class="btn btn-primary" />
+            <input type="submit" value="@Localizer["Button_Add"]" class="btn btn-primary" />
         </div>
     </form>
 </div>

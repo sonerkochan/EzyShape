@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+	</resheader>
+
+	<data name="Title" xml:space="preserve">
+    <value>Add a new Exercise</value>
+  </data>
+	<data name="Label_Name" xml:space="preserve">
+    <value>Exercise Name</value>
+  </data>
+	<data name="Label_Link" xml:space="preserve">
+    <value>Link (Optional)</value>
+  </data>
+	<data name="Label_Notes" xml:space="preserve">
+    <value>Notes (Optional)</value>
+  </data>
+	<data name="Label_MuscleId" xml:space="preserve">
+    <value>Primary Muscle</value>
+  </data>
+	<data name="Select_Muscle" xml:space="preserve">
+    <value>Select Primary Muscle</value>
+  </data>
+	<data name="Label_CategoryId" xml:space="preserve">
+    <value>Category</value>
+  </data>
+	<data name="Select_Category" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+	<data name="Label_LevelId" xml:space="preserve">
+    <value>Level</value>
+  </data>
+	<data name="Select_Level" xml:space="preserve">
+    <value>Select Level</value>
+  </data>
+	<data name="Label_EquipmentId" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+	<data name="Select_Equipment" xml:space="preserve">
+    <value>Select Equipment</value>
+  </data>
+	<data name="Button_Add" xml:space="preserve">
+    <value>Add Exercise</value>
+  </data>
+</root>

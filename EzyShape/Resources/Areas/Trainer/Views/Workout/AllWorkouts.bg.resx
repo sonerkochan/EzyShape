@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+	</resheader>
+
+	<data name="All Workouts" xml:space="preserve">
+    <value>Всички тренировки</value>
+  </data>
+	<data name="Add Workout" xml:space="preserve">
+    <value>Добави тренировка</value>
+  </data>
+	<data name="Search for a workout..." xml:space="preserve">
+    <value>Търси тренировка...</value>
+  </data>
+	<data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+	<data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+	<data name="Actions" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+	<data name="View Exercises" xml:space="preserve">
+    <value>Прегледай упражнения</value>
+  </data>
+	<data name="No workouts found." xml:space="preserve">
+    <value>Няма намерени тренировки.</value>
+  </data>
+
+</root>

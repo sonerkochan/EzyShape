@@ -1,0 +1,23 @@
+﻿<root>
+	<data name="All Splits" xml:space="preserve">
+    <value>Всички сплитове</value>
+  </data>
+	<data name="Add New Split" xml:space="preserve">
+    <value>Добави нов сплит</value>
+  </data>
+	<data name="Search for a split..." xml:space="preserve">
+    <value>Търси сплит...</value>
+  </data>
+	<data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+	<data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+	<data name="No description." xml:space="preserve">
+    <value>Няма описание.</value>
+  </data>
+	<data name="No splits found." xml:space="preserve">
+    <value>Няма намерени сплитове.</value>
+  </data>
+</root>

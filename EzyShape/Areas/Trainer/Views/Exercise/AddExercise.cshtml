@@ -1,8 +1,8 @@
 ﻿@model AddExerciseViewModel
-
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Add a new Exercise";
+    ViewData["Title"] = Localizer["Title"];
 }
 
 <head>
@@ -19,27 +19,27 @@
         <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
             <form asp-action="AddExercise" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label asp-for="Name" class="form-label">Exercise Name</label>
+                    <label asp-for="Name" class="form-label">@Localizer["Label_Name"]</label>
                     <input asp-for="Name" class="form-control" aria-required="true" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Link" class="form-label">Link (Optional)</label>
+                    <label asp-for="Link" class="form-label">@Localizer["Label_Link"]</label>
                     <input asp-for="Link" class="form-control" />
                     <span asp-validation-for="Link" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Notes" class="form-label">Notes (Optional)</label>
+                    <label asp-for="Notes" class="form-label">@Localizer["Label_Notes"]</label>
                     <input asp-for="Notes" class="form-control" />
                     <span asp-validation-for="Notes" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="MuscleId" class="form-label">Primary Muscle</label>
+                    <label asp-for="MuscleId" class="form-label">@Localizer["Label_MuscleId"]</label>
                     <select asp-for="MuscleId" class="form-control">
-                        <option value="">Select Primary Muscle</option>
+                        <option value="">@Localizer["Select_Muscle"]</option>
                         @foreach (var muscle in Model.Muscles)
                         {
                             <option value="@muscle.Id">@muscle.Name</option>
@@ -49,9 +49,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="CategoryId" class="form-label">Category</label>
+                    <label asp-for="CategoryId" class="form-label">@Localizer["Label_CategoryId"]</label>
                     <select asp-for="CategoryId" class="form-control">
-                        <option value="">Select Category</option>
+                        <option value="">@Localizer["Select_Category"]</option>
                         @foreach (var category in Model.Categories)
                         {
                             <option value="@category.Id">@category.Name</option>
@@ -61,9 +61,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="LevelId" class="form-label">Level</label>
+                    <label asp-for="LevelId" class="form-label">@Localizer["Label_LevelId"]</label>
                     <select asp-for="LevelId" class="form-control">
-                        <option value="">Select Level</option>
+                        <option value="">@Localizer["Select_Level"]</option>
                         @foreach (var level in Model.Levels)
                         {
                             <option value="@level.Id">@level.Name</option>
@@ -73,9 +73,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="EquipmentId" class="form-label">Equipment</label>
+                    <label asp-for="EquipmentId" class="form-label">@Localizer["Label_EquipmentId"]</label>
                     <select asp-for="EquipmentId" class="form-control">
-                        <option value="">Select Equipment</option>
+                        <option value="">@Localizer["Select_Equipment"]</option>
                         @foreach (var equipment in Model.Equipments)
                         {
                             <option value="@equipment.Id">@equipment.Name</option>
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <input type="submit" value="Add Exercise" class="btn btn-primary" />
+                    <input type="submit" value="@Localizer["Button_Add"]" class="btn btn-primary" />
                 </div>
             </form>
         </div>

@@ -1,0 +1,23 @@
+﻿<root>
+	<data name="All Splits" xml:space="preserve">
+    <value>All Splits</value>
+  </data>
+	<data name="Add New Split" xml:space="preserve">
+    <value>Add New Split</value>
+  </data>
+	<data name="Search for a split..." xml:space="preserve">
+    <value>Search for a split...</value>
+  </data>
+	<data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+	<data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+	<data name="No description." xml:space="preserve">
+    <value>No description.</value>
+  </data>
+	<data name="No splits found." xml:space="preserve">
+    <value>No splits found.</value>
+  </data>
+</root>

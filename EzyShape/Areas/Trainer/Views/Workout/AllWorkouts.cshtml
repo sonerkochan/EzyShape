@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<EzyShape.Infrastructure.Data.Models.Workout>
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "All Workouts";
+    ViewData["Title"] = Localizer["All Workouts"];
 }
 
 <html>
@@ -16,14 +17,14 @@
 
     <main>
         <div class="div-title">
-            <h1 class="tbl-header">@ViewData["Title"]</h1>
+            <h1 class="tbl-header">@Localizer["All Workouts"]</h1>
             <button type="button" class="button-add">
-                <a class="button-add-link" asp-action="AddWorkout">+ Add Workout</a>
+                <a class="button-add-link" asp-action="AddWorkout">+ @Localizer["Add Workout"]</a>
             </button>
         </div>
 
         <div class="div-input">
-            <input placeholder="Search for a workout..." />
+            <input placeholder="@Localizer["Search for a workout..."]" />
         </div>
 
         <div class="div-table">
@@ -32,9 +33,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Actions</th>
+                            <th>@Localizer["Name"]</th>
+                            <th>@Localizer["Description"]</th>
+                            <th>@Localizer["Actions"]</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +46,7 @@
                                 <td>@workout.Description</td>
                                 <td class="td-center">
                                     <a asp-action="Details" asp-route-id="@workout.Id" class="btn btn-info">
-                                        View Exercises
+                                        @Localizer["View Exercises"]
                                     </a>
                                 </td>
                             </tr>
@@ -55,7 +56,7 @@
             }
             else
             {
-                <p>No workouts found.</p>
+                <p>@Localizer["No workouts found."]</p>
             }
         </div>
 

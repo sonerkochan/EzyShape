@@ -1,0 +1,26 @@
+﻿<root>
+	<data name="Exercise Library" xml:space="preserve">
+    <value>Библиотека с упражнения</value>
+  </data>
+	<data name="Add Exercise" xml:space="preserve">
+    <value>Добави упражнение</value>
+  </data>
+	<data name="Search for an exercise..." xml:space="preserve">
+    <value>Търси упражнение...</value>
+  </data>
+	<data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+	<data name="Primary Focus" xml:space="preserve">
+    <value>Основен фокус</value>
+  </data>
+	<data name="Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+	<data name="Level" xml:space="preserve">
+    <value>Ниво</value>
+  </data>
+	<data name="No exercises found." xml:space="preserve">
+    <value>Няма намерени упражнения.</value>
+  </data>
+</root>
