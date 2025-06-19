@@ -213,4 +213,7 @@
   <data name="WeightGraph" xml:space="preserve">
     <value>Weight Graph</value>
   </data>
+  <data name="NoActivityLogs" xml:space="preserve">
+    <value>Няма активност до момента.</value>
+  </data>
 </root>

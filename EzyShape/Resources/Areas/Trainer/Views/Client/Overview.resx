@@ -213,4 +213,7 @@
   <data name="WeightGraph" xml:space="preserve">
     <value />
   </data>
+  <data name="NoActivityLogs" xml:space="preserve">
+    <value />
+  </data>
 </root>
