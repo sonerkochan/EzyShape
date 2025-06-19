@@ -163,7 +163,7 @@
     <value>Last Check -in:</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last name</value>
+    <value>Last name:</value>
   </data>
   <data name="Metrics" xml:space="preserve">
     <value>Metrics</value>
