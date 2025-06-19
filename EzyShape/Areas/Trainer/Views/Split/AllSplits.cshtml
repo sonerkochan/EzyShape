@@ -43,13 +43,7 @@
                         {
                             <tr onclick="window.location.href='@Url.Action("Detail", "Split", new { area = "Trainer", splitId = split.Id })';">
                                 <td>
-                                    <a asp-area="Trainer"
-                                       asp-controller="Split"
-                                       asp-action="Detail"
-                                       asp-route-id="@split.Id"
-                                       class="split-link">
-                                        @split.Name
-                                    </a>
+                                    @split.Name
                                 </td>
                                 <td>
                                     @(string.IsNullOrWhiteSpace(split.Description)
