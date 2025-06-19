@@ -25,7 +25,7 @@ namespace EzyShape.Areas.Client.Controllers
         }
 
          [HttpPost]
-        public async Task<IActionResult> AddWeight(AddWeightLogViewModel addWeightLogViewModel)
+        public async Task<IActionResult> AddWeight([FromBody] AddWeightLogViewModel addWeightLogViewModel)
         {
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             addWeightLogViewModel.UserId = clientId;

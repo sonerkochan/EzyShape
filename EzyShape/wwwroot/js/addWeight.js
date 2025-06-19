@@ -1,6 +1,5 @@
-﻿// Handle submit button click (no form)
-document.getElementById("submitWeightButton").onclick = function () {
-    const weight = document.getElementById("weightInput").value;
+﻿document.getElementById("submitWeightButton").onclick = function () {
+    const weight = parseFloat(document.getElementById("weightInput").value);
     const date = document.getElementById("weightDate").value;
 
     if (!weight || !date) {
@@ -8,16 +7,17 @@ document.getElementById("submitWeightButton").onclick = function () {
         return;
     }
 
-    const weightData = new URLSearchParams();
-    weightData.append("Weight", weight);
-    weightData.append("LogDate", date);
+    const weightData = {
+        Weight: weight,
+        LogDate: date
+    };
 
     fetch("/Client/Weigth/AddWeight", {
         method: "POST",
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/json"
         },
-        body: weightData.toString(),
+        body: JSON.stringify(weightData),
         credentials: "include"
     })
         .then(res => res.json())
@@ -33,5 +33,4 @@ document.getElementById("submitWeightButton").onclick = function () {
             toastr.error("An error occurred while adding the weight.");
         });
     closeWeightModal();
-
 };
