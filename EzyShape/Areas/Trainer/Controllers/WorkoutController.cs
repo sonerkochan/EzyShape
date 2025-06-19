@@ -1,10 +1,13 @@
 ﻿using EzyShape.Core.Contracts;
 using EzyShape.Core.Models.Exercises;
 using EzyShape.Core.Models.WorkoutExercises;
+using EzyShape.Core.Models.WorkoutLog;
 using EzyShape.Core.Models.Workouts;
 using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data;
+using EzyShape.Infrastructure.Data.Common;
 using EzyShape.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -15,10 +18,14 @@ namespace EzyShape.Areas.Trainer.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IWorkoutService workoutService;
+        private readonly IRepository repo;
 
-        public WorkoutController(ApplicationDbContext _context,
+
+        public WorkoutController(IRepository _repo, 
+            ApplicationDbContext _context,
             IWorkoutService _workoutService)
         {
+            repo = _repo;
             context = _context;
             workoutService = _workoutService;
         }
@@ -133,6 +140,44 @@ namespace EzyShape.Areas.Trainer.Controllers
 
             return RedirectToAction(nameof(Details), new { id = id });
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CheckLog(int Id)
+        {
+
+
+            var workout = await repo.AllReadonly<WorkoutLog>()
+                .Where(w => w.Id == Id)
+                .Select(w => new WorkoutLogViewModel
+                {
+                    Id = w.Id,
+                    Name = w.Name,
+                    Duration = w.Duration.ToString(@"hh\:mm\:ss"),
+                    StartDate = w.StartTime.ToString("dd MMM yyyy"),
+                    Exercises = w.ExerciseLogs.Select(e => new ExerciseLogViewModel
+                    {
+                        ExerciseId = e.ExerciseId,
+                        Name = repo.AllReadonly<Exercise>()
+                                   .Where(ex => ex.Id == e.ExerciseId)
+                                   .Select(ex => ex.Name)
+                                   .FirstOrDefault(),
+                        Sets = e.SetLogs.Select(s => new SetLogViewModel
+                        {
+                            SetNumber = s.SetNumber,
+                            Reps = s.Reps,
+                            Weight = s.Weight
+                        }).ToList()
+                    }).ToList()
+                }).FirstOrDefaultAsync();
+
+            if (workout == null)
+            {
+                return NotFound();
+            }
+
+            // Return partial view instead of full view
+            return View("LogView", workout);
         }
     }
 }

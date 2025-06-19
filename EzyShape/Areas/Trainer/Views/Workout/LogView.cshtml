@@ -1,0 +1,167 @@
+﻿@model EzyShape.Core.Models.WorkoutLog.WorkoutLogViewModel
+
+<head>
+    <style>
+        .workout-log-details {
+    max-width: 700px;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+}
+
+.workout-name {
+    font-weight: 700;
+    font-size: 2.25rem;
+    color: #007bff;
+}
+
+.workout-meta {
+    font-size: 1.1rem;
+}
+
+.exercise-list .exercise {
+    background-color: #f8f9fa;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+    border-color: #dee2e6;
+    transition: box-shadow 0.3s ease;
+}
+
+.exercise-list .exercise:hover {
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
+}
+
+.exercise-name {
+    font-weight: 600;
+    color: #004085;
+}
+
+table.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+table.table th,
+table.table td {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table.table thead.table-primary th {
+    background-color: #cfe2ff;
+    color: #084298;
+    border-color: #b6d4fe;
+}
+
+.text-muted.fst-italic {
+    font-style: italic;
+    color: #6c757d;
+}
+
+@@media (max-width: 600px) {
+    .workout-log-details {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .workout-name {
+        font-size: 1.6rem;
+    }
+
+    table.table th,
+    table.table td {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+        .workout-total-weight {
+            border: 2px solid #007bff;
+            background-color: #e7f1ff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            max-width: 320px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.15);
+        }
+
+    </style>
+</head>
+
+<div class="workout-log-details container p-4 rounded shadow-sm bg-white">
+    <h4 class="workout-name mb-4 text-center">@Model.Name</h4>
+
+    <div class="workout-meta mb-4 text-center text-secondary">
+        <span class="me-3">@Model.StartDate</span>
+        <span> - Duration: @Model.Duration</span>
+    </div>
+
+    @if (Model.Exercises != null && Model.Exercises.Any())
+    {
+        <div class="exercise-list">
+            @foreach (var exercise in Model.Exercises)
+            {
+                <div class="exercise mb-4 p-3 border rounded shadow-sm bg-light">
+                    <h5 class="exercise-name mb-3">@exercise.Name</h5>
+
+                    @if (exercise.Sets != null && exercise.Sets.Any())
+                    {
+                        <table class="table table-sm table-striped table-bordered align-middle">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Set #</th>
+                                    <th>Reps</th>
+                                    <th>Weight (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var set in exercise.Sets)
+                                {
+                                    <tr>
+                                        <td>@set.SetNumber</td>
+                                        <td>@set.Reps</td>
+                                        <td>@set.Weight</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted fst-italic">No sets logged for this exercise.</p>
+                    }
+                </div>
+            }
+        </div>
+        <div class="workout-total-weight text-center mb-4 fw-semibold text-primary" style="font-size:1.3rem;">
+            Total Weight Lifted: <span id="total-weight">0</span> kg
+        </div>
+    }
+    else
+    {
+        <p class="text-muted fst-italic text-center">No exercises logged for this workout.</p>
+    }
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let totalWeight = 0;
+
+        // Select all tables of sets
+        document.querySelectorAll('.exercise-list table tbody').forEach(tbody => {
+            // For each row (set) in the table body
+            tbody.querySelectorAll('tr').forEach(row => {
+                // Extract reps and weight from the 2nd and 3rd columns respectively
+                const reps = parseInt(row.cells[1].textContent.trim(), 10) || 0;
+                const weight = parseFloat(row.cells[2].textContent.trim()) || 0;
+
+                totalWeight += reps * weight;
+            });
+        });
+
+        // Show total weight with thousands separator, rounded to 2 decimals
+        const totalWeightSpan = document.getElementById('total-weight');
+        totalWeightSpan.textContent = totalWeight.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    });
+</script>

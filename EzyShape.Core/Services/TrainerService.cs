@@ -141,6 +141,7 @@ namespace EzyShape.Core.Services
                 .OrderByDescending(w => w.StartTime)
                 .Select(w => new WorkoutLogViewModel
                 {
+                    Id=w.Id,
                     Name = w.Name,
                     Duration = w.Duration.ToString(@"hh\:mm\:ss"),
                     StartDate = w.StartTime.ToString("dd MMM yyyy"),

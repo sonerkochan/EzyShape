@@ -10,6 +10,8 @@ namespace EzyShape.Core.Models.WorkoutLog
 
     public class ExerciseLogViewModel
     {
+        public string Name { get; set; }
+
         [JsonPropertyName("exerciseId")]
         public int ExerciseId { get; set; }
 
