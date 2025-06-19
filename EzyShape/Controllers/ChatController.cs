@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using EzyShape.Infrastructure.Data.Common;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace EzyShape.Controllers
 {
@@ -79,7 +80,8 @@ namespace EzyShape.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var messages = repo.All<ChatMessage>()
+            // First get the messages
+            var messages = await repo.All<ChatMessage>()
                 .Where(m =>
                     (m.SenderId == userId && m.ReceiverId == receiverId) ||
                     (m.SenderId == receiverId && m.ReceiverId == userId))
@@ -88,9 +90,26 @@ namespace EzyShape.Controllers
                 {
                     senderId = m.SenderId,
                     text = m.MessageText,
-                    time = m.SentAt.ToString("HH:mm")
+                    time = m.SentAt.ToString("HH:mm"),
+                    isRead = m.IsRead
                 })
-                .ToList();
+                .ToListAsync();
+
+            var unreadMessages = await repo.All<ChatMessage>()
+                .Where(m => m.SenderId == receiverId &&
+                           m.ReceiverId == userId &&
+                           !m.IsRead)
+                .ToListAsync();
+
+            foreach (var message in unreadMessages)
+            {
+                message.IsRead = true;
+            }
+
+            if (unreadMessages.Any())
+            {
+                await repo.SaveChangesAsync();
+            }
 
             return Json(messages);
         }
@@ -122,6 +141,15 @@ namespace EzyShape.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> GetUnreadMessageCount()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var unreadCount = await repo.All<ChatMessage>()
+                .CountAsync(m => m.ReceiverId == userId && !m.IsRead);
+
+            return Json(new { unreadCount });
+        }
     }
 
 

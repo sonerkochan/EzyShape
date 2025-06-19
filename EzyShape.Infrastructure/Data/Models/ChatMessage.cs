@@ -15,5 +15,7 @@ namespace EzyShape.Infrastructure.Data.Models
         public string ReceiverId { get; set; }  // Id of receiver
         public string MessageText { get; set; }
         public DateTime SentAt { get; set; }
+
+        public bool IsRead { get; set; } = false;
     }
 }
