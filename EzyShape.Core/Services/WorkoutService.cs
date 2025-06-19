@@ -41,12 +41,12 @@ namespace EzyShape.Core.Services
         }
 
 
-        [Description("Logs a new workout by adding it to the database.")]
+        [Description("Logs a new workout and records an activity entry.")]
         public async Task LogWorkoutAsync(WorkoutLogViewModel model, string clientId)
         {
             var workoutLog = new WorkoutLog
             {
-                Name= model.Name,
+                Name = model.Name,
                 UserId = clientId,
                 StartTime = DateTime.UtcNow,
                 Duration = TimeSpan.Parse(model.Duration),
@@ -55,8 +55,12 @@ namespace EzyShape.Core.Services
             await repo.AddAsync(workoutLog);
             await repo.SaveChangesAsync();
 
+            int totalExercises = 0;
+            int totalSets = 0;
+
             foreach (var exercise in model.Exercises)
             {
+                totalExercises++;
                 var exerciseLog = new ExerciseLog
                 {
                     WorkoutLogId = workoutLog.Id,
@@ -68,6 +72,7 @@ namespace EzyShape.Core.Services
 
                 foreach (var set in exercise.Sets)
                 {
+                    totalSets++;
                     var setLog = new SetLog
                     {
                         ExerciseLogId = exerciseLog.Id,
@@ -81,6 +86,17 @@ namespace EzyShape.Core.Services
                 }
             }
 
+            // ✅ Create activity log description
+            var description = $"Workout '{model.Name}' completed with {totalExercises} exercise{(totalExercises != 1 ? "s" : "")} and {totalSets} total set{(totalSets != 1 ? "s" : "")}.";
+
+            var activityLog = new ActivityLog
+            {
+                Description = description,
+                CreatedOn = DateTime.UtcNow,
+                ClientId = clientId
+            };
+
+            await repo.AddAsync(activityLog);
             await repo.SaveChangesAsync();
         }
     }

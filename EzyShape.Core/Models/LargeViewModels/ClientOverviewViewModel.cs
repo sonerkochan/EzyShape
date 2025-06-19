@@ -19,5 +19,6 @@ namespace EzyShape.Core.Models.LargeViewModels
         public IEnumerable<PhotoViewModel> Photos { get; set; }
 
         public ClientWeightStatsViewModel Stats { get; set; }
+        public IEnumerable<ActivityLog> ActivityLogs { get; set; }
     }
 }

@@ -187,6 +187,12 @@ namespace EzyShape.Core.Services
                 .OrderBy(x => x.LogDate)
                 .ToListAsync();
 
+            model.ActivityLogs = await repo.AllReadonly<ActivityLog>()
+                .Where(x => x.ClientId == clientId)
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(5)
+                .ToListAsync();
+
 
             model.Photos = await repo.AllReadonly<Photo>()
                         .Where(p => p.ClientId == clientId)

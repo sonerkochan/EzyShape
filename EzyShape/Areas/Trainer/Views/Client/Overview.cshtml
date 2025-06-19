@@ -29,6 +29,41 @@
     <link rel="stylesheet" href="~/css/clientOverview.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Trainer/shareAccesModal.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .activity-log-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .activity-log-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+
+        .activity-date {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .activity-message {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .no-activity-p {
+            padding: 8px 12px;
+            color: #999;
+            font-style: italic;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -144,6 +179,23 @@
                 <img src="~/img/container-images/container-activity.png" alt="@Localizer["ActivityHistory"]" width="24" height="24">
                 <h5 class="container-title-text">@Localizer["ActivityHistory"]</h5>
             </div>
+
+            @if (Model.ActivityLogs != null && Model.ActivityLogs.Any())
+            {
+                <ul class="activity-log-list">
+                    @foreach (var log in Model.ActivityLogs.Take(5))
+                    {
+                        <li class="activity-log-item">
+                            <span class="activity-date">@log.CreatedOn.ToLocalTime().ToString("dd MMM yyyy HH:mm")</span>
+                            <span class="activity-message">@log.Description</span>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="no-activity-p">@Localizer["NoActivityLogs"]</p>
+            }
         </div>
 
         <div class="box-container box-shadow">
