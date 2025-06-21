@@ -1,4 +1,5 @@
 ﻿using EzyShape.Core.Contracts;
+using EzyShape.Core.Models.LargeViewModels;
 using EzyShape.Core.Requests;
 using EzyShape.Core.Services;
 using EzyShape.Infrastructure.Data.Models;
@@ -18,6 +19,8 @@ namespace EzyShape.Areas.Client.Controllers
 
         private readonly IClientService clientService;
 
+        private readonly INoteService noteService;
+
         private readonly IUserService userService;
 
         private readonly IUtilityService utilityService;
@@ -28,7 +31,8 @@ namespace EzyShape.Areas.Client.Controllers
             RoleManager<IdentityRole> _roleManager,
             IUserService _userService,
             IClientService _clientService,
-            IUtilityService _utilityService
+            IUtilityService _utilityService,
+            INoteService _noteService
             )
         {
             userManager = _userManager;
@@ -37,6 +41,7 @@ namespace EzyShape.Areas.Client.Controllers
             userService = _userService;
             clientService = _clientService;
             utilityService = _utilityService;
+            noteService = _noteService;
         }
 
 
@@ -47,7 +52,9 @@ namespace EzyShape.Areas.Client.Controllers
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
-            var model = await clientService.GetClientById(clientId);
+            var model = new ClientIndexMenuViewModel();
+            model.Client= await clientService.GetClientById(clientId);
+            model.TrainerNotes = await noteService.GetClientActiveNotes(clientId);
 
             return View(model);
         }

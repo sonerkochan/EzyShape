@@ -45,6 +45,23 @@ namespace EzyShape.Core.Services
         public async Task<IEnumerable<NoteViewModel>> GetClientAllNotes(string clientId)
         {
             return await repo.AllReadonly<TrainerNote>()
+                .Where(n => n.ClientId == clientId)
+                .OrderByDescending(n => n.CreatedAt)
+                .Select(n => new NoteViewModel
+                {
+                    Id = n.Id,
+                    ClientId = n.ClientId,
+                    TrainerId = n.TrainerId,
+                    Title = n.Title,
+                    Content = n.Content,
+                    CreatedAt = n.CreatedAt,
+                    IsArchived = n.IsArchived
+                })
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<NoteViewModel>> GetClientActiveNotes(string clientId)
+        {
+            return await repo.AllReadonly<TrainerNote>()
                 .Where(n => n.ClientId == clientId && !n.IsArchived)
                 .OrderByDescending(n => n.CreatedAt)
                 .Select(n => new NoteViewModel

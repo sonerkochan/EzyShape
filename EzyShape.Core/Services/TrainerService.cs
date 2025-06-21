@@ -181,7 +181,7 @@ namespace EzyShape.Core.Services
                 })
                 .FirstOrDefaultAsync();
 
-            model.TrainerNotes = await noteService.GetClientAllNotes(clientId);
+            model.TrainerNotes = await noteService.GetClientActiveNotes(clientId);
 
             model.WeightLogs = await repo.AllReadonly<WeightLog>()
                 .Where(x => x.UserId == clientId)

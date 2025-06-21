@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace EzyShape.Areas.Trainer.Controllers
+namespace EzyShape.Areas.Client.Controllers
 {
     public class NoteController : BaseController
     {
@@ -14,30 +14,10 @@ namespace EzyShape.Areas.Trainer.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddNote(AddTrainerNoteViewModel model, string clientId, string trainerId)
+        public async Task<IActionResult> ArchiveNote([FromBody] ArchiveNoteRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                return Json(new { success = false, errors });
-            }
-
-            try
-            {
-                await noteService.AddNoteAsync(model, trainerId, clientId);
-                return RedirectToAction("Overview", "Client", new { area = "Trainer", clientId = clientId });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, errors = new[] { "An error occurred while adding the note: " + ex.Message } });
-            }
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> ArchiveNote(int noteId)
-        {
+            int noteId =
+            request.NoteId;
             try
             {
                 var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -48,7 +28,7 @@ namespace EzyShape.Areas.Trainer.Controllers
                     return Json(new { success = false, errors = new[] { "Note not found." } });
                 }
 
-                if (note.TrainerId != clientId)
+                if (note.ClientId != clientId)
                 {
                     return Json(new { success = false, errors = new[] { "You are not authorized to archive this note." } });
                 }
@@ -63,5 +43,9 @@ namespace EzyShape.Areas.Trainer.Controllers
                 return Json(new { success = false, errors = new[] { "An error occurred while archiving the note: " + ex.Message } });
             }
         }
+    }
+    public class ArchiveNoteRequest
+    {
+        public int NoteId { get; set; }
     }
 }

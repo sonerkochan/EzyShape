@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Done" xml:space="preserve">
+    <value>Готово</value>
+  </data>
   <data name="HelloText" xml:space="preserve">
     <value>Здравей</value>
   </data>
+  <data name="NoNotesYet" xml:space="preserve">
+    <value>Нямате бележки!</value>
+  </data>
+  <data name="RecentNotes" xml:space="preserve">
+    <value>Бележки</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>СКРИЙ</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>EzyShape | Софтуер за лични треньори</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>ПОКАЖИ ВСИЧКИ</value>
   </data>
   <data name="YourPotentialIsEndless" xml:space="preserve">
     <value>Твоят потенциал е безкраен</value>

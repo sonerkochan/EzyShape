@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
   <data name="HelloText" xml:space="preserve">
     <value>Hello</value>
   </data>
+  <data name="NoNotesYet" xml:space="preserve">
+    <value>No notes yes!</value>
+  </data>
+  <data name="RecentNotes" xml:space="preserve">
+    <value>Recent Notes</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>SHOW LESS</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>EzyShape | Personal Trainer Software for Professionals</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>VIEW ALL</value>
+  </data>
+  <data name="YourPotentialIsEndless" xml:space="preserve">
+    <value>Your potential is endless</value>
   </data>
 </root>

@@ -14,6 +14,7 @@ namespace EzyShape.Core.Contracts
     {
         Task AddNoteAsync(AddTrainerNoteViewModel model, string trainerId, string clientId);
         Task<IEnumerable<NoteViewModel>> GetClientAllNotes(string clientId);
+        Task<IEnumerable<NoteViewModel>> GetClientActiveNotes(string clientId);
 
         Task<TrainerNote> GetNoteByIdAsync(int noteId);
         Task UpdateNoteAsync(TrainerNote note);
