@@ -216,4 +216,10 @@
   <data name="NoActivityLogs" xml:space="preserve">
     <value>Няма активност до момента.</value>
   </data>
+  <data name="AddNote" xml:space="preserve">
+    <value>Add a note</value>
+  </data>
+  <data name="NoNotesAvailable" xml:space="preserve">
+    <value>Няма налични бележки.</value>
+  </data>
 </root>

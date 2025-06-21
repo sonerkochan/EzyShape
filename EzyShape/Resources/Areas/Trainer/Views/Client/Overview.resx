@@ -216,4 +216,10 @@
   <data name="NoActivityLogs" xml:space="preserve">
     <value />
   </data>
+  <data name="AddNote" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoNotesAvailable" xml:space="preserve">
+    <value />
+  </data>
 </root>

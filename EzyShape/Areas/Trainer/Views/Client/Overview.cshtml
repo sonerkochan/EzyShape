@@ -168,31 +168,32 @@
             </div>
         </div>
 
-        <div class="box-container box-shadow">
-            <div class="div-container-title">
-                <img src="~/img/container-images/container-notes.png" alt="@Localizer["Notes"]" width="24" height="24" />
-                <h5 class="container-title-text">@Localizer["Notes"]</h5>
-                <button id="btnOpenAddNote" class="button-access" style="margin-left:auto;">@Localizer["Add Note"]</button>
+        <div class="box-container box-shadow compact-notes-container">
+            <div class="div-container-title compact-notes-header">
+                <img src="~/img/container-images/container-notes.png" alt="@Localizer["Notes"]" width="20" height="20" />
+                <h6 class="container-title-text">@Localizer["Notes"]</h6>
+                <button id="btnOpenAddNote" class="button-access compact-btn">@Localizer["AddNote"]</button>
             </div>
 
-            <div class="notes-list" style="margin-top:10px; overflow-y:auto; max-height:220px;">
+            <div class="notes-list compact-notes-list">
                 @if (Model.TrainerNotes != null && Model.TrainerNotes.Any())
                 {
                     foreach (var note in Model.TrainerNotes)
                     {
-                        <div class="note-item" style="border-bottom: 1px solid #eee; padding: 10px 5px;">
-                            <h6>@note.Title</h6>
-                            <p>@note.Content</p>
+                        <div class="note-item compact-note-item">
+                            <strong>@note.Title</strong>
+                            <p class="compact-note-content">@note.Content</p>
                             <small class="text-muted">@note.CreatedAt.ToLocalTime().ToString("dd MMM yyyy HH:mm")</small>
                         </div>
                     }
                 }
                 else
                 {
-                    <p class="no-photos-p" style="text-align:center; margin-top: 40px;">@Localizer["No notes available."]</p>
+                    <p class="no-photos-p" style="margin-top: 20px;">@Localizer["NoNotesAvailable"]</p>
                 }
             </div>
         </div>
+
 
         <div class="box-container box-shadow">
             <div class="div-container-title">
@@ -319,6 +320,9 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/js/Trainer/shareAccessModal.js"></script>
+
     <script>
         document.getElementById('btnOpenAddNote').addEventListener('click', function () {
             document.getElementById('addNoteModal').style.display = 'flex';
@@ -330,9 +334,6 @@
         // Optional: submit the form with AJAX to stay on page and update list dynamically
         // but that can be added later if you want
     </script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="~/js/Trainer/shareAccessModal.js"></script>
 
     <script>
         const weightLabels = [

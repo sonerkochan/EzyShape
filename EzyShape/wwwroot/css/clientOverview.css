@@ -267,6 +267,57 @@
     }
 }
 
+/* Container Notes */
+/* Compact Notes Style */
+.compact-notes-container {
+    padding: 10px;
+    font-size: 13px;
+    height: auto;
+}
+
+.compact-notes-header {
+    gap: 10px;
+    height: 32px;
+}
+
+    .compact-notes-header h6 {
+        font-size: 14px;
+        margin: 0;
+    }
+
+.compact-btn {
+    padding: 2px 10px;
+    font-size: 12px;
+    height: 26px;
+}
+
+.compact-notes-list {
+    margin-top: 8px;
+    overflow-y: auto;
+    max-height: 180px;
+}
+
+.compact-note-item {
+    border-bottom: 1px solid #eee;
+    padding: 6px 4px;
+    font-size: 12px;
+}
+
+    .compact-note-item p {
+        margin: 3px 0;
+    }
+
+.compact-note-content {
+    font-size: 12px;
+    color: #333;
+}
+
+.compact-note-item small {
+    font-size: 11px;
+    color: #999;
+}
+
+
 /* Add Notes */
 .modal {
     display: none;
