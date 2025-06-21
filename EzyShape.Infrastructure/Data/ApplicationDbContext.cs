@@ -32,6 +32,7 @@ namespace EzyShape.Infrastructure.Data
         public DbSet<TrainingTask> TrainingTasks { get; set; }
         public DbSet<WeightLog> WeightLogs { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<TrainerNote> TrainerNotes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

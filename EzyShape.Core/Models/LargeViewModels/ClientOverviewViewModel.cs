@@ -1,4 +1,5 @@
 ﻿using EzyShape.Core.Models.Clients;
+using EzyShape.Core.Models.Notes;
 using EzyShape.Core.Models.Photos;
 using EzyShape.Core.Models.Splits;
 using EzyShape.Core.Models.Tasks;
@@ -20,5 +21,6 @@ namespace EzyShape.Core.Models.LargeViewModels
 
         public ClientWeightStatsViewModel Stats { get; set; }
         public IEnumerable<ActivityLog> ActivityLogs { get; set; }
+        public IEnumerable<NoteViewModel> TrainerNotes { get; set; }
     }
 }

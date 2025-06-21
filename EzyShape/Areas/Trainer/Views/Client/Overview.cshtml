@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     @model ClientOverviewViewModel
 
     @inject IViewLocalizer Localizer
@@ -169,8 +170,27 @@
 
         <div class="box-container box-shadow">
             <div class="div-container-title">
-                <img src="~/img/container-images/container-notes.png" alt="@Localizer["Notes"]" width="24" height="24">
+                <img src="~/img/container-images/container-notes.png" alt="@Localizer["Notes"]" width="24" height="24" />
                 <h5 class="container-title-text">@Localizer["Notes"]</h5>
+                <button id="btnOpenAddNote" class="button-access" style="margin-left:auto;">@Localizer["Add Note"]</button>
+            </div>
+
+            <div class="notes-list" style="margin-top:10px; overflow-y:auto; max-height:220px;">
+                @if (Model.TrainerNotes != null && Model.TrainerNotes.Any())
+                {
+                    foreach (var note in Model.TrainerNotes)
+                    {
+                        <div class="note-item" style="border-bottom: 1px solid #eee; padding: 10px 5px;">
+                            <h6>@note.Title</h6>
+                            <p>@note.Content</p>
+                            <small class="text-muted">@note.CreatedAt.ToLocalTime().ToString("dd MMM yyyy HH:mm")</small>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="no-photos-p" style="text-align:center; margin-top: 40px;">@Localizer["No notes available."]</p>
+                }
             </div>
         </div>
 
@@ -271,6 +291,46 @@
     </div>
 
 
+    <!-- Modal markup -->
+    <div id="addNoteModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+    background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+        <div class="modal-content" style="background:#fff; border-radius:12px; padding:20px; width: 400px; position:relative;">
+            <h4>@Localizer["Add New Note"]</h4>
+            <form id="addNoteForm" method="post" asp-action="AddNote" asp-controller="Note" asp-area="Trainer">
+                <input type="hidden" name="clientId" value="@Model.Client.Id" />
+                <input type="hidden" name="trainerId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+
+                <div class="form-group" style="margin-bottom:10px;">
+                    <label for="Title">@Localizer["Title"]</label>
+                    <input type="text" id="Title" name="Title" class="form-control" maxlength="100" required />
+                </div>
+
+                <div class="form-group" style="margin-bottom:10px;">
+                    <label for="Content">@Localizer["Content"]</label>
+                    <textarea id="Content" name="Content" class="form-control" rows="4" required></textarea>
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:10px;">
+                    <button type="button" id="btnCancelNote" class="button-access">@Localizer["Cancel"]</button>
+                    <button type="submit" class="button-chat">@Localizer["Save"]</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById('btnOpenAddNote').addEventListener('click', function () {
+            document.getElementById('addNoteModal').style.display = 'flex';
+        });
+        document.getElementById('btnCancelNote').addEventListener('click', function () {
+            document.getElementById('addNoteModal').style.display = 'none';
+        });
+
+        // Optional: submit the form with AJAX to stay on page and update list dynamically
+        // but that can be added later if you want
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="~/js/Trainer/shareAccessModal.js"></script>
 

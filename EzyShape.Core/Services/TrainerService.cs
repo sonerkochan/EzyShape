@@ -25,13 +25,16 @@ namespace EzyShape.Core.Services
     {
         private readonly IRepository repo;
         private readonly UserManager<User> userManager;
+        private readonly INoteService noteService;
 
         public TrainerService(
             IRepository _repo,
-            UserManager<User> _userManager)
+            UserManager<User> _userManager,
+            INoteService _noteService)
         {
             repo = _repo;
             userManager = _userManager;
+            noteService = _noteService;
         }
 
         public async Task<ClientViewModel> GetClientById(string clientId)
@@ -177,6 +180,8 @@ namespace EzyShape.Core.Services
                     LastOnline=u.LastOnline
                 })
                 .FirstOrDefaultAsync();
+
+            model.TrainerNotes = await noteService.GetClientAllNotes(clientId);
 
             model.WeightLogs = await repo.AllReadonly<WeightLog>()
                 .Where(x => x.UserId == clientId)
